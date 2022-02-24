@@ -1,9 +1,31 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+// import type { NextPage } from 'next';
+import Head from 'next/head';
 
-const Home: NextPage = () => {
+import Image from 'next/image';
+import { styled } from '../stitches.config';
+import styles from '../styles/Home.module.css';
+
+const Text = styled('p', {
+  fontFamily: '$system',
+  color: '$hiContrast',
+
+  variants: {
+    size: {
+      1: {
+        fontSize: '$1',
+      },
+      2: {
+        fontSize: '$2',
+      },
+      3: {
+        fontSize: '$3',
+      },
+    },
+  },
+});
+
+
+export default function Home() {
   return (
     <div className={styles.container}>
       <Head>
@@ -13,14 +35,22 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
+        <Text as="h1" size="3">
           Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+        </Text>
+        {/* <h1 className={styles.title}>
+          Welcome to <a href="https://nextjs.org">Next.js!</a>
+        </h1> */}
 
-        <p className={styles.description}>
+        <Text as="p" size="1">
           Get started by editing{' '}
           <code className={styles.code}>pages/index.tsx</code>
-        </p>
+        </Text>
+
+        {/* <p className={styles.description}>
+          Get started by editing{' '}
+          <code className={styles.code}>pages/index.tsx</code>
+        </p> */}
 
         <div className={styles.grid}>
           <a href="https://nextjs.org/docs" className={styles.card}>
@@ -68,5 +98,3 @@ const Home: NextPage = () => {
     </div>
   )
 }
-
-export default Home
