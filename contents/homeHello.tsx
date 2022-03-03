@@ -31,12 +31,12 @@ const HomeHelloStyled = styled('section', {
 
 const PStyled = styled(P, {
   lineHeight: '$9',
+  fontFamily: '$fontHeading',
+  fontWeight: '$normal',
 
-  defaultVariants: {
-    font: 'heading',
-    weight: 'normal',
-    align: 'left',
-  }
+  '@mobile': { fontSize: '$9' },
+  '@desktop': { fontSize: '$12' },
+
 });
 
 const Link = styled('a', {
@@ -71,11 +71,11 @@ const Hand = styled('span', {
 export function HomeHello () {
   return (
     <HomeHelloStyled>
-      <PStyled as={'h2'} size={{ '@initial': '9', '@desktop': '12' }}>
+      <PStyled as="h2">
         <Hand>🖐</Hand> Hi I’m Marcelo Oliveira aka teka a <strong>front-end</strong> and <strong>back-end</strong> developer based on <strong>Brazil</strong>.
       </PStyled>
 
-      <PStyled as={'h2'} size={{ '@initial': '9', '@desktop': '12' }}>
+      <PStyled as="h2">
         I’m currenty a <strong>front-end dev lead</strong> at <strong><Link href='https://codeby.global' target="_blank">Codeby</Link></strong> <Heart>💙</Heart>, an amazing smart tech with focus in e-commerce.
       </PStyled>
     </HomeHelloStyled>
