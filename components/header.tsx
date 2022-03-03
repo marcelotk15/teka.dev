@@ -134,7 +134,7 @@ export function Header () {
 
             <LinkGroup>
               {navigationLinksSocials.map(({ name, to, Icon }) =>
-                <a href={to} target="_blank" key={name}>
+                <a href={to} target="_blank" rel="noreferrer" key={name}>
                   <Tooltip
                     content={
                       <P size="-1" margin="none" weight="semibold">
