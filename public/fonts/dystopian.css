@@ -1,0 +1,23 @@
+@font-face {
+  font-family: Dystopian;
+  font-weight: normal;
+  src: url('/fonts/dystopian/dystopian_-_regular-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-family: Dystopian;
+  font-weight: 700;
+  src: url('/fonts/dystopian/dystopian_-_bold-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-family: Dystopian;
+  font-weight: bold;
+  src: url('/fonts/dystopian/dystopian_black_-_regular-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-family: Dystopian;
+  font-weight: 100;
+  src: url('/fonts/dystopian/dystopian_ligth_-_regular-webfont.woff') format('woff');
+}

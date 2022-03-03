@@ -1,0 +1,141 @@
+import {
+  amber,
+  amberA,
+  amberDark,
+  amberDarkA,
+  blackA,
+  blue,
+  blueDark,
+  crimson,
+  crimsonDark,
+  cyan,
+  cyanA,
+  cyanDark,
+  cyanDarkA,
+  gray,
+  grayDark,
+  green,
+  greenDark,
+  orange,
+  orangeA,
+  orangeDark,
+  orangeDarkA,
+  pink,
+  pinkA,
+  pinkDark,
+  pinkDarkA,
+  red,
+  redDark,
+  sky,
+  skyDark,
+  slate,
+  slateA,
+  slateDark,
+  slateDarkA,
+  teal,
+  tealDark,
+  violet,
+  violetA,
+  violetDark,
+  violetDarkA,
+  whiteA,
+  yellow,
+  yellowA,
+  yellowDark,
+  yellowDarkA
+} from "@radix-ui/colors";
+
+export const colorBaseTokens = {
+  ...amber,
+  ...amberA,
+  ...blackA,
+  ...blue,
+  ...crimson,
+  ...cyan,
+  ...cyanA,
+  ...gray,
+  ...green,
+  ...orange,
+  ...orangeA,
+  ...pink,
+  ...pinkA,
+  ...red,
+  ...sky,
+  ...slate,
+  ...slateA,
+  ...teal,
+  ...violet,
+  ...violetA,
+  ...whiteA,
+  ...yellow,
+  ...yellowA
+};
+
+export const colorBaseDarkTokens = {
+  ...amberDark,
+  ...amberDarkA,
+  ...blueDark,
+  ...crimsonDark,
+  ...cyanDark,
+  ...cyanDarkA,
+  ...grayDark,
+  ...greenDark,
+  ...orangeDark,
+  ...orangeDarkA,
+  ...pinkDark,
+  ...pinkDarkA,
+  ...redDark,
+  ...skyDark,
+  ...slateDark,
+  ...slateDarkA,
+  ...violetDark,
+  ...violetDarkA,
+  ...tealDark,
+  ...yellowDark,
+  ...yellowDarkA,
+};
+
+export const gradientTokens = {
+  // gdActive: 'linear-gradient(25deg, #F6D5F7, #FBE9D7)',
+  // gdActive: 'linear-gradient(43deg, #4158D0 0, #C850C0 46%, #FFCC70 100%)',
+  gdActive: 'linear-gradient(62deg, $orangeA7 0, $pinkA7 100%)',
+  gdHover: 'linear-gradient(25deg, #FF9A8B, #FF6A88, #FF6A88)',
+};
+
+export const colorsTokens = {
+  ...gradientTokens,
+
+  black: '$blackA12',
+  white: '$whiteA12',
+
+  // Semantic
+  background: '$slate2',
+  focusOutline: '$slate1',
+  toggleBackground: '$blackA8',
+
+  text: '$slate12',
+  textInvert: '$slate1',
+  textHover: '$slate9',
+
+  buttonText: '$slate12',
+
+  hiContrast: '$slate12',
+  loContrast: '$slate1',
+
+  success1: '$green9',
+  success2: '$green10',
+  valid1: '$green9',
+  valid2: '$green10',
+  error1: '$red9',
+  error2: '$red10',
+  bug1: '$red9',
+  bug2: '$red10',
+  warning1: '$yellow9',
+  warning2: '$yellow10',
+  pending1: '$yellow9',
+  pending2: '$yellow10',
+};
+
+export const colorsTokensLightTheme = {};
+
+export const colorsTokensDarkTheme = {};

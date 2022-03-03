@@ -1,0 +1,11 @@
+@font-face {
+  font-family: SpaceMono;
+  font-weight: normal;
+  src: url('/fonts/spacemono/spacemono-regular-webfont.woff') format('woff');
+}
+
+@font-face {
+  font-family: SpaceMono;
+  font-weight: bold;
+  src: url('/fonts/spacemono/spacemono-bold-webfont.woff') format('woff');
+}
