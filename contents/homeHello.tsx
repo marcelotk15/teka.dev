@@ -76,7 +76,7 @@ export function HomeHello () {
       </PStyled>
 
       <PStyled as="h2">
-        I’m currenty a <strong>front-end dev lead</strong> at <strong><Link href='https://codeby.global' target="_blank" rel="noreferrer">Codeby</Link></strong> <Heart>💙</Heart>, an amazing smart tech with focus in e-commerce.
+        I’m currenty <strong>front-end dev lead</strong> at <strong><Link href='https://codeby.global' target="_blank" rel="noreferrer">Codeby</Link></strong> <Heart>💙</Heart>, an amazing smart tech with focus in e-commerce.
       </PStyled>
     </HomeHelloStyled>
   );
