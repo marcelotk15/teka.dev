@@ -49,7 +49,7 @@ export const darkTheme = createTheme('dark-theme', {
 
 globalCss({
   '::selection': {
-    backgroundColor: '$brandA4',
+    backgroundColor: '$plum6',
   },
 
   ':-moz-focusring': {
