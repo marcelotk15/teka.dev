@@ -5,3 +5,4 @@ export * from "./logo";
 export * from "./themeToggle";
 export * from "./tooltip";
 export * from "./paragraph";
+export * from "./codeBlock";

@@ -13,9 +13,15 @@ const ContainerStyled = styled('div', {
   display: "flex",
   justifyContent: 'space-between',
   mx: "auto",
+  px: "$4",
   maxWidth: 'calc(100% - 1rem * 2)',
 
+  '@table': {
+    px: "$6",
+  },
+
   '@desktop': {
+    px: "$10",
     maxWidth: 'calc(100% - 2 rem * 2)'
   },
 
