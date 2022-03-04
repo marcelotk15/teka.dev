@@ -12,6 +12,7 @@ const ToggleStyled = styled('div', {
   borderRadius: "$2",
   backgroundColor: "$toggleBackground",
   marginLeft: 'auto',
+  position: 'relative',
 
   '@desktop': {
     marginLeft: '$0'

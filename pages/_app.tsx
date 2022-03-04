@@ -3,6 +3,7 @@ import { ThemeProvider } from "next-themes";
 
 import { darkTheme } from "@theme";
 import { Texture, Header } from '@/components'
+import { MobileMenuProvider } from "@/hooks/mobileMenu";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -14,7 +15,9 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         light: "light-theme"
       }}
     >
-      <Header />
+      <MobileMenuProvider>
+        <Header />
+      </MobileMenuProvider>
 
       <Component {...pageProps} />
 
