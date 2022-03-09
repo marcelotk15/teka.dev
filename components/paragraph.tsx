@@ -21,6 +21,7 @@ export const P = styled('p', {
       '10': { fontSize: '$10' },
       '11': { fontSize: '$11' },
       '12': { fontSize: '$12' },
+      '13': { fontSize: '$13' },
     },
 
     weight: {
