@@ -103,7 +103,7 @@ export function TableOfContents ({ source }: TableOfContentsProps ) {
     };
   });
 
-  const [activeId, setActiveId] = useState<string>();
+  const [activeId, setActiveId] = useState<string>('');
 
   useIntersectionObserver(setActiveId);
 
