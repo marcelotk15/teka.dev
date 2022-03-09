@@ -18,8 +18,9 @@ export const fontSizesTokens = {
   '8': '1.8rem',
   '9': '1.9rem',
   '10': '2rem',
-  '11': '2.1rem',
-  '12': '2.2rem',
+  '11': '2.5rem',
+  '12': '3rem',
+  '13': '3.5rem',
 };
 
 export const fontWeightsTokens = {
