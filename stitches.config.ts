@@ -1,4 +1,5 @@
 import { createStitches, defaultThemeMap } from "@stitches/react";
+import { reset } from "stitches-reset";
 
 import * as Asgard from "@asgard-ds";
 
@@ -7,7 +8,7 @@ export const {
   getCssText,
   createTheme,
   globalCss,
-  keyframes
+  keyframes,
 } = createStitches({
   themeMap: {
     ...defaultThemeMap,
@@ -48,6 +49,13 @@ export const darkTheme = createTheme('dark-theme', {
 });
 
 globalCss({
+  ...reset,
+
+  '*, ::before, ::after': {
+    boxSizing: 'border-box',
+    border: '0 solid #eaeaea'
+  },
+
   '::selection': {
     backgroundColor: '$plum6',
   },
@@ -65,6 +73,10 @@ globalCss({
     },
   },
 
+  html: {
+    scrollBehavior: 'smooth'
+  },
+
   body: {
     color: '$text',
     backgroundColor: '$background',
@@ -74,17 +86,10 @@ globalCss({
     fontFamily: '$fontDefault',
   },
 
-  h1: { color: '$heading', m: '$0' },
-
-  h2: { color: '$heading', m: '$0' },
-
-  h3: { color: '$heading', m: '$0' },
-
-  h4: { color: '$brand12', m: '$0' },
-
-  h5: { color: '$brand12', m: '$0' },
-
-  h6: { color: '$brand12', m: '$0' },
+  'h1, h2, h3, h4, h5, h6': {
+    color: '$text',
+    m: '$0'
+  },
 
   p: {
     fontFamily: '$fontText',
@@ -110,8 +115,15 @@ globalCss({
 
   svg: { display: 'block' },
 
+  table: {
+    display: 'block',
+    maxWidth: 'fit-content',
+    overflowX: 'auto',
+    whiteSpace: 'nowrap'
+  },
+
   'pre, code': {
     margin: 0,
     fontFamily: '$fontMono',
-  },
+  }
 })();
