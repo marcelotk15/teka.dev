@@ -154,7 +154,7 @@ export function Header () {
 
   return (
     <HeaderStyled>
-      <Container>
+      <Container css={{ width: 'auto' }}>
         <Navigation>
           <NavigationLogo>
             <Link href="/">
