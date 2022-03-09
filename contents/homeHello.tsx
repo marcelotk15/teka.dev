@@ -35,18 +35,20 @@ const PStyled = styled(P, {
   fontWeight: '$normal',
 
   '@mobile': { fontSize: '$9' },
-  '@desktop': { fontSize: '$12' },
+  '@desktop': { fontSize: '$11' },
 
 });
 
 const Link = styled('a', {
   color: 'inherit',
   textDecoration: 'underline',
-  textDecorationColor: '$slate4',
+  textDecorationColor: '$slate7',
   textUnderlineOffset: '.25rem',
+  borderRadius: '$1',
 
   '&:hover': {
-    textDecorationColor: '$slate7'
+    backgroundColor: "$slate7",
+    textDecoration: 'none',
   }
 });
 
