@@ -9,7 +9,7 @@ interface TableOfContentsProps {
 }
 
 function useIntersectionObserver (setActiveId: Dispatch<SetStateAction<string>>) {
-  const headingElementsRef = useRef({});
+  const headingElementsRef = useRef<{ [key: string]: IntersectionObserverEntry }>({});
 
   useEffect(() => {
     const callback = (headings: IntersectionObserverEntry[]) => {
