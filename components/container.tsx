@@ -9,8 +9,9 @@ interface ContainerProps {
 }
 
 const ContainerStyled = styled('div', {
-  width: "768px",
+  width: "47rem",
   display: "flex",
+  flexDirection: "column",
   justifyContent: 'space-between',
   mx: "auto",
   px: "$4",
