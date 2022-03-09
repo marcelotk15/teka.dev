@@ -65,16 +65,16 @@ export default function Footer() {
           <FooterStyled>
             
             <Flex flexDirection='column' css={{ gap: '$4' }}>
-              {navigationLinks.map((link) => (
-                <CustomLink href={link.to}>
+              {navigationLinks.map((link, index) => (
+                <CustomLink href={link.to} key={index}>
                   {link.name}
                 </CustomLink>
               ))}
             </Flex>
 
             <Flex flexDirection='column' css={{ gap: '$4' }}>
-              {navigationLinksSocials.map((link) => (
-                <CustomLink href={link.to}>
+              {navigationLinksSocials.map((link, index) => (
+                <CustomLink href={link.to} key={index}>
                   {link.name}
                 </CustomLink>
               ))}
