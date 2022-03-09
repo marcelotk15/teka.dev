@@ -1,92 +1,71 @@
-import { readFileSync } from 'fs';
-import path from "path";
-import matter from 'gray-matter';
-import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
-import { serialize } from 'next-mdx-remote/serialize';
-import Head from 'next/head';
-import { GetStaticPropsContext } from 'next';
+import { useMDXComponent } from 'next-contentlayer/hooks';
+// import { readFileSync } from 'fs';
+// import path from "path";
+// import matter from 'gray-matter';
+// import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
+// import { serialize } from 'next-mdx-remote/serialize';
+// import Head from 'next/head';
+import { GetStaticProps } from 'next';
 
-import { postFilePaths, POSTS_PATH } from "@/utils/mdxUtils";
+// import { postFilePaths, POSTS_PATH } from "@/libs/utils";
 
-import { Container, P, CodeBlock } from '@/components';
+import { Container, Layout } from '@/components';
 
-import { styled } from '@theme';
+// import { styled } from '@theme';
+// import { postFilePaths, POSTS_PATH } from '@/lib/utils';
+import { allBlogs } from '@/.contentlayer/data';
+import { Blog } from '@/.contentlayer/types';
+import BlogLayout from '@/layouts/blog';
+import components from '@/components/mdxComponents';
 
 
-const PostPageStyled = styled('div', {
-  width: '$full'
-});
+// const PostPageStyled = styled('div', {
+//   width: '$full'
+// });
 
-const PostInfo = styled('div', {});
+// const PostInfo = styled('div', {});
 
-const PostContent = styled('main', {
-  width: '$full',
-  mt: '$12'
-});
+// const PostContent = styled('main', {
+//   width: '$full',
+//   mt: '$12'
+// });
 
-const components: any = {
-  Head,
-  pre: CodeBlock
-}
+// const components: any = {
+//   Head,
+//   pre: CodeBlock
+// }
 
-type PostPageProps = {
-  source: MDXRemoteSerializeResult<Record<string, unknown>>
-  frontMatter: { [key: string]: any }
-}
+export default function Post ({ post }: { post: Blog }) {
+  const Component = useMDXComponent(post.body.code);
 
-export default function PostPage ({ source, frontMatter }: PostPageProps) {
+  // const StaticTweet = ({ id }) => {
+  //   const tweet = tweets.find((tweet) => tweet.id === id);
+  //   return <Tweet {...tweet} />;
+  // };
+
   return (
-    <Container>
-      <PostPageStyled>
-        <PostInfo>
-          <P as={'h1'} font="heading" size="12">
-            {frontMatter?.title}
-          </P>
-
-          {frontMatter?.description && (
-            <P font="mono" size="2" css={{ color: '$slate11', mt: '$2' }} margin="none">
-              {frontMatter.description}
-            </P>
-          )}
-        </PostInfo>
-
-        <PostContent>
-          <MDXRemote {...source} components={components} />
-        </PostContent>
-      </PostPageStyled>
-    </Container>
+    <Layout title="teka's blog">
+      <Container css={{ width: '72rem' }}>
+        <BlogLayout post={post}>
+          <Component
+            components={{ ...components }}
+          />
+        </BlogLayout>
+      </Container>
+    </Layout>
   );
 }
 
-export async function getStaticProps ({ params }: GetStaticPropsContext) {
-  const postFilePath = path.join(POSTS_PATH, `${params?.slug}.mdx`);
-  const source = readFileSync(postFilePath);
-
-  const { content, data } = matter(source);
-
-  const mdxSource = await serialize(content, {
-    mdxOptions: {
-      remarkPlugins: [],
-      rehypePlugins: []
-    },
-    scope: data
-  });
-
+export async function getStaticPaths() {
   return {
-    props: {
-      source: mdxSource,
-      frontMatter: data
-    }
+    paths: allBlogs.map((p) => ({ params: { slug: p.slug } })),
+    fallback: false
   };
 }
 
-export const getStaticPaths = async () => {
-  const paths = postFilePaths
-    .map((path: string) => path.replace(/\.mdx?$/, ''))
-    .map((slug: string) => ({ params: { slug } }));
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const post = allBlogs.find(({ slug }) => slug === params?.slug);
+  // const tweets = await getTweets(post.tweetIds);
 
-  return {
-    paths,
-    fallback: false
-  };
+  return { props: { post } };
 }

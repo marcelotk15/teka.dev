@@ -1,11 +1,14 @@
 ---
 title: Example Post
-description: This frontmatter description will appear below the title
+publishedAt: '2017-07-15'
+summary: This frontmatter description will appear below the title
+image: '/static/images/10-days-in-norway/banner.png'
 ---
 
 This is an example post, with a [link](https://nextjs.org) and a React component:
 
-```javascript
+```javascript:src/server.js
+// coment
 const PostPageStyled = styled('div', {});
 
 const PostInfo = styled('div', {});
@@ -13,6 +16,8 @@ const PostInfo = styled('div', {});
 const PostContent = styled('main', {
   mt: '$12'
 });
+
+function teste () {}
 ```
 
 The title and description are pulled from the MDX file and processed using `gray-matter`. Additionally, links are rendered using a custom component passed to `next-mdx-remote`.
