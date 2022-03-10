@@ -4,7 +4,6 @@ import { ThemeProvider } from "next-themes";
 import { darkTheme } from "@theme";
 import { Texture } from '@/components'
 import { MobileMenuProvider } from "@/hooks/mobileMenu";
-import { useAnalytics } from "@/lib/analytics";
 
 import '@/styles/dracula-prism.css'
 
@@ -17,8 +16,6 @@ export default function App({ Component, pageProps }: AppProps) {
       light: "light-theme"
     }
   };
-
-  useAnalytics();
 
   return (
     <ThemeProvider { ...themeProviderProps }>
