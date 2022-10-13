@@ -1,10 +1,5 @@
 import Image from 'next/image'
 import { parseISO, format } from 'date-fns'
-
-// import Container from 'components/Container';
-// import Subscribe from 'components/Subscribe';
-// import ViewCounter from 'components/ViewCounter';
-
 import type { PropsWithChildren } from 'react'
 import type { Blog } from '.contentlayer/types'
 
@@ -12,6 +7,10 @@ import { styled } from '@theme'
 import { Container, Flex, P, SocialShare, TableOfContents } from '@/src/components'
 
 import { Box } from '../components/Atoms/Box'
+
+// import Container from 'components/Container';
+// import Subscribe from 'components/Subscribe';
+// import ViewCounter from 'components/ViewCounter';
 
 const editUrl = (slug: string) => `https://github.com//leerob.io/edit/main/data/blog/${slug}.mdx`
 const discussUrl = (slug: string) =>
