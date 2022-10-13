@@ -1,4 +1,4 @@
-import * as Stitches from "@stitches/react";
+import * as Stitches from '@stitches/react'
 
 export const utilsFunctions = {
   pd: (value: Stitches.PropertyValue<'padding'>) => ({
@@ -131,4 +131,4 @@ export const utilsFunctions = {
   linearGradient: (value: string) => ({
     backgroundImage: `linear-gradient(${value})`,
   }),
-};
+}

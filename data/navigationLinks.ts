@@ -1,21 +1,31 @@
-import { IconType } from "react-icons";
-import { BiHome } from "react-icons/bi";
-import { RiPencilLine, RiTwitterLine } from "react-icons/ri";
-import { FiGithub, FiLinkedin } from "react-icons/fi";
+import { IconType } from 'react-icons'
+import {
+  GithubLogo,
+  House,
+  IconProps,
+  LinkedinLogo,
+  PencilSimple,
+  TwitterLogo,
+} from 'phosphor-react'
+import { ForwardRefExoticComponent } from 'react'
 
 interface NavigationLink {
-  to: string,
-  name: string,
-  Icon: IconType
+  to: string
+  name: string
+  Icon: IconType | ForwardRefExoticComponent<IconProps>
 }
 
 export const navigationLinks: NavigationLink[] = [
-  { to: '/', name: 'Home', Icon: BiHome },
-  { to: '/blog', name: 'Blog', Icon: RiPencilLine },
-];
+  { to: '/', name: 'Home', Icon: House },
+  { to: '/blog', name: 'Blog', Icon: PencilSimple },
+]
 
 export const navigationLinksSocials: NavigationLink[] = [
-  { to: 'https://twitter.com/_marcelotk', name: 'Twitter', Icon: RiTwitterLine },
-  { to: 'https://github.com/marcelotk15', name: 'Github', Icon: FiGithub },
-  { to: 'https://linkedin.com/in/marcelo-augusto-s-oliveira/', name: 'LinkedIn', Icon: FiLinkedin },
+  { to: 'https://twitter.com/_marcelotk', name: 'Twitter', Icon: TwitterLogo },
+  { to: 'https://github.com/marcelotk15', name: 'Github', Icon: GithubLogo },
+  {
+    to: 'https://linkedin.com/in/marcelo-augusto-s-oliveira/',
+    name: 'LinkedIn',
+    Icon: LinkedinLogo,
+  },
 ]

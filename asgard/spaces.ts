@@ -1,8 +1,9 @@
 export const spaceTokens = {
   0: '0',
-  1: '0.25rem',
-  2: '0.5rem',
-  3: '0.75rem',
+  px: '1px',
+  1: '.25rem',
+  2: '.5rem',
+  3: '.75rem',
   4: '1rem',
   5: '1.25rem',
   6: '1.5rem',
@@ -10,6 +11,7 @@ export const spaceTokens = {
   8: '2rem',
   9: '2.25rem',
   10: '2.5rem',
+  11: '2.75rem',
   12: '3rem',
   14: '3.5rem',
   16: '4rem',
@@ -19,7 +21,6 @@ export const spaceTokens = {
   32: '8rem',
   36: '9rem',
   40: '10rem',
-  42: '10.5rem',
   44: '11rem',
   48: '12rem',
   52: '13rem',
@@ -29,5 +30,4 @@ export const spaceTokens = {
   72: '18rem',
   80: '20rem',
   96: '24rem',
-  px: '1px'
 };
