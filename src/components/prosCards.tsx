@@ -1,4 +1,4 @@
-import { styled } from "@theme";
+import { styled } from '@theme'
 
 const ProsCardStyled = styled('div', {
   backgroundColor: '$green7',
@@ -6,31 +6,31 @@ const ProsCardStyled = styled('div', {
   border: '1px solid $green6',
   padding: '$6',
   my: '$4',
-  width: '$full'
-});
+  width: '$full',
+})
 
 const ProsCardContent = styled('div', {
-  mt: '$4'
-});
+  mt: '$4',
+})
 
 const ProContent = styled('div', {
   display: 'flex',
   alignItems: 'flex-start',
   mb: '$2',
   fontSize: '$0',
-  gap: '$2'
-});
+  gap: '$2',
+})
 
 const ProIcon = styled('div', {
   size: '$4',
 
   svg: {
     size: 'inherit',
-    color: '$green11'
-  }
-});
+    color: '$green11',
+  },
+})
 
-export function ProsCard({ title, pros }: { title: string, pros: string[] }) {
+export function ProsCard({ title, pros }: { title: string; pros: string[] }) {
   return (
     <ProsCardStyled>
       <span>{`You might use ${title} if...`}</span>
@@ -58,5 +58,5 @@ export function ProsCard({ title, pros }: { title: string, pros: string[] }) {
         ))}
       </ProsCardContent>
     </ProsCardStyled>
-  );
+  )
 }

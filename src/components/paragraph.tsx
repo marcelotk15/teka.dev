@@ -1,4 +1,4 @@
-import { styled } from '@theme';
+import { styled } from '@theme'
 
 export const P = styled('p', {
   color: '$text',
@@ -39,7 +39,7 @@ export const P = styled('p', {
     font: {
       default: { fontFamily: '$fontDefault' },
       heading: { fontFamily: '$fontHeading' },
-      mono: { fontFamily: '$fontMono' }
+      mono: { fontFamily: '$fontMono' },
     },
 
     margin: {
@@ -51,6 +51,6 @@ export const P = styled('p', {
       right: { textAlign: 'right' },
       center: { textAlign: 'center' },
       justify: { textAlign: 'justify' },
-    }
-  }
-});
+    },
+  },
+})

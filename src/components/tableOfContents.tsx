@@ -1,63 +1,59 @@
-import GithubSlugger from "github-slugger";
-import { Dispatch, MouseEvent, SetStateAction, useEffect, useRef, useState } from "react";
+import GithubSlugger from 'github-slugger'
+import { Dispatch, MouseEvent, SetStateAction, useEffect, useRef, useState } from 'react'
 
 import { styled } from '@theme'
-import { Flex, P } from ".";
+
+import { Flex, P } from '.'
 
 interface TableOfContentsProps {
-  source: string;
+  source: string
 }
 
-function useIntersectionObserver (setActiveId: Dispatch<SetStateAction<string>>) {
-  const headingElementsRef = useRef<{ [key: string]: IntersectionObserverEntry }>({});
+function useIntersectionObserver(setActiveId: Dispatch<SetStateAction<string>>) {
+  const headingElementsRef = useRef<{ [key: string]: IntersectionObserverEntry }>({})
 
   useEffect(() => {
     const callback = (headings: IntersectionObserverEntry[]) => {
       headingElementsRef.current = headings.reduce(
-        (
-          map: { [x: string]: any },
-          headingElement: { target: { id: string | number } }
-        ) => {
-          map[headingElement.target.id] = headingElement;
+        (map: { [x: string]: any }, headingElement: { target: { id: string | number } }) => {
+          map[headingElement.target.id] = headingElement
 
-          return map;
+          return map
         },
-        headingElementsRef.current
-      );
+        headingElementsRef.current,
+      )
 
-      const visibleHeadings: IntersectionObserverEntry[] = [];
+      const visibleHeadings: IntersectionObserverEntry[] = []
 
       Object.keys(headingElementsRef.current).forEach((key) => {
-        const headingElement = headingElementsRef.current[key];
-        if (headingElement.isIntersecting) visibleHeadings.push(headingElement);
-      });
+        const headingElement = headingElementsRef.current[key]
+        if (headingElement.isIntersecting) visibleHeadings.push(headingElement)
+      })
 
       const getIndexFromId = (id: string) =>
-        headingElements.findIndex((heading) => heading.id === id);
+        headingElements.findIndex((heading) => heading.id === id)
 
       if (visibleHeadings.length === 1) {
-        setActiveId(visibleHeadings[0].target.id);
+        setActiveId(visibleHeadings[0].target.id)
       } else if (visibleHeadings.length > 1) {
         const sortedVisibleHeadings = visibleHeadings.sort(
-          (a, b) => getIndexFromId(b.target.id) - getIndexFromId(a.target.id)
-        );
+          (a, b) => getIndexFromId(b.target.id) - getIndexFromId(a.target.id),
+        )
 
-        setActiveId(sortedVisibleHeadings[0].target.id);
+        setActiveId(sortedVisibleHeadings[0].target.id)
       }
-    };
+    }
 
     const observer = new IntersectionObserver(callback, {
-      rootMargin: "0px 0px -70% 0px",
-    });
+      rootMargin: '0px 0px -70% 0px',
+    })
 
-    const headingElements = Array.from(
-      document.querySelectorAll("article h2, article h3")
-    );
+    const headingElements = Array.from(document.querySelectorAll('article h2, article h3'))
 
-    headingElements.forEach((element) => observer.observe(element));
+    headingElements.forEach((element) => observer.observe(element))
 
-    return () => observer.disconnect();
-  }, [setActiveId]);
+    return () => observer.disconnect()
+  }, [setActiveId])
 }
 
 const ContentHeading = styled('button', {
@@ -82,41 +78,41 @@ const ContentHeading = styled('button', {
         textDecoration: 'underline',
         textUnderlineOffset: '2px',
         textDecorationThickness: '2px',
-        textDecorationColor: '$slateA4'
-      }
-    }
-  }
-});
+        textDecorationColor: '$slateA4',
+      },
+    },
+  },
+})
 
-export function TableOfContents ({ source }: TableOfContentsProps ) {
-  const headingLines = source.split('\n').filter((line) => line.match(/^###*\s/));
+export function TableOfContents({ source }: TableOfContentsProps) {
+  const headingLines = source.split('\n').filter((line) => line.match(/^###*\s/))
 
   const headings = headingLines.map((raw) => {
-    const text = raw.replace(/^###*\s/, "");
-    const level = raw.slice(0, 3) === "###" ? 3 : 2;
-    const slugger = new GithubSlugger();
+    const text = raw.replace(/^###*\s/, '')
+    const level = raw.slice(0, 3) === '###' ? 3 : 2
+    const slugger = new GithubSlugger()
 
     return {
       text,
       level,
       href: slugger.slug(text),
-    };
-  });
+    }
+  })
 
-  const [activeId, setActiveId] = useState<string>('');
+  const [activeId, setActiveId] = useState<string>('')
 
-  useIntersectionObserver(setActiveId);
+  useIntersectionObserver(setActiveId)
 
-  function handleOnClick (e: MouseEvent<HTMLElement>, href: string) {
-    e.preventDefault();
+  function handleOnClick(e: MouseEvent<HTMLElement>, href: string) {
+    e.preventDefault()
 
-    const element =  document?.querySelector(`#${href}`);
+    const element = document?.querySelector(`#${href}`)
 
-    if (!element) return;
+    if (!element) return
 
-    const dims = element.getBoundingClientRect();
+    const dims = element.getBoundingClientRect()
 
-    window.scrollTo(window.scrollX, dims.top + window.scrollY - 100);
+    window.scrollTo(window.scrollX, dims.top + window.scrollY - 100)
   }
 
   return (
@@ -124,7 +120,7 @@ export function TableOfContents ({ source }: TableOfContentsProps ) {
       <P>Table of contents</P>
 
       <Flex flexDirection="column" css={{ gap: '$2' }}>
-        {headings.map((heading, index) =>
+        {headings.map((heading, index) => (
           <ContentHeading
             key={index}
             onClick={(e) => handleOnClick(e, heading.href)}
@@ -132,8 +128,8 @@ export function TableOfContents ({ source }: TableOfContentsProps ) {
           >
             {heading.text}
           </ContentHeading>
-        )}
+        ))}
       </Flex>
     </Flex>
-  );
+  )
 }

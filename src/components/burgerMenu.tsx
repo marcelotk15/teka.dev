@@ -1,5 +1,6 @@
-import { useMobileMenuActions, useMobileMenuState } from '../hooks/mobileMenu'
 import { styled } from '@theme'
+
+import { useMobileMenuActions, useMobileMenuState } from '../hooks/mobileMenu'
 
 export const BurgerButton = styled('div', {
   position: 'relative',

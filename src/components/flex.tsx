@@ -1,11 +1,11 @@
-import { FC } from "react";
+import { FC } from 'react'
+import { CSS } from '@stitches/react/types/css-util'
 
-import { styled } from '@theme';
-import { CSS } from "@stitches/react/types/css-util";
+import { styled } from '@theme'
 
 interface FlexProps {
-  display?: 'flex' | 'block',
-  flexDirection?: 'row' | 'column',
+  display?: 'flex' | 'block'
+  flexDirection?: 'row' | 'column'
   justifyContent?:
     | 'flexStart'
     | 'flexEnd'
@@ -14,8 +14,8 @@ interface FlexProps {
     | 'spaceAround'
     | 'initial'
     | 'inherit'
-    | 'normal',
-  flexWrap?: 'wrap' | 'nowrap' | 'wrapReverse',
+    | 'normal'
+  flexWrap?: 'wrap' | 'nowrap' | 'wrapReverse'
   alignItems?:
     | 'stretch'
     | 'center'
@@ -24,8 +24,8 @@ interface FlexProps {
     | 'baseline'
     | 'initial'
     | 'inherit'
-    | 'normal',
-  css?: CSS,
+    | 'normal'
+  css?: CSS
   as?: never
 
   // flexGrow?: number,
@@ -45,12 +45,12 @@ const FlexStyled = styled('div', {
   variants: {
     display: {
       flex: { display: 'flex' },
-      block: { display: 'block' }
+      block: { display: 'block' },
     },
 
     flexDirection: {
       row: { flexDirection: 'row' },
-      column: { flexDirection: 'column' }
+      column: { flexDirection: 'column' },
     },
 
     justifyContent: {
@@ -61,7 +61,7 @@ const FlexStyled = styled('div', {
       spaceAround: { justifyContent: 'space-around' },
       initial: { justifyContent: 'initial' },
       inherit: { justifyContent: 'inherit' },
-      normal: { justifyContent: 'normal' }
+      normal: { justifyContent: 'normal' },
     },
 
     flexWrap: {
@@ -78,10 +78,10 @@ const FlexStyled = styled('div', {
       baseline: { alignItems: 'baseline' },
       initial: { alignItems: 'initial' },
       inherit: { alignItems: 'inherit' },
-      normal: { alignItems: 'normal' }
-    }
-  }
-});
+      normal: { alignItems: 'normal' },
+    },
+  },
+})
 
 export const Flex: FC<FlexProps> = ({
   children,
@@ -91,7 +91,7 @@ export const Flex: FC<FlexProps> = ({
   flexWrap,
   alignItems,
   css,
-  as
+  as,
 }) => (
   <FlexStyled
     display={display || 'flex'}
@@ -104,4 +104,4 @@ export const Flex: FC<FlexProps> = ({
   >
     {children}
   </FlexStyled>
-);
+)

@@ -1,8 +1,11 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import Link from 'next/link'
+import Image from 'next/image'
+import { ReactNode } from 'react'
 
-import { ProsCard } from './prosCards';
-import { ConsCard } from './consCard';
+import { styled } from '@theme'
+
+import { ProsCard } from './prosCards'
+import { ConsCard } from './consCard'
 // import Gumroad from 'components/metrics/Gumroad';
 // import Unsplash from 'components/metrics/Unsplash';
 // import Analytics from 'components/metrics/Analytics';
@@ -10,13 +13,9 @@ import { ConsCard } from './consCard';
 // import Step from 'components/Step';
 // import ImageWithTheme from 'components/ImageWithTheme';
 
-import { ReactNode } from 'react';
-
-import { styled } from "@theme";
-
-const CustomLink = (props: { href: string, children: ReactNode }) => {
-  const { href, children } = props;
-  const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'));
+const CustomLink = (props: { href: string; children: ReactNode }) => {
+  const { href, children } = props
+  const isInternalLink = href && (href.startsWith('/') || href.startsWith('#'))
 
   const LinkStyled = styled('a', {
     textDecoration: 'underline',
@@ -26,24 +25,22 @@ const CustomLink = (props: { href: string, children: ReactNode }) => {
 
     '&:hover': {
       color: '$crimson11',
-    }
-  });
+    },
+  })
 
   if (isInternalLink) {
     return (
       <Link href={href}>
-        <LinkStyled {...props}>
-          {children}
-        </LinkStyled>
+        <LinkStyled {...props}>{children}</LinkStyled>
       </Link>
-    );
+    )
   }
 
-  return <LinkStyled target="_blank" rel="noopener noreferrer" {...props} />;
-};
+  return <LinkStyled target="_blank" rel="noopener noreferrer" {...props} />
+}
 
 function RoundedImage(props: any) {
-  return <Image alt={props.alt} className="rounded-lg" {...props} />;
+  return <Image alt={props.alt} className="rounded-lg" {...props} />
 }
 
 const MDXComponents = {
@@ -57,6 +54,6 @@ const MDXComponents = {
   // Step,
   // Unsplash,
   // YouTube
-};
+}
 
-export default MDXComponents;
+export default MDXComponents

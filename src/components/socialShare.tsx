@@ -1,9 +1,9 @@
-import { IoLogoFacebook, IoLogoLinkedin, IoLogoTwitter } from "react-icons/io";
+import { IoLogoFacebook, IoLogoLinkedin, IoLogoTwitter } from 'react-icons/io'
+import { useEffect, useState } from 'react'
 
-import { styled } from "@theme";
-import { Flex, P } from ".";
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { styled } from '@theme'
+
+import { Flex, P } from '.'
 
 interface SocialShareProps {
   title: string
@@ -16,32 +16,32 @@ const Link = styled('a', {
 
   '&:hover': {
     color: 'inherit',
-  }
-});
+  },
+})
 
-export function SocialShare ({ title }: SocialShareProps) {
-  const [url, setUrl] = useState<string>();
+export function SocialShare({ title }: SocialShareProps) {
+  const [url, setUrl] = useState<string>()
 
   useEffect(() => setUrl(window.location.href || ''), [])
 
   const socialLinks = [
     {
       href: `https://twitter.com/intent/tweet?text=${title}&url=${url}`,
-      label: "Twitter",
+      label: 'Twitter',
       icon: IoLogoTwitter,
-      bg: "#1DA1F2",
+      bg: '#1DA1F2',
     },
     {
       href: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
-      label: "Facebook",
+      label: 'Facebook',
       icon: IoLogoFacebook,
-      bg: "#4267B2",
+      bg: '#4267B2',
     },
     {
       href: `https://www.linkedin.com/shareArticle?url=${url}&title=${title}`,
-      label: "LinkedIn",
+      label: 'LinkedIn',
       icon: IoLogoLinkedin,
-      bg: "#2867B2",
+      bg: '#2867B2',
     },
   ]
 
@@ -61,5 +61,5 @@ export function SocialShare ({ title }: SocialShareProps) {
         ))}
       </Flex>
     </Flex>
-  );
+  )
 }
