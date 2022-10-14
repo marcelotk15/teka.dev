@@ -112,7 +112,12 @@ export function HomeHero() {
         <Heading size={'lg'} unbold>
           I&apos;m currenty <strong>front-end developer</strong> at{' '}
           <strong>
-            <CodebyLink href="https://codeby.global" target="_blank" rel="noreferrer">
+            <CodebyLink
+              href="https://codeby.global"
+              target="_blank"
+              rel="noreferrer"
+              title="Codeby"
+            >
               Codeby
             </CodebyLink>
           </strong>{' '}

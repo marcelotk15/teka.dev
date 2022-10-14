@@ -12,6 +12,18 @@ const Wrapper = styled('footer', {
   mt: '$14',
 })
 
+const FooterContent = styled(Box, {
+  py: '$24',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: '$8',
+
+  '@desktop': {
+    alignItems: 'flex-start',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+})
 const LinkLogo = styled('a', {
   display: 'block',
   color: '$slate8',
@@ -32,31 +44,37 @@ export function Footer() {
       <Container>
         <NowPlaying />
 
-        <Box flex justify="spaceBetween" css={{ py: '$24' }}>
+        <FooterContent justify="spaceBetween" css={{ py: '$24' }}>
           <Link href="/" passHref>
-            <LinkLogo>
+            <LinkLogo title="teka">
               <Logo currentColor />
             </LinkLogo>
           </Link>
 
-          <Box flex css={{ gap: '$4' }}>
-            <Box flex column>
+          <Box css={{ gap: '$12' }}>
+            <Box column>
               {navigationLinks.map(({ to, name }) => (
                 <Link key={to} href={to} passHref>
-                  <LinkStyled>{name}</LinkStyled>
+                  <LinkStyled title={name}>{name}</LinkStyled>
                 </Link>
               ))}
             </Box>
 
-            <Box flex column>
+            <Box column>
               {navigationLinksSocials.map(({ to, name }) => (
-                <LinkStyled key={to} href={to} target="_blank" rel="noopener noreferrer">
+                <LinkStyled
+                  key={to}
+                  href={to}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={`teka's ${name} page`}
+                >
                   {name}
                 </LinkStyled>
               ))}
             </Box>
           </Box>
-        </Box>
+        </FooterContent>
       </Container>
     </Wrapper>
   )

@@ -7,15 +7,9 @@ import { styled } from '@theme'
 import { BlogPost } from '../Molecules/BlogPost'
 import { Section } from '../Molecules/Sections'
 import { Text } from '../Atoms/Text'
+import { Box } from '../Atoms/Box'
 
-const Wrapper = styled('div', {
-  display: 'flex',
-  flexDirection: 'column',
-})
-
-const Posts = styled('div', {
-  display: 'flex',
-  gap: '$6',
+const Posts = styled(Box, {
   flexDirection: 'column',
   color: '$hiContrast',
 
@@ -29,7 +23,7 @@ const ReadAll = styled('a', {
   alignItems: 'center',
   gap: '$2',
   mt: '$4',
-  transition: 'gap, color .2s',
+  transition: 'all .2s ease-in-out',
   color: '$hiContrast',
 
   '&:hover': {
@@ -47,8 +41,8 @@ export function RecentPosts({ posts }: RecentPostsProps) {
 
   return (
     <Section title="Recent Post">
-      <Wrapper>
-        <Posts>
+      <Box column>
+        <Posts gap={6}>
           {postsObject.map((blog) => (
             <BlogPost key={blog.slug} {...blog} />
           ))}
@@ -61,7 +55,7 @@ export function RecentPosts({ posts }: RecentPostsProps) {
             <ArrowRight size={18} weight="duotone" />
           </ReadAll>
         </Link>
-      </Wrapper>
+      </Box>
     </Section>
   )
 }

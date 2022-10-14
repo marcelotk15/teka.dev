@@ -1,7 +1,6 @@
 export * from './container'
 export * from './texture'
 export * from './themeToggle'
-export * from './tooltip'
 export * from './paragraph'
 export * from './layout'
 export * from './tableOfContents'

@@ -49,7 +49,7 @@ globalCss({
   },
 
   '::selection': {
-    backgroundColor: '$plum6',
+    backgroundColor: '$slate8',
   },
 
   ':-moz-focusring': {

@@ -5,7 +5,8 @@ import { styled, keyframes } from '@theme'
 
 import fetcher from '../../lib/fetcher'
 import { NowPlayingSong } from '../../lib/types'
-import { P } from '..'
+import { Box } from '../Atoms/Box'
+import { Text } from '../Atoms/Text'
 
 function AnimatedBars() {
   const BarAnimation1 = keyframes({
@@ -75,95 +76,86 @@ function AnimatedBars() {
   )
 }
 
+const Wrapper = styled(Box, {
+  gap: '$5',
+  mb: '$8',
+  position: 'relative',
+  justifyContent: 'center',
+
+  '@desktop': {
+    justifyContent: 'flex-start',
+  },
+
+  '&::before': {
+    content: '',
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    aspectRatio: '1/1',
+    background: '$green11',
+    zIndex: '$hide',
+    filter: 'blur(1rem)',
+    opacity: 0.8,
+  },
+})
+
+const NowPlayingLink = styled('a', {
+  position: 'relative',
+  fontWeight: '$bold',
+  color: '$slate11',
+
+  '&::before': {
+    content: '',
+    position: 'absolute',
+    width: '105%',
+    bottom: 0,
+    height: '1px',
+    backgroundColor: '$green9',
+    transition: 'height .2s',
+    borderRadius: '$1',
+    zIndex: '$hide',
+    padding: '$px',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    opacity: '.8',
+  },
+
+  '&:hover': {
+    color: '$hiContrast',
+
+    '&::before': {
+      height: '100%',
+      padding: '$2',
+    },
+  },
+})
+
 export function NowPlaying() {
   const { data } = useSWR<NowPlayingSong>('/api/now-playing', fetcher)
 
-  const NowPlayingInfo = styled('div', {
-    display: 'inline-flex',
-    flexDirection: 'column',
-    width: '$full',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'nowrap',
-
-    '@desktop': {
-      flexDirection: 'row',
-    },
-  })
-
-  const NowPlayingLink = styled('a', {
-    color: '$slate12',
-    textDecoration: 'underline',
-    textDecorationColor: '$slate7',
-    textUnderlineOffset: '.25rem',
-    borderRadius: '$1',
-
-    '&:hover': {
-      backgroundColor: '$slate7',
-      textDecoration: 'none',
-    },
-  })
-
-  const Wrapper = styled('section', {
-    display: 'flex',
-    alignItems: 'center',
-    flexDirection: 'row-reverse',
-    mb: '$8',
-    width: '$full',
-    position: 'relative',
-
-    '@desktop': {
-      flexDirection: 'row',
-      gap: '$2',
-    },
-
-    '&::before': {
-      content: '',
-      position: 'absolute',
-      top: 0,
-      bottom: 0,
-      aspectRatio: '1/1',
-      background: '$green11',
-      zIndex: '$hide',
-      filter: 'blur(1rem)',
-      opacity: 0.8,
-    },
-  })
-
   return (
-    <Wrapper>
+    <Wrapper items="center">
       <SpotifyLogo weight="fill" color="#1ED760" size={24} />
 
-      <NowPlayingInfo className="inline-flex flex-col sm:flex-row w-full max-w-full truncate">
+      <Box items="center" gap={3}>
         {data?.songUrl ? (
           <>
             <AnimatedBars />
 
             <NowPlayingLink
-              className="capsize text-gray-800 dark:text-gray-200 font-medium  max-w-max truncate"
               href={data.songUrl}
               target="_blank"
               rel="noopener noreferrer"
+              title={`${data.title} - ${data.artist}`}
             >
-              {data.title}
+              <Text color={'inherit'}>{data.title} </Text>
+              <Text color={'inherit'}>- {data.artist}</Text>
             </NowPlayingLink>
           </>
         ) : (
-          <P margin={'none'}>Not Playing</P>
+          <Text>Listening nothing</Text>
         )}
-
-        <P
-          css={{ color: '$slate11', mx: '$2', display: 'none', '@desktop': { display: 'block' } }}
-          as="span"
-          margin={'none'}
-        >
-          {' – '}
-        </P>
-
-        <P css={{ color: '$slate11' }} margin={'none'}>
-          {data?.artist ?? 'Spotify'}
-        </P>
-      </NowPlayingInfo>
+      </Box>
     </Wrapper>
   )
 }

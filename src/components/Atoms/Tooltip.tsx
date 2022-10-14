@@ -1,6 +1,9 @@
 import { ReactNode } from 'react'
 import * as TooltipPrimitive from '@radix-ui/react-tooltip'
+
 import { keyframes, styled } from '@/stitches.config'
+
+import { Text } from './Text'
 
 const slideUpAndFade = keyframes({
   '0%': { opacity: 0, transform: 'translateY(2px)' },
@@ -73,9 +76,7 @@ function TooltipRoot({
 }: TooltipProps) {
   return (
     <TooltipPrimitive.Root delayDuration={delayDuration}>
-      <TooltipPrimitive.Trigger asChild>
-        {children}
-      </TooltipPrimitive.Trigger>
+      <TooltipPrimitive.Trigger asChild>{children}</TooltipPrimitive.Trigger>
 
       <TooltipContent
         avoidCollisions={avoidCollisions}
@@ -84,7 +85,7 @@ function TooltipRoot({
         sideOffset={12}
         radius={align}
       >
-        {content}
+        <Text weight="semibold">{content}</Text>
       </TooltipContent>
     </TooltipPrimitive.Root>
   )
@@ -92,5 +93,5 @@ function TooltipRoot({
 
 export const Tooltip = {
   Provider: TooltipPrimitive.Provider,
-  Root: TooltipRoot
+  Root: TooltipRoot,
 }

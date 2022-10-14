@@ -8,10 +8,10 @@ interface SectionProps {
   children: ReactNode
 }
 
-export function Section({ children, title }: SectionProps) {
+export function SubSection({ children, title }: SectionProps) {
   return (
-    <Box column gap={6} css={{ mt: '$6' }}>
-      <Heading size="lg">{title}</Heading>
+    <Box gap={4} column css={{ mt: '$4' }}>
+      <Heading>{title}</Heading>
 
       {children}
     </Box>

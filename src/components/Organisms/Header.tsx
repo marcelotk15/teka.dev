@@ -8,8 +8,7 @@ import { useMobileMenuState } from '@/src/hooks/mobileMenu'
 
 import { Container } from '../container'
 import { Logo } from '../Atoms/Logo'
-import { Tooltip } from '../tooltip'
-import { P } from '../paragraph'
+import { Tooltip } from '../Atoms/Tooltip'
 import { Button } from '../Atoms/Button'
 import { ThemeToggle } from '../themeToggle'
 import BurgerMenu from '../burgerMenu'
@@ -133,7 +132,7 @@ export function Header() {
                 {navigationLinks.map(({ name, to, Icon }) => (
                   <Link key={name} href={to} passHref>
                     <a>
-                      <Tooltip.Root content={<Text>{name}</Text>}>
+                      <Tooltip.Root content={name}>
                         <Button
                           background={'transparent'}
                           active={router.pathname === to}
@@ -155,7 +154,7 @@ export function Header() {
 
               <LinkGroup opened={opened}>
                 {navigationLinksSocials.map(({ name, to, Icon }) => (
-                  <Tooltip.Root key={name} content={<Text>{name}</Text>}>
+                  <Tooltip.Root key={name} content={name}>
                     <Button
                       background={'transparent'}
                       as="a"

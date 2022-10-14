@@ -16,15 +16,15 @@ const Wrapper = styled('a', {
   flexDirection: 'column',
   background: '$slate3',
   gap: '$4',
-  transition: 'transform .15s',
+  transition: 'all .2s ease-in-out',
   position: 'relative',
   borderRadius: '$2',
-  padding: '$4',
+  padding: '$6',
   overflow: 'hidden',
 
   '&:hover': {
-    transform: 'scale(1.05)',
     background: '$slate4',
+    padding: '$4 $6 $8',
   },
 })
 
@@ -55,7 +55,7 @@ export function BlogPost({ title, summary, slug }: BlogPostProps) {
 
   return (
     <Link href={`/blog/${slug}`} passHref>
-      <Wrapper aria-label={title}>
+      <Wrapper title={title}>
         <Title as="h3" size={'sm'}>
           {title}
         </Title>
