@@ -59,7 +59,7 @@ const BoxStyled = styled('div', {
 })
 
 interface BoxProps extends HTMLAttributes<HTMLDivElement> {
-  children: ReactNode
+  children?: ReactNode
   block?: boolean
   column?: boolean
   justify?: 'end' | 'center' | 'spaceBetween' | 'spaceAround' | 'initial' | 'inherit'

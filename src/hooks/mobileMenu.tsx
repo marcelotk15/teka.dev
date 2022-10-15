@@ -1,4 +1,4 @@
-import { createContext, FC, useContext, useReducer } from "react";
+import { createContext, FC, useContext, useReducer } from 'react'
 
 type State = {
   open: boolean
@@ -11,35 +11,35 @@ type Dispatch = {
 }
 
 type Action = {
-  type: "OPEN" | "CLOSE" | "TOGGLE"
+  type: 'OPEN' | 'CLOSE' | 'TOGGLE'
 }
 
 const initialState: State = { open: false }
 
-const MobileMenuStateContext = createContext<State>(initialState);
-const MobileMenuDispatchContext = createContext<Dispatch | null>(null);
+const MobileMenuStateContext = createContext<State>(initialState)
+const MobileMenuDispatchContext = createContext<Dispatch | null>(null)
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
-    case "OPEN":
-      return { ...state, open: true };
-    case "CLOSE":
-      return { ...state, open: false };
-    case "TOGGLE":
-      return { ...state, open: !state.open };
+    case 'OPEN':
+      return { ...state, open: true }
+    case 'CLOSE':
+      return { ...state, open: false }
+    case 'TOGGLE':
+      return { ...state, open: !state.open }
     default:
-      return state;
-  };
-};
+      return state
+  }
+}
 
 const MobileMenuProvider: FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, { open: false })
 
-  const openMenu = () => dispatch({ type: "OPEN" });
-  const closeMenu = () => dispatch({ type: "CLOSE" });
-  const toggleMenu = () => dispatch({ type: "TOGGLE" });
+  const openMenu = () => dispatch({ type: 'OPEN' })
+  const closeMenu = () => dispatch({ type: 'CLOSE' })
+  const toggleMenu = () => dispatch({ type: 'TOGGLE' })
 
-  const actions: Dispatch = { openMenu, closeMenu, toggleMenu };
+  const actions: Dispatch = { openMenu, closeMenu, toggleMenu }
 
   return (
     <MobileMenuStateContext.Provider value={state}>
@@ -47,25 +47,24 @@ const MobileMenuProvider: FC = ({ children }) => {
         {children}
       </MobileMenuDispatchContext.Provider>
     </MobileMenuStateContext.Provider>
-  );
-};
+  )
+}
 
-function useMobileMenuState () {
-  const context = useContext(MobileMenuStateContext);
+function useMobileMenuState() {
+  const context = useContext(MobileMenuStateContext)
+
+  if (context === undefined) throw Error('"useErrorState" should be used under "ErrorProvider"!')
+
+  return context
+}
+
+function useMobileMenuActions() {
+  const context = useContext(MobileMenuDispatchContext)
 
   if (context === undefined)
-    throw Error('"useErrorState" should be used under "ErrorProvider"!');
+    throw Error('"useErrorActions" should be used under "ErrorDispatchContext"!')
 
-  return context;
-};
+  return context
+}
 
-function useMobileMenuActions () {
-  const context = useContext(MobileMenuDispatchContext);
-
-  if (context === undefined)
-    throw Error('"useErrorActions" should be used under "ErrorDispatchContext"!');
-
-  return context;
-};
-
-export { MobileMenuProvider, useMobileMenuState, useMobileMenuActions };
+export { MobileMenuProvider, useMobileMenuState, useMobileMenuActions }

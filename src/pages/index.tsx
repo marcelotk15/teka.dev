@@ -1,27 +1,28 @@
-import { InferGetStaticPropsType } from 'next'
-import { allBlogs } from '.contentlayer/data'
+import { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
+// import { allBlogs } from '.contentlayer/data'
 
-import { Container, Layout } from '../components'
-import { pick } from '../lib/utils'
+import { Container } from '../components/Atoms/Container'
 import { HomeHero } from '../components/Organisms/HomeHero'
 import { RecentPosts } from '../components/Organisms/RecentPosts'
+import { MainLayout } from '../layouts/MainLayout'
+import { Post } from '../@types/post'
+import { getClient } from '../lib/sanity-server'
+import { indexQuery } from '../lib/queries'
 
-export default function Home({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function HomePage({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
-    <Layout>
+    <MainLayout>
       <HomeHero />
 
       <Container>
         <RecentPosts posts={posts} />
       </Container>
-    </Layout>
+    </MainLayout>
   )
 }
 
-export function getStaticProps() {
-  const posts = allBlogs
-    .map((post) => pick(post, ['slug', 'title', 'summary', 'publishedAt']))
-    .sort((a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)))
+export async function getStaticProps({ preview = false }: GetStaticPropsContext) {
+  const posts: Post[] = await getClient(preview).fetch(indexQuery)
 
   return { props: { posts } }
 }

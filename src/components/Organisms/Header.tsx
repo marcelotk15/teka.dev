@@ -6,14 +6,13 @@ import { styled } from '@theme'
 import { navigationLinks, navigationLinksSocials } from '@/data'
 import { useMobileMenuState } from '@/src/hooks/mobileMenu'
 
-import { Container } from '../container'
 import { Logo } from '../Atoms/Logo'
 import { Tooltip } from '../Atoms/Tooltip'
 import { Button } from '../Atoms/Button'
-import { ThemeToggle } from '../themeToggle'
-import BurgerMenu from '../burgerMenu'
 import { Box } from '../Atoms/Box'
-import { Text } from '../Atoms/Text'
+import { BurgerMenuButton } from '../Molecules/BurgerMenuButton'
+import { ThemeSwitcher } from '../Molecules/ThemeSwitcher'
+import { Container } from '../Atoms/Container'
 
 const Wrapper = styled('header', {
   userSelect: 'none',
@@ -118,7 +117,7 @@ export function Header() {
 
   return (
     <Wrapper>
-      <Container size="adaptive">
+      <Container>
         <Navigation>
           <Link href="/" passHref>
             <Box as="a" css={{ height: '$10', zIndex: '$5' }}>
@@ -173,9 +172,9 @@ export function Header() {
             </Tooltip.Provider>
           </Links>
 
-          <ThemeToggle />
+          <ThemeSwitcher />
 
-          <BurgerMenu />
+          <BurgerMenuButton />
         </Navigation>
       </Container>
     </Wrapper>

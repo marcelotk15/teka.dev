@@ -1,12 +1,13 @@
 import useSWR from 'swr'
 import { SpotifyLogo } from 'phosphor-react'
 
-import { styled, keyframes } from '@theme'
+import { styled, keyframes, theme } from '@theme'
 
 import fetcher from '../../lib/fetcher'
 import { NowPlayingSong } from '../../lib/types'
 import { Box } from '../Atoms/Box'
 import { Text } from '../Atoms/Text'
+import { Link } from '../Atoms/Link'
 
 function AnimatedBars() {
   const BarAnimation1 = keyframes({
@@ -77,56 +78,23 @@ function AnimatedBars() {
 }
 
 const Wrapper = styled(Box, {
-  gap: '$5',
   mb: '$8',
   position: 'relative',
+
   justifyContent: 'center',
 
   '@desktop': {
     justifyContent: 'flex-start',
   },
-
-  '&::before': {
-    content: '',
-    position: 'absolute',
-    top: 0,
-    bottom: 0,
-    aspectRatio: '1/1',
-    background: '$green11',
-    zIndex: '$hide',
-    filter: 'blur(1rem)',
-    opacity: 0.8,
-  },
 })
 
-const NowPlayingLink = styled('a', {
-  position: 'relative',
-  fontWeight: '$bold',
-  color: '$slate11',
-
+const NowPlayingLink = styled(Link, {
   '&::before': {
-    content: '',
-    position: 'absolute',
-    width: '105%',
-    bottom: 0,
-    height: '1px',
     backgroundColor: '$green9',
-    transition: 'height .2s',
-    borderRadius: '$1',
-    zIndex: '$hide',
-    padding: '$px',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    opacity: '.8',
   },
 
   '&:hover': {
     color: '$hiContrast',
-
-    '&::before': {
-      height: '100%',
-      padding: '$2',
-    },
   },
 })
 
@@ -134,8 +102,8 @@ export function NowPlaying() {
   const { data } = useSWR<NowPlayingSong>('/api/now-playing', fetcher)
 
   return (
-    <Wrapper items="center">
-      <SpotifyLogo weight="fill" color="#1ED760" size={24} />
+    <Wrapper items="center" gap={5}>
+      <SpotifyLogo weight="fill" color={theme.colors.green10.value} size={24} />
 
       <Box items="center" gap={3}>
         {data?.songUrl ? (
@@ -148,8 +116,12 @@ export function NowPlaying() {
               rel="noopener noreferrer"
               title={`${data.title} - ${data.artist}`}
             >
-              <Text color={'inherit'}>{data.title} </Text>
-              <Text color={'inherit'}>- {data.artist}</Text>
+              <Text color={'inherit'} weight="semibold">
+                {`${data.title} `}
+              </Text>
+              <Text color={'inherit'}>
+                {' - '} {data.artist}
+              </Text>
             </NowPlayingLink>
           </>
         ) : (

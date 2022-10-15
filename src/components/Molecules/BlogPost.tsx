@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import type { Blog } from '.contentlayer/types'
 
 import { styled } from '@theme'
+import { Post } from '@/src/@types/post'
 
 import { Text } from '../Atoms/Text'
 import { Heading } from '../Atoms/Heading'
@@ -47,9 +47,9 @@ const Content = styled(Text, {
   marginTop: 'auto',
 })
 
-type BlogPostProps = Pick<Blog, 'title' | 'summary' | 'slug'>
+type BlogPostProps = Pick<Post, 'title' | 'excerpt' | 'slug'>
 
-export function BlogPost({ title, summary, slug }: BlogPostProps) {
+export function BlogPost({ title, excerpt, slug }: BlogPostProps) {
   // const { data } = useSWR<Views>(`/api/views/${slug}`, fetcher);
   // const views = data?.total;
 
@@ -60,7 +60,7 @@ export function BlogPost({ title, summary, slug }: BlogPostProps) {
           {title}
         </Title>
 
-        <Content color="gray">{summary}</Content>
+        <Content color="gray">{excerpt}</Content>
       </Wrapper>
     </Link>
   )

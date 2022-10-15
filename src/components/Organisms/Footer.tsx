@@ -3,10 +3,10 @@ import Link from 'next/link'
 import { styled } from '@theme'
 import { navigationLinks, navigationLinksSocials } from '@/data'
 
-import { Container } from '..'
 import { NowPlaying } from '../Molecules/NowPlaying'
 import { Box } from '../Atoms/Box'
 import { Logo } from '../Atoms/Logo'
+import { Container } from '../Atoms/Container'
 
 const Wrapper = styled('footer', {
   mt: '$14',

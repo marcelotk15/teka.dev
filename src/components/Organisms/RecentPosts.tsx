@@ -1,8 +1,8 @@
 import Link from 'next/link'
-import type { Blog } from '.contentlayer/types'
 import { ArrowRight } from 'phosphor-react'
 
 import { styled } from '@theme'
+import { Post } from '@/src/@types/post'
 
 import { BlogPost } from '../Molecules/BlogPost'
 import { Section } from '../Molecules/Sections'
@@ -33,7 +33,7 @@ const ReadAll = styled('a', {
 })
 
 interface RecentPostsProps {
-  posts: Pick<Blog, 'title' | 'summary' | 'slug' | 'publishedAt'>[]
+  posts: Pick<Post, 'title' | 'excerpt' | 'slug' | 'date'>[]
 }
 
 export function RecentPosts({ posts }: RecentPostsProps) {

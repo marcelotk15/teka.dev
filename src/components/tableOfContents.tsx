@@ -3,7 +3,8 @@ import { Dispatch, MouseEvent, SetStateAction, useEffect, useRef, useState } fro
 
 import { styled } from '@theme'
 
-import { Flex, P } from '.'
+import { Flex } from '.'
+import { Text } from './Atoms/Text'
 
 interface TableOfContentsProps {
   source: string
@@ -117,7 +118,7 @@ export function TableOfContents({ source }: TableOfContentsProps) {
 
   return (
     <Flex flexDirection="column" css={{ gap: '$3' }}>
-      <P>Table of contents</P>
+      <Text>Table of contents</Text>
 
       <Flex flexDirection="column" css={{ gap: '$2' }}>
         {headings.map((heading, index) => (

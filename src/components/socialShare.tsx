@@ -1,9 +1,10 @@
-import { IoLogoFacebook, IoLogoLinkedin, IoLogoTwitter } from 'react-icons/io'
 import { useEffect, useState } from 'react'
+import { LinkedinLogo, TwitterLogo } from 'phosphor-react'
 
 import { styled } from '@theme'
 
-import { Flex, P } from '.'
+import { Text } from './Atoms/Text'
+import { Box } from './Atoms/Box'
 
 interface SocialShareProps {
   title: string
@@ -28,28 +29,28 @@ export function SocialShare({ title }: SocialShareProps) {
     {
       href: `https://twitter.com/intent/tweet?text=${title}&url=${url}`,
       label: 'Twitter',
-      icon: IoLogoTwitter,
+      icon: TwitterLogo,
       bg: '#1DA1F2',
     },
     {
       href: `https://www.facebook.com/sharer/sharer.php?u=${url}`,
       label: 'Facebook',
-      icon: IoLogoFacebook,
+      icon: Faceboo,
       bg: '#4267B2',
     },
     {
       href: `https://www.linkedin.com/shareArticle?url=${url}&title=${title}`,
       label: 'LinkedIn',
-      icon: IoLogoLinkedin,
+      icon: LinkedinLogo,
       bg: '#2867B2',
     },
   ]
 
   return (
-    <Flex flexDirection="column" css={{ gap: '$3' }}>
-      <P>Share</P>
+    <Box column gap={3}>
+      <Text>Share</Text>
 
-      <Flex css={{ gap: '$2' }}>
+      <Box gap={2}>
         {socialLinks.map((link, index) => (
           <Link
             key={index}
@@ -59,7 +60,7 @@ export function SocialShare({ title }: SocialShareProps) {
             <link.icon />
           </Link>
         ))}
-      </Flex>
-    </Flex>
+      </Box>
+    </Box>
   )
 }

@@ -1,6 +1,6 @@
 import { styled } from '@theme'
 
-const Container = styled('svg', {
+const Wrapper = styled('svg', {
   position: 'fixed',
   top: 0,
   left: 0,
@@ -15,7 +15,7 @@ const Container = styled('svg', {
 
 export function Texture() {
   return (
-    <Container id="texture">
+    <Wrapper id="texture">
       <filter id="noise">
         <feTurbulence
           type="fractalNoise"
@@ -26,6 +26,6 @@ export function Texture() {
         <feColorMatrix type="saturate" values="0"></feColorMatrix>
       </filter>
       <rect width="100%" height="100%" filter="url(#noise)"></rect>
-    </Container>
+    </Wrapper>
   )
 }

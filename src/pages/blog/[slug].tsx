@@ -1,51 +1,84 @@
-import { useMDXComponent } from 'next-contentlayer/hooks'
-import { GetStaticProps } from 'next'
-import { allBlogs } from '.contentlayer/data'
-import type { Blog } from '.contentlayer/types'
+import { parseISO, format } from 'date-fns'
+import { MDXRemote } from 'next-mdx-remote'
+import { GetStaticPropsContext } from 'next'
 
-import { Container, Layout } from '@/src/components'
-import BlogLayout from '@/src/layouts/blog'
-import components from '@/src/components/mdxComponents'
+import { Layout } from '@/src/components'
+import { Box } from '@/src/components/Atoms/Box'
+import { Container } from '@/src/components/Atoms/Container'
+import { Heading } from '@/src/components/Atoms/Heading'
+import { Text } from '@/src/components/Atoms/Text'
+import { MDXComponents } from '@/src/components/Organisms/MDXComponents'
+import { getClient, sanityClient } from '@/src/lib/sanity-server'
+import { postQuery, postSlugsQuery } from '@/src/lib/queries'
+import { mdxToHtml } from '@/src/lib/mdx'
+import { Post } from '@/src/@types/post'
 
-// import { postFilePaths, POSTS_PATH } from "@/libs/utils";
-// import { styled } from '@theme';
-// import { postFilePaths, POSTS_PATH } from '@/lib/utils';
-// import { readFileSync } from 'fs';
-// import path from "path";
-// import matter from 'gray-matter';
-// import { MDXRemote, MDXRemoteSerializeResult } from 'next-mdx-remote';
-// import { serialize } from 'next-mdx-remote/serialize';
-// import Head from 'next/head';
+interface PostProps {
+  post: Post
+}
 
-export default function Post({ post }: { post: Blog }) {
-  const Component = useMDXComponent(post.body.code)
-
-  // const StaticTweet = ({ id }) => {
-  //   const tweet = tweets.find((tweet) => tweet.id === id);
-  //   return <Tweet {...tweet} />;
-  // };
-
+export default function PostPage({ post }: PostProps) {
   return (
-    <Layout title="teka's blog">
-      <Container css={{ width: '72rem' }}>
-        <BlogLayout post={post}>
-          <Component components={{ ...components }} />
-        </BlogLayout>
+    <Layout title={`teka | ${post.title}`} description={post.excerpt}>
+      <Container>
+        <Heading size={'lg'} css={{ mt: '$4' }} as="h1">
+          {post.title}
+        </Heading>
+
+        <Box items="center" gap={3} css={{ mt: '$4', mb: '$8' }}>
+          <Text>Marcelo Oliveira</Text>
+
+          <Text color="gray">•</Text>
+
+          <Text color="gray">{format(parseISO(post.date), 'MMMM dd, yyyy')}</Text>
+
+          <Text color="gray">-</Text>
+
+          <Text color="gray" size="sm">
+            {post.readingTime}
+          </Text>
+        </Box>
+
+        <Box column>
+          <MDXRemote {...post.content} components={{ ...MDXComponents }} />
+        </Box>
       </Container>
     </Layout>
   )
 }
 
 export async function getStaticPaths() {
+  const paths = await sanityClient.fetch(postSlugsQuery)
+
   return {
-    paths: allBlogs.map((p) => ({ params: { slug: p.slug } })),
-    fallback: false,
+    paths: paths.map((slug: string) => ({ params: { slug } })),
+    fallback: 'blocking',
   }
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const post = allBlogs.find(({ slug }) => slug === params?.slug)
-  // const tweets = await getTweets(post.tweetIds);
+export async function getStaticProps({ params, preview = false }: GetStaticPropsContext) {
+  if (!params) {
+    return { notFound: true }
+  }
 
-  return { props: { post } }
+  const { post } = await getClient(preview).fetch(postQuery, {
+    slug: params.slug,
+  })
+
+  if (!post) {
+    return { notFound: true }
+  }
+
+  const { html, readingTime } = await mdxToHtml(post.content)
+  // const tweets = await getTweets(tweetIds);
+
+  return {
+    props: {
+      post: {
+        ...post,
+        content: html,
+        readingTime,
+      },
+    },
+  }
 }

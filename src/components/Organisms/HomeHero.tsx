@@ -1,8 +1,8 @@
 import { keyframes, styled } from '@/stitches.config'
 
-import { Container } from '..'
-import { TopographyLevels } from '../TopographyLevels'
+import { TopographyLevels } from '../Atoms/TopographyLevels'
 import { Heading } from '../Atoms/Heading'
+import { Container } from '../Atoms/Container'
 
 const wave = keyframes({
   '0%': { transform: 'rotate( 0.0deg)' },
@@ -28,9 +28,13 @@ const heartBeat = keyframes({
 
 const Wrapper = styled('section', {
   marginTop: '-104px',
-  padding: 'calc(104px + $12) 0 $36',
+  padding: 'calc(104px + $10) 0 $14',
   position: 'relative',
   overflow: 'hidden',
+
+  '@desktop': {
+    padding: 'calc(104px + $12) 0 $36',
+  },
 
   '&::after': {
     content: '',
@@ -45,9 +49,18 @@ const Wrapper = styled('section', {
 
 const Background = styled('div', {
   position: 'absolute',
-  inset: 0,
+  inset: '0',
   zIndex: '$hide',
   color: '$slate4',
+
+  svg: {
+    height: '$full',
+
+    '@desktop': {
+      height: 'auto',
+      width: '$full',
+    },
+  },
 })
 
 const CodebyLink = styled('a', {

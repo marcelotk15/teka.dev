@@ -1,16 +1,18 @@
-import { InferGetStaticPropsType } from 'next'
+import { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import { useState } from 'react'
-import { allBlogs } from '.contentlayer/data'
 import { MagnifyingGlass } from 'phosphor-react'
 
-import { Container, Layout } from '@/src/components'
+import { Layout } from '@/src/components'
 import { Section } from '@/src/components/Molecules/Sections'
 import { BlogPost } from '@/src/components/Molecules/BlogPost'
-import { pick } from '@/src/lib/utils'
 import { TextInput } from '@/src/components/Atoms/TextInput'
 import { Text } from '@/src/components/Atoms/Text'
 import { Box } from '@/src/components/Atoms/Box'
+import { Container } from '@/src/components/Atoms/Container'
 import { SubSection } from '@/src/components/Molecules/SubSection'
+import { indexQuery } from '@/src/lib/queries'
+import { getClient } from '@/src/lib/sanity-server'
+import { Post } from '@/src/@types/post'
 
 export default function Blog({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [searchValue, setSearchValue] = useState('')
@@ -43,20 +45,20 @@ export default function Blog({ posts }: InferGetStaticPropsType<typeof getStatic
 
           {!searchValue && (
             <SubSection title="Most Popular">
-              <Box gap={4}>
+              <Box column gap={4} css={{ '@desktop': { flexDirection: 'row' } }}>
                 <BlogPost
                   title="Rust Is The Future of JavaScript Infrastructure"
-                  summary="Why is Rust being used to replace parts of the JavaScript web ecosystem like minification (Terser), transpilation (Babel), formatting (Prettier), bundling (webpack), linting (ESLint), and more?"
+                  excerpt="Why is Rust being used to replace parts of the JavaScript web ecosystem like minification (Terser), transpilation (Babel), formatting (Prettier), bundling (webpack), linting (ESLint), and more?"
                   slug="rust"
                 />
                 <BlogPost
                   title="Everything I Know About Style Guides, Design Systems, and Component Libraries"
-                  summary="A deep-dive on everything I've learned in the past year building style guides, design systems, component libraries, and their best practices."
+                  excerpt="A deep-dive on everything I've learned in the past year building style guides, design systems, component libraries, and their best practices."
                   slug="style-guides-component-libraries-design-systems"
                 />
                 <BlogPost
                   title="Creating a Monorepo with Lerna & Yarn Workspaces"
-                  summary="In this guide, you will learn how to create a Monorepo to manage multiple packages with a shared build, test, and release process."
+                  excerpt="In this guide, you will learn how to create a Monorepo to manage multiple packages with a shared build, test, and release process."
                   slug="monorepo-lerna-yarn-workspaces"
                 />
               </Box>
@@ -80,10 +82,8 @@ export default function Blog({ posts }: InferGetStaticPropsType<typeof getStatic
   )
 }
 
-export function getStaticProps() {
-  const posts = allBlogs
-    .map((post) => pick(post, ['slug', 'title', 'summary', 'publishedAt']))
-    .sort((a, b) => Number(new Date(b.publishedAt)) - Number(new Date(a.publishedAt)))
+export async function getStaticProps({ preview = false }: GetStaticPropsContext) {
+  const posts: Post[] = await getClient(preview).fetch(indexQuery)
 
   return { props: { posts } }
 }
