@@ -1,4 +1,4 @@
-import { createContext, FC, useContext, useReducer } from 'react'
+import { createContext, FC, ReactNode, useContext, useReducer } from 'react'
 
 type State = {
   open: boolean
@@ -32,7 +32,11 @@ const reducer = (state: State, action: Action): State => {
   }
 }
 
-const MobileMenuProvider: FC = ({ children }) => {
+interface MobileMenuProviderProps {
+  children: ReactNode
+}
+
+const MobileMenuProvider = ({ children }: MobileMenuProviderProps) => {
   const [state, dispatch] = useReducer(reducer, { open: false })
 
   const openMenu = () => dispatch({ type: 'OPEN' })

@@ -51,7 +51,7 @@ export const HyperLink = styled('a', {
   },
 })
 
-interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   children: ReactNode
   color?: 'inherit'
   showExternalIcon?: boolean

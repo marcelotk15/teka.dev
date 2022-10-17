@@ -1,5 +1,6 @@
 import NextImage from 'next/future/image'
 import { AnchorHTMLAttributes, ReactNode } from 'react'
+import LinkComponent, { LinkProps } from 'next/link'
 
 import { styled } from '@/stitches.config'
 
@@ -23,7 +24,7 @@ const AStyled = styled(Link, {
   },
 })
 
-interface AProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+interface AProps extends Omit<typeof AStyled, 'as'> {
   children: ReactNode
 }
 

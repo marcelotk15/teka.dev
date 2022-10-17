@@ -4,7 +4,7 @@ import { firestore } from '@/src/lib/db'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
-    const slug = req.query.slug.toString()
+    const slug = req.query.slug?.toString() || ''
 
     if (req.method === 'POST') {
       const newOrUpdatedViews = await firestore()
@@ -34,7 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       return res.status(200).json({ total: docs[0].get('count') })
     }
-  } catch (e) {
+  } catch (e: any) {
     return res.status(500).json({ message: e.message })
   }
 }

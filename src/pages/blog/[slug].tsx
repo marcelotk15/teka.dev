@@ -2,7 +2,6 @@ import { parseISO, format } from 'date-fns'
 import { MDXRemote } from 'next-mdx-remote'
 import { GetStaticPropsContext } from 'next'
 
-import { Layout } from '@/src/components'
 import { Box } from '@/src/components/Atoms/Box'
 import { Container } from '@/src/components/Atoms/Container'
 import { Heading } from '@/src/components/Atoms/Heading'
@@ -13,6 +12,7 @@ import { postQuery, postSlugsQuery } from '@/src/lib/queries'
 import { mdxToHtml } from '@/src/lib/mdx'
 import { Post } from '@/src/@types/post'
 import { ViewCounter } from '@/src/components/Molecules/ViewCounter'
+import { MainLayout } from '@/src/layouts/MainLayout'
 
 interface PostProps {
   post: Post
@@ -20,7 +20,7 @@ interface PostProps {
 
 export default function PostPage({ post }: PostProps) {
   return (
-    <Layout title={`teka | ${post.title}`} description={post.excerpt}>
+    <MainLayout title={`teka | ${post.title}`} description={post.excerpt}>
       <Container>
         <Heading size={'lg'} css={{ mt: '$4' }} as="h1">
           {post.title}
@@ -47,10 +47,10 @@ export default function PostPage({ post }: PostProps) {
         </Box>
 
         <Box column>
-          <MDXRemote {...post.content} components={{ ...MDXComponents }} />
+          <MDXRemote {...post.content} components={{ ...(MDXComponents as any) }} />
         </Box>
       </Container>
-    </Layout>
+    </MainLayout>
   )
 }
 

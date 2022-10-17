@@ -2,7 +2,6 @@ import { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import { useState } from 'react'
 import { MagnifyingGlass } from 'phosphor-react'
 
-import { Layout } from '@/src/components'
 import { Section } from '@/src/components/Molecules/Sections'
 import { BlogPost } from '@/src/components/Molecules/BlogPost'
 import { TextInput } from '@/src/components/Atoms/TextInput'
@@ -13,6 +12,7 @@ import { SubSection } from '@/src/components/Molecules/SubSection'
 import { indexQuery } from '@/src/lib/queries'
 import { getClient } from '@/src/lib/sanity-server'
 import { Post } from '@/src/@types/post'
+import { MainLayout } from '@/src/layouts/MainLayout'
 
 export default function Blog({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
   const [searchValue, setSearchValue] = useState('')
@@ -22,7 +22,7 @@ export default function Blog({ posts }: InferGetStaticPropsType<typeof getStatic
   )
 
   return (
-    <Layout title="teka's blog">
+    <MainLayout title="teka's blog">
       <Container>
         <Section title={'Blog'}>
           <Text>
@@ -78,7 +78,7 @@ export default function Blog({ posts }: InferGetStaticPropsType<typeof getStatic
           </SubSection>
         </Section>
       </Container>
-    </Layout>
+    </MainLayout>
   )
 }
 
