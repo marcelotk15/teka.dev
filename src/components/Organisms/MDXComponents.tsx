@@ -1,10 +1,9 @@
 import NextImage from 'next/future/image'
-import { AnchorHTMLAttributes, ReactNode } from 'react'
-import LinkComponent, { LinkProps } from 'next/link'
+import { AnchorSimple } from 'phosphor-react'
 
 import { styled } from '@/stitches.config'
 
-import { Link } from '../Atoms/Link'
+import { Link, LinkProps } from '../Atoms/Link'
 import { ConsCard } from '../Molecules/ConsCard'
 import { ProsCard } from '../Molecules/ProsCard'
 
@@ -12,32 +11,23 @@ const Image = styled(NextImage, {
   borderRadius: '$3',
 })
 
-const AStyled = styled(Link, {
-  backgroundColor: 'red',
+function a({ children, ...props }: LinkProps) {
+  if (props?.className === 'anchor')
+    return (
+      <Link {...props} withoutUnderline style={{ display: 'inline-block', marginRight: '.25rem' }}>
+        <AnchorSimple weight="duotone" />
+      </Link>
+    )
 
-  '&.anchor': {
-    padding: 0,
-
-    '&::before': {
-      display: 'none',
-    },
-  },
-})
-
-interface AProps extends Omit<typeof AStyled, 'as'> {
-  children: ReactNode
-}
-
-function a({ children, ...props }: AProps) {
   return (
-    <AStyled {...props} showExternalIcon>
+    <Link {...props} showExternalIcon>
       {children}
-    </AStyled>
+    </Link>
   )
 }
 
 export const MDXComponents = {
-  Image,
+  image: Image,
   a,
   ProsCard,
   ConsCard,
