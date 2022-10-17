@@ -1,4 +1,3 @@
-import { IconType } from 'react-icons'
 import {
   GithubLogo,
   House,
@@ -12,7 +11,7 @@ import { ForwardRefExoticComponent } from 'react'
 interface NavigationLink {
   to: string
   name: string
-  Icon: IconType | ForwardRefExoticComponent<IconProps>
+  Icon: ForwardRefExoticComponent<IconProps>
 }
 
 export const navigationLinks: NavigationLink[] = [
