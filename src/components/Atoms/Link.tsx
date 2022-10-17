@@ -33,14 +33,38 @@ export const HyperLink = styled('a', {
       height: '100%',
     },
   },
+
+  variants: {
+    withoutUnderline: {
+      true: {
+        padding: 0,
+
+        '&::before': {
+          display: 'none',
+        },
+      },
+    },
+
+    color: {
+      inherit: { color: '$inherit' },
+    },
+  },
 })
 
 interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   children: ReactNode
+  color?: 'inherit'
   showExternalIcon?: boolean
+  withoutUnderline?: boolean
 }
 
-export function Link({ showExternalIcon = false, children, href, ...linkProps }: LinkProps) {
+export function Link({
+  showExternalIcon = false,
+  withoutUnderline = false,
+  children,
+  href,
+  ...linkProps
+}: LinkProps) {
   const [loaded, setIsloaded] = useState(false)
 
   useEffect(() => {
@@ -58,12 +82,19 @@ export function Link({ showExternalIcon = false, children, href, ...linkProps }:
   if (isInternal(href))
     return (
       <NextLink href={href} passHref>
-        <HyperLink>{children}</HyperLink>
+        <HyperLink {...linkProps} withoutUnderline={withoutUnderline}>
+          {children}
+        </HyperLink>
       </NextLink>
     )
 
   return (
-    <HyperLink href={href} rel="noopener noreferrer" {...linkProps}>
+    <HyperLink
+      href={href}
+      rel="noopener noreferrer"
+      withoutUnderline={withoutUnderline}
+      {...linkProps}
+    >
       <Box css={{ display: 'inline-flex' }} items="center" gap={1}>
         {children}
 

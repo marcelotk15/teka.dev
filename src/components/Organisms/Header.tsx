@@ -79,6 +79,8 @@ const LinkGroup = styled(Box, {
   gap: '$4',
 
   '@desktop': {
+    position: 'relative',
+
     '&:after': {
       content: '',
       width: '$px',
@@ -143,7 +145,7 @@ export function Header() {
                         >
                           {isMobile && name}
 
-                          <Icon size={isMobile ? 24 : 18} weight="duotone" />
+                          <Icon size={isMobile ? 24 : 16} weight="duotone" />
                         </Button>
                       </Tooltip.Root>
                     </a>
@@ -164,7 +166,7 @@ export function Header() {
                     >
                       {isMobile && name}
 
-                      <Icon size={isMobile ? 24 : 18} weight="duotone" />
+                      <Icon size={isMobile ? 24 : 16} weight="duotone" />
                     </Button>
                   </Tooltip.Root>
                 ))}

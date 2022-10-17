@@ -12,6 +12,7 @@ import { getClient, sanityClient } from '@/src/lib/sanity-server'
 import { postQuery, postSlugsQuery } from '@/src/lib/queries'
 import { mdxToHtml } from '@/src/lib/mdx'
 import { Post } from '@/src/@types/post'
+import { ViewCounter } from '@/src/components/Molecules/ViewCounter'
 
 interface PostProps {
   post: Post
@@ -37,6 +38,12 @@ export default function PostPage({ post }: PostProps) {
           <Text color="gray" size="sm">
             {post.readingTime}
           </Text>
+
+          <Text color="gray" size="sm">
+            •
+          </Text>
+
+          <ViewCounter slug={post.slug} />
         </Box>
 
         <Box column>

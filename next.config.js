@@ -52,7 +52,7 @@ const securityHeaders = [
  * @type {import('next').NextConfig}
  */
 module.exports = {
-  reactStrictMode: true,
+  reactStrictMode: false,
   images: {
     domains: [
       'i.scdn.co', // Spotify Album Art

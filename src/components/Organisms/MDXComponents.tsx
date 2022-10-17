@@ -1,4 +1,5 @@
 import NextImage from 'next/future/image'
+import { AnchorHTMLAttributes, ReactNode } from 'react'
 
 import { styled } from '@/stitches.config'
 
@@ -10,7 +11,9 @@ const Image = styled(NextImage, {
   borderRadius: '$3',
 })
 
-const a = styled(Link, {
+const AStyled = styled(Link, {
+  backgroundColor: 'red',
+
   '&.anchor': {
     padding: 0,
 
@@ -19,6 +22,18 @@ const a = styled(Link, {
     },
   },
 })
+
+interface AProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+  children: ReactNode
+}
+
+function a({ children, ...props }: AProps) {
+  return (
+    <AStyled {...props} showExternalIcon>
+      {children}
+    </AStyled>
+  )
+}
 
 export const MDXComponents = {
   Image,

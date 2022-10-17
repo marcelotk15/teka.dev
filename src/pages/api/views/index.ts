@@ -1,15 +1,18 @@
-// import { NextApiRequest, NextApiResponse } from 'next'
+import { NextApiRequest, NextApiResponse } from 'next'
 
-// export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-//   try {
-//     const totalViews = await prisma.views.aggregate({
-//       _sum: {
-//         count: true,
-//       },
-//     })
+import { firestore } from '@/src/lib/db'
 
-//     return res.status(200).json({ total: totalViews._sum.count.toString() })
-//   } catch (e) {
-//     return res.status(500).json({ message: e.message })
-//   }
-// }
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  try {
+    const total = await firestore()
+      .collection('views')
+      .get()
+      .then((snapshot) => {
+        return snapshot.docs.reduce((acc, act) => acc + act.get('count'), 0)
+      })
+
+    return res.status(200).json({ total })
+  } catch (e) {
+    return res.status(500).json({ message: e.message })
+  }
+}
