@@ -1,7 +1,9 @@
 import {
+  BookBookmark,
   GithubLogo,
   House,
   IconProps,
+  IdentificationCard,
   LinkedinLogo,
   PencilSimple,
   TwitterLogo,
@@ -17,6 +19,8 @@ interface NavigationLink {
 export const navigationLinks: NavigationLink[] = [
   { to: '/', name: 'Home', Icon: House },
   { to: '/blog', name: 'Blog', Icon: PencilSimple },
+  { to: '/guestbook', name: 'Guestbook', Icon: BookBookmark },
+  { to: '/dashboard', name: 'Dashboard', Icon: IdentificationCard },
 ]
 
 export const navigationLinksSocials: NavigationLink[] = [

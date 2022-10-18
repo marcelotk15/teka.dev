@@ -2,17 +2,17 @@ import { parseISO, format } from 'date-fns'
 import { MDXRemote } from 'next-mdx-remote'
 import { GetStaticPropsContext } from 'next'
 
-import { Box } from '@/src/components/Atoms/Box'
-import { Container } from '@/src/components/Atoms/Container'
-import { Heading } from '@/src/components/Atoms/Heading'
-import { Text } from '@/src/components/Atoms/Text'
-import { MDXComponents } from '@/src/components/Organisms/MDXComponents'
-import { getClient, sanityClient } from '@/src/lib/sanity-server'
-import { postQuery, postSlugsQuery } from '@/src/lib/queries'
-import { mdxToHtml } from '@/src/lib/mdx'
-import { Post } from '@/src/@types/post'
-import { ViewCounter } from '@/src/components/Molecules/ViewCounter'
-import { MainLayout } from '@/src/layouts/MainLayout'
+import { Box } from '@components/Atoms/Box'
+import { Container } from '@components/Atoms/Container'
+import { Heading } from '@components/Atoms/Heading'
+import { Text } from '@components/Atoms/Text'
+import { MDXComponents } from '@components/Organisms/MDXComponents'
+import { getClient, sanityClient } from '@lib/sanity-server'
+import { postQuery, postSlugsQuery } from '@lib/queries'
+import { mdxToHtml } from '@lib/mdx'
+import { Post } from '@types/post'
+import { ViewCounter } from '@components/Molecules/ViewCounter'
+import { MainLayout } from '@layouts/MainLayout'
 
 interface PostProps {
   post: Post
@@ -20,7 +20,7 @@ interface PostProps {
 
 export default function PostPage({ post }: PostProps) {
   return (
-    <MainLayout title={`teka | ${post.title}`} description={post.excerpt}>
+    <MainLayout title={`${post.title} | teka - Marcelo Oliveira`} description={post.excerpt}>
       <Container>
         <Heading size={'lg'} css={{ mt: '$4' }} as="h1">
           {post.title}

@@ -18,7 +18,7 @@ const FooterContent = styled(Box, {
   gap: '$8',
   color: '$slate11',
 
-  '@desktop': {
+  '@lg': {
     alignItems: 'flex-start',
     flexDirection: 'row',
     justifyContent: 'space-between',

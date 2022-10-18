@@ -18,5 +18,5 @@ export const zIndicesTokens = {
   skipLink: 1600,
   toast: 1700,
   tooltip: 1800,
-  texture: 1900
-};
+  texture: 1900,
+}

@@ -1,8 +1,9 @@
-import { keyframes, styled } from '@/stitches.config'
-
-import { TopographyLevels } from '../Atoms/TopographyLevels'
-import { Heading } from '../Atoms/Heading'
-import { Container } from '../Atoms/Container'
+import { Box } from '@components/Atoms/Box'
+import { Container } from '@components/Atoms/Container'
+import { Heading } from '@components/Atoms/Heading'
+import { Link } from '@components/Atoms/Link'
+import { TopographyLevels } from '@components/Atoms/TopographyLevels'
+import { keyframes, styled } from '@theme'
 
 const wave = keyframes({
   '0%': { transform: 'rotate( 0.0deg)' },
@@ -26,13 +27,13 @@ const heartBeat = keyframes({
   '100%': { transform: 'scale( .75 )' },
 })
 
-const Wrapper = styled('section', {
+const Wrapper = styled(Box, {
   marginTop: '-104px',
   padding: 'calc(104px + $10) 0 $14',
   position: 'relative',
   overflow: 'hidden',
 
-  '@desktop': {
+  '@lg': {
     padding: 'calc(104px + $12) 0 $36',
   },
 
@@ -47,7 +48,7 @@ const Wrapper = styled('section', {
   },
 })
 
-const Background = styled('div', {
+const Background = styled(Box, {
   position: 'absolute',
   inset: '0',
   zIndex: '$hide',
@@ -56,38 +57,21 @@ const Background = styled('div', {
   svg: {
     height: '$full',
 
-    '@desktop': {
+    '@lg': {
       height: 'auto',
       width: '$full',
     },
   },
 })
 
-const CodebyLink = styled('a', {
-  color: 'inherit',
-  position: 'relative',
-  fontWeight: '$bold',
-
-  '&::before': {
-    content: '',
-    position: 'absolute',
-    width: '105%',
-    bottom: 0,
-    height: '1px',
+const CodebyLink = styled(Link, {
+  '::before': {
     backgroundColor: '$blue9',
-    transition: 'height .2s',
-    borderRadius: '$1',
-    zIndex: '$hide',
     padding: '$1',
-    left: '50%',
-    transform: 'translateX(-50%)',
-    opacity: '.8',
   },
 
-  '&:hover': {
-    '&::before': {
-      height: '100%',
-    },
+  ':hover': {
+    color: '$hiContrast',
   },
 })
 
@@ -111,8 +95,8 @@ const Heart = styled('span', {
 
 export function HomeHero() {
   return (
-    <Wrapper>
-      <Background>
+    <Wrapper block as="section">
+      <Background block>
         <TopographyLevels />
       </Background>
 
@@ -125,12 +109,7 @@ export function HomeHero() {
         <Heading size={'lg'} unbold>
           I&apos;m currenty <strong>front-end developer</strong> at{' '}
           <strong>
-            <CodebyLink
-              href="https://codeby.global"
-              target="_blank"
-              rel="noreferrer"
-              title="Codeby"
-            >
+            <CodebyLink href="https://codeby.global" color="inherit" title="Codeby">
               Codeby
             </CodebyLink>
           </strong>{' '}

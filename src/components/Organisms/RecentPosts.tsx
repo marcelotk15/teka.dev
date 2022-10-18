@@ -13,7 +13,7 @@ const Posts = styled(Box, {
   flexDirection: 'column',
   color: '$hiContrast',
 
-  '@desktop': {
+  '@lg': {
     flexDirection: 'row',
   },
 })

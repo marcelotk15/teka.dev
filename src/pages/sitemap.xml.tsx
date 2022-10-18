@@ -1,7 +1,7 @@
 import { GetServerSidePropsContext } from 'next'
 
-import { postSlugsQuery } from '../lib/queries'
-import { sanityClient } from '../lib/sanity-server'
+import { postSlugsQuery } from '@lib/queries'
+import { sanityClient } from '@lib/sanity-server'
 
 const createSitemap = (slugs: string[]) => `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

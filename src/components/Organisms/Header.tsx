@@ -37,7 +37,7 @@ const Navigation = styled('nav', {
   gap: '$8',
   alignItems: 'center',
 
-  '@desktop': {
+  '@lg': {
     justifyContent: 'space-between',
   },
 })
@@ -50,7 +50,7 @@ const Links = styled(Box, {
   height: '100vh',
   padding: '$28 $8 $4',
 
-  '@desktop': {
+  '@lg': {
     padding: '$0',
     display: 'flex',
     flexDirection: 'row',
@@ -78,7 +78,7 @@ const LinkGroup = styled(Box, {
   alignItems: 'center',
   gap: '$4',
 
-  '@desktop': {
+  '@lg': {
     position: 'relative',
 
     '&:after': {

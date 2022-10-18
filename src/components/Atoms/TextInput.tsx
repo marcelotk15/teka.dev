@@ -34,8 +34,8 @@ function TextInputRoot({ children }: TextInputRootProps) {
 TextInputRoot.displayName = 'TextInput.Root'
 
 const TextInputIconSlot = styled(Slot, {
-  width: '$6',
-  height: '$6',
+  // width: '$6',
+  // height: '$6',
   color: 'inherit',
 })
 

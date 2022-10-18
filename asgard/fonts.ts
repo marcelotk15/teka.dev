@@ -2,7 +2,7 @@ export const fontsTokens = {
   fontDefault: `'Poppins', Helvetica, Arial, -apple-system, system-ui, sans-serif`,
   fontHeading: `'Dystopian'`,
   fontMono: `'SpaceMono', monospace`,
-};
+}
 
 export const fontSizesTokens = {
   '-2': '0.8rem',
@@ -21,7 +21,7 @@ export const fontSizesTokens = {
   '11': '2.5rem',
   '12': '3rem',
   '13': '3.5rem',
-};
+}
 
 export const fontWeightsTokens = {
   hairline: 100,
@@ -63,4 +63,4 @@ export const letterSpacingsTokens = {
   wide: '0.025rem',
   wider: '0.05rem',
   widest: '0.1rem',
-};
+}

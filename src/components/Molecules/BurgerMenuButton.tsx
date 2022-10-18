@@ -13,7 +13,7 @@ export const BurgerButton = styled(Box, {
   transition: 'all .5s ease-in-out',
   zIndex: '$overlay',
 
-  '@desktop': {
+  '@lg': {
     display: 'none',
   },
 })

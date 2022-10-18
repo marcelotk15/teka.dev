@@ -10,7 +10,7 @@ export const HyperLink = styled('a', {
   position: 'relative',
   padding: '0 $1',
 
-  '&::before': {
+  '::before': {
     content: '',
     position: 'absolute',
     width: '$full',
@@ -29,7 +29,7 @@ export const HyperLink = styled('a', {
   '&:hover': {
     color: '$slate7',
 
-    '&::before': {
+    '::before': {
       height: '100%',
     },
   },
@@ -39,7 +39,7 @@ export const HyperLink = styled('a', {
       true: {
         padding: 0,
 
-        '&::before': {
+        '::before': {
           display: 'none',
         },
       },

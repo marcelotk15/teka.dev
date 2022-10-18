@@ -6,12 +6,12 @@ export const Container = styled('div', {
   px: '$4',
   maxWidth: '100%',
 
-  '@table': {
+  '@md': {
     px: '$6',
     maxWidth: 'calc(100% - 1rem * 2)',
   },
 
-  '@desktop': {
+  '@lg': {
     px: '$10',
     maxWidth: 'calc(100% - 2rem * 2)',
   },

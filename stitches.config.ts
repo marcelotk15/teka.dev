@@ -53,13 +53,13 @@ globalCss({
   },
 
   ':-moz-focusring': {
-    '@desktop': {
+    '@lg': {
       outline: 'auto',
     },
   },
 
   ':focus': {
-    '@desktop': {
+    '@lg': {
       outline: '$focusOutline solid 2px',
       outlineOffset: '2px',
     },

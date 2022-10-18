@@ -48,8 +48,8 @@ import {
   yellow,
   yellowA,
   yellowDark,
-  yellowDarkA
-} from "@radix-ui/colors";
+  yellowDarkA,
+} from '@radix-ui/colors'
 
 export const colorBaseTokens = {
   ...amber,
@@ -77,8 +77,8 @@ export const colorBaseTokens = {
   ...violetA,
   ...whiteA,
   ...yellow,
-  ...yellowA
-};
+  ...yellowA,
+}
 
 export const colorBaseDarkTokens = {
   ...amberDark,
@@ -105,14 +105,14 @@ export const colorBaseDarkTokens = {
   ...tealDark,
   ...yellowDark,
   ...yellowDarkA,
-};
+}
 
 export const gradientTokens = {
   // gdActive: 'linear-gradient(25deg, #F6D5F7, #FBE9D7)',
   // gdActive: 'linear-gradient(43deg, #4158D0 0, #C850C0 46%, #FFCC70 100%)',
   gdActive: 'linear-gradient(62deg, $orangeA7 0, $pinkA7 100%)',
   gdHover: 'linear-gradient(25deg, #FF9A8B, #FF6A88, #FF6A88)',
-};
+}
 
 export const colorsTokens = {
   ...gradientTokens,
@@ -146,8 +146,8 @@ export const colorsTokens = {
   warning2: '$yellow10',
   pending1: '$yellow9',
   pending2: '$yellow10',
-};
+}
 
-export const colorsTokensLightTheme = {};
+export const colorsTokensLightTheme = {}
 
-export const colorsTokensDarkTheme = {};
+export const colorsTokensDarkTheme = {}

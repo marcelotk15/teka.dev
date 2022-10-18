@@ -2,12 +2,11 @@ import useSWR from 'swr'
 import { SpotifyLogo } from 'phosphor-react'
 
 import { styled, keyframes, theme } from '@theme'
-
-import fetcher from '../../lib/fetcher'
-import { NowPlayingSong } from '../../lib/types'
-import { Box } from '../Atoms/Box'
-import { Text } from '../Atoms/Text'
-import { Link } from '../Atoms/Link'
+import { Box } from '@components/Atoms/Box'
+import { Link } from '@components/Atoms/Link'
+import { NowPlayingSong } from '@lib/types'
+import fetcher from '@lib/fetcher'
+import { Text } from '@components/Atoms/Text'
 
 function AnimatedBars() {
   const BarAnimation1 = keyframes({
@@ -83,17 +82,17 @@ const Wrapper = styled(Box, {
 
   justifyContent: 'center',
 
-  '@desktop': {
+  '@lg': {
     justifyContent: 'flex-start',
   },
 })
 
 const NowPlayingLink = styled(Link, {
-  '&::before': {
+  '::before': {
     backgroundColor: '$green9',
   },
 
-  '&:hover': {
+  ':hover': {
     color: '$hiContrast',
   },
 })
@@ -110,12 +109,7 @@ export function NowPlaying() {
           <>
             <AnimatedBars />
 
-            <NowPlayingLink
-              href={data.songUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              title={`${data.title} - ${data.artist}`}
-            >
+            <NowPlayingLink href={data.songUrl} title={`${data.title} - ${data.artist}`}>
               <Text color={'inherit'} weight="semibold">
                 {`${data.title} `}
               </Text>

@@ -16,7 +16,7 @@ const Wrapper = styled(Box, {
   marginLeft: 'auto',
   position: 'relative',
 
-  '@desktop': {
+  '@lg': {
     marginLeft: '$0',
   },
 })
