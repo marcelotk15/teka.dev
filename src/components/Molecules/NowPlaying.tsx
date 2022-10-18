@@ -4,9 +4,9 @@ import { SpotifyLogo } from 'phosphor-react'
 import { styled, keyframes, theme } from '@theme'
 import { Box } from '@components/Atoms/Box'
 import { Link } from '@components/Atoms/Link'
-import { NowPlayingSong } from '@lib/types'
 import fetcher from '@lib/fetcher'
 import { Text } from '@components/Atoms/Text'
+import { NowPlayingSong } from '@local-types/now-playing'
 
 function AnimatedBars() {
   const BarAnimation1 = keyframes({
