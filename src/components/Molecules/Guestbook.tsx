@@ -33,7 +33,11 @@ interface FormState {
   message?: string
 }
 
-export function Guestbook() {
+interface GuestbookProps {
+  fallbackData: any
+}
+
+export function Guestbook({ fallbackData }: GuestbookProps) {
   const { data: session } = useSession()
 
   const { mutate } = useSWRConfig()
@@ -42,11 +46,11 @@ export function Guestbook() {
 
   const inputEl = useRef(null)
 
-  // const {
-  //   data: { entries },
-  // } = useSWR('/api/guestbook', fetcher, {
-  //   fallbackData,
-  // })
+  const {
+    data: { entries },
+  } = useSWR('/api/guestbook', fetcher, {
+    fallbackData,
+  })
 
   const handleLoginButton = useCallback(() => {
     signIn('github')
