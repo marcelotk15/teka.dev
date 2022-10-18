@@ -4,7 +4,7 @@ import { Link as LinkComponent } from '@components/Atoms/Link'
 import { styled } from '@theme'
 import { Container } from '@components/Atoms/Container'
 import { NowPlaying } from '@components/Molecules/NowPlaying'
-import { navigationLinks, navigationLinksSocials } from 'data'
+import { navigationLinks, navigationLinksSocials } from '@data'
 
 const Wrapper = styled('footer', {
   mt: '$14',

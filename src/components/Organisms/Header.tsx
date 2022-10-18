@@ -11,7 +11,7 @@ import { BurgerMenuButton } from '@components/Molecules/BurgerMenuButton'
 import { ThemeSwitcher } from '@components/Molecules/ThemeSwitcher'
 import { Container } from '@components/Atoms/Container'
 import { useMobileMenuState } from 'src/hooks/mobileMenu'
-import { navigationLinks, navigationLinksSocials } from 'data'
+import { navigationLinks, navigationLinksSocials } from '@data'
 
 const Wrapper = styled('header', {
   userSelect: 'none',
