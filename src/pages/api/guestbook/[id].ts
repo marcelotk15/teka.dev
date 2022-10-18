@@ -5,10 +5,10 @@ import { getSession } from 'next-auth/react'
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const session = await getSession({ req })
 
-  if (!session) return res.status(403).send('Unauthorized')
+  if (!session?.user) return res.status(403).send('Unauthorized')
 
   const { id } = req.query
-  const email = session.user?.email
+  const { email } = session.user
 
   const entry = await firestore().collection('guestbook').where('id', '==', Number(id)).get()
 

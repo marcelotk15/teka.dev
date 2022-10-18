@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next'
 import { getSession } from 'next-auth/react'
 
-import { firestore } from '@/src/lib/db'
+import { firestore } from '@lib/db'
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'GET') {
@@ -19,7 +19,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const session = await getSession({ req })
 
-  if (!session) {
+  if (!session?.user) {
     return res.status(403).send('Unauthorized')
   }
 

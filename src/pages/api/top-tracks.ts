@@ -1,4 +1,4 @@
-import { getTopTracks } from '../../lib/spotify'
+import { getTopTracks } from '@lib/spotify'
 
 export const config = {
   runtime: 'experimental-edge',
