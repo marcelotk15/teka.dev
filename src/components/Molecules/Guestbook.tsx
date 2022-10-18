@@ -33,7 +33,7 @@ interface FormState {
   message?: string
 }
 
-export function Guestbook({ fallbackData }) {
+export function Guestbook() {
   const { data: session } = useSession()
 
   const { mutate } = useSWRConfig()
@@ -42,11 +42,11 @@ export function Guestbook({ fallbackData }) {
 
   const inputEl = useRef(null)
 
-  const {
-    data: { entries },
-  } = useSWR('/api/guestbook', fetcher, {
-    fallbackData,
-  })
+  // const {
+  //   data: { entries },
+  // } = useSWR('/api/guestbook', fetcher, {
+  //   fallbackData,
+  // })
 
   const handleLoginButton = useCallback(() => {
     signIn('github')
@@ -80,7 +80,7 @@ export function Guestbook({ fallbackData }) {
       return
     }
 
-    inputEl.current.value = ''
+    // inputEl.current.value = ''
     mutate('/api/guestbook')
     setForm({
       state: Form.Success,
@@ -90,7 +90,7 @@ export function Guestbook({ fallbackData }) {
 
   return (
     <>
-      <FormWrapper block onSubmit={handleFormSubmit}>
+      {/* <FormWrapper block onSubmit={handleFormSubmit}>
         <Heading as="h5" size={'sm'} css={{ marginBottom: '$2' }}>
           Sign the Guestbook
         </Heading>
@@ -133,9 +133,9 @@ export function Guestbook({ fallbackData }) {
         )}
 
         <button onClick={() => signOut()}>Sign out</button>
-      </FormWrapper>
+      </FormWrapper> */}
 
-      <div className="border border-blue-200 rounded p-6 my-4 w-full dark:border-gray-800 bg-blue-50 dark:bg-blue-opaque">
+      {/* <div className="border border-blue-200 rounded p-6 my-4 w-full dark:border-gray-800 bg-blue-50 dark:bg-blue-opaque">
         {form.state === Form.Error ? (
           <ErrorMessage>{form.message}</ErrorMessage>
         ) : form.state === Form.Success ? (
@@ -145,7 +145,7 @@ export function Guestbook({ fallbackData }) {
             Your information is only used to display your name and reply by email.
           </p>
         )}
-      </div>
+      </div> */}
 
       <div className="mt-4 space-y-8">
         {/* <Suspense fallback={null}>
