@@ -3,8 +3,7 @@ import { useEffect } from 'react'
 
 import { styled } from '@theme'
 import { Box } from '@components/Atoms/Box'
-
-import { useMobileMenuActions, useMobileMenuState } from '@/src/hooks/mobileMenu'
+import { useMobileMenuActions, useMobileMenuState } from 'src/hooks/mobileMenu'
 
 export const BurgerButton = styled(Box, {
   position: 'relative',
