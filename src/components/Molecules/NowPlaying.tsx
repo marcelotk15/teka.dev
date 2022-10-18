@@ -6,7 +6,7 @@ import { Box } from '@components/Atoms/Box'
 import { Link } from '@components/Atoms/Link'
 import fetcher from '@lib/fetcher'
 import { Text } from '@components/Atoms/Text'
-import { NowPlayingSong } from '@local-types/now-playing'
+import { PlayingNow } from '@local-types/spotify'
 
 function AnimatedBars() {
   const BarAnimation1 = keyframes({
@@ -98,23 +98,28 @@ const NowPlayingLink = styled(Link, {
 })
 
 export function NowPlaying() {
-  const { data } = useSWR<NowPlayingSong>('/api/now-playing', fetcher)
+  const { data } = useSWR<PlayingNow>('/api/now-playing', fetcher)
 
   return (
     <Wrapper items="center" gap={5}>
       <SpotifyLogo weight="fill" color={theme.colors.green10.value} size={24} />
 
       <Box items="center" gap={3}>
-        {data?.songUrl ? (
+        {data ? (
           <>
             <AnimatedBars />
 
-            <NowPlayingLink href={data.songUrl} title={`${data.title} - ${data.artist}`}>
+            <NowPlayingLink
+              href={data.item.external_urls.spotify}
+              title={`${data.item.name} - ${data.item.artists
+                .map((_artist: any) => _artist.name)
+                .join(', ')}`}
+            >
               <Text color={'inherit'} weight="semibold">
-                {`${data.title} `}
+                {`${data.item.name} `}
               </Text>
               <Text color={'inherit'}>
-                {' - '} {data.artist}
+                {' - '} {data.item.artists.map((_artist: any) => _artist.name).join(', ')}
               </Text>
             </NowPlayingLink>
           </>

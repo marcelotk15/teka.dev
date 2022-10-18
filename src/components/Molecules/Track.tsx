@@ -2,9 +2,10 @@ import { Box } from '@components/Atoms/Box'
 import { Link as LinkComponent } from '@components/Atoms/Link'
 import { Text } from '@components/Atoms/Text'
 import { styled } from '@theme'
-import { Song } from '@local-types/track'
+import { Item } from '@local-types/spotify'
 
-interface TrackProps extends Song {
+interface TrackProps {
+  track: Item
   ranking: number
 }
 
@@ -23,7 +24,8 @@ const Link = styled(LinkComponent, {
   },
 })
 
-export function Track({ ranking, songUrl, title, artist }: TrackProps) {
+export function Track({ track, ranking }: TrackProps) {
+  console.log('🚀 ~ file: Track.tsx ~ line 28 ~ Track ~ track', track)
   return (
     <Wrapper gap={3} items="baseline">
       <Text color="gray" size="sm">
@@ -31,12 +33,12 @@ export function Track({ ranking, songUrl, title, artist }: TrackProps) {
       </Text>
 
       <Box column gap={1}>
-        <Link href={songUrl} target="_blank" rel="noopener noreferrer" withoutUnderline>
-          {title}
+        <Link href={track.external_urls.spotify} withoutUnderline>
+          {track.name}
         </Link>
 
         <Text color="gray" size="sm">
-          {artist}
+          {track.artists.map((_artist: any) => _artist.name).join(', ')}
         </Text>
       </Box>
     </Wrapper>
