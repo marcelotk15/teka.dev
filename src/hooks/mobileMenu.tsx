@@ -1,4 +1,4 @@
-import { createContext, FC, ReactNode, useContext, useReducer } from 'react'
+import { createContext, ReactNode, useContext, useReducer } from 'react'
 
 type State = {
   open: boolean

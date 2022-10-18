@@ -1,4 +1,4 @@
-import { styled } from '@/stitches.config'
+import { styled } from '@theme'
 
 export const Text = styled('span', {
   color: '$hiContrast',

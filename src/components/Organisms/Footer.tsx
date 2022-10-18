@@ -1,11 +1,10 @@
+import { Box } from '@components/Atoms/Box'
+import { Logo as LogoComponent } from '@components/Atoms/Logo'
+import { Link as LinkComponent } from '@components/Atoms/Link'
 import { styled } from '@theme'
-import { navigationLinks, navigationLinksSocials } from '@/data'
-
-import { NowPlaying } from '../Molecules/NowPlaying'
-import { Box } from '../Atoms/Box'
-import { Logo as LogoComponent } from '../Atoms/Logo'
-import { Container } from '../Atoms/Container'
-import { Link as LinkComponent } from '../Atoms/Link'
+import { Container } from '@components/Atoms/Container'
+import { NowPlaying } from '@components/Molecules/NowPlaying'
+import { navigationLinks, navigationLinksSocials } from 'data'
 
 const Wrapper = styled('footer', {
   mt: '$14',

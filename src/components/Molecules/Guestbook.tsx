@@ -1,17 +1,15 @@
 import { signIn, signOut, useSession } from 'next-auth/react'
-import { Suspense, useRef, useState, useCallback, FormEvent } from 'react'
+import { useRef, useState, useCallback, FormEvent } from 'react'
 import useSWR, { useSWRConfig } from 'swr'
-import { CircleNotch, PaperPlaneRight, UserCircle } from 'phosphor-react'
+import { CircleNotch, PaperPlaneRight } from 'phosphor-react'
 
-import fetcher from '@/src/lib/fetcher'
-import { styled } from '@/stitches.config'
-
-import { GuestbookEntry } from './GuestbookEntry'
-import { Heading } from '../Atoms/Heading'
-import { Box } from '../Atoms/Box'
-import { Text } from '../Atoms/Text'
-import { Button } from '../Atoms/Button'
-import { TextInput } from '../Atoms/TextInput'
+import { styled } from '@theme'
+import { Box } from '@components/Atoms/Box'
+import fetcher from '@lib/fetcher'
+import { Heading } from '@components/Atoms/Heading'
+import { Text } from '@components/Atoms/Text'
+import { Button } from '@components/Atoms/Button'
+import { TextInput } from '@components/Atoms/TextInput'
 
 const FormWrapper = styled(Box, {
   background: '$slate3',
@@ -37,7 +35,6 @@ interface FormState {
 
 export function Guestbook({ fallbackData }) {
   const { data: session } = useSession()
-  console.log('🚀 ~ file: Guestbook.tsx ~ line 23 ~ Guestbook ~ session', session)
 
   const { mutate } = useSWRConfig()
 

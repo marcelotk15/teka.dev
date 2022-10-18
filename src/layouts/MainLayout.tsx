@@ -2,9 +2,9 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { ReactNode } from 'react'
 
-import { Texture } from '../components/Atoms/Texture'
-import { Footer } from '../components/Organisms/Footer'
-import { Header } from '../components/Organisms/Header'
+import { Texture } from '@components/Atoms/Texture'
+import { Footer } from '@components/Organisms/Footer'
+import { Header } from '@components/Organisms/Header'
 
 interface LayoutProps {
   children: ReactNode

@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 
-import { Heading } from '../Atoms/Heading'
-import { Box } from '../Atoms/Box'
+import { Box } from '@components/Atoms/Box'
+import { Heading } from '@components/Atoms/Heading'
 
 interface SectionProps {
   title: string

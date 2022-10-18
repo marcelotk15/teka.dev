@@ -1,7 +1,8 @@
 import { AnchorHTMLAttributes, ReactNode, useCallback, useEffect, useState } from 'react'
 import NextLink from 'next/link'
-import { styled } from '@stitches/react'
 import { ArrowSquareOut } from 'phosphor-react'
+
+import { styled } from '@theme'
 
 import { Box } from './Box'
 

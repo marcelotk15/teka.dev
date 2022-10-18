@@ -3,10 +3,9 @@ import { useEffect, useState } from 'react'
 import { MoonStars, Sun } from 'phosphor-react'
 
 import { styled } from '@theme'
-
-import { Tooltip } from '../Atoms/Tooltip'
-import { Button } from '../Atoms/Button'
-import { Box } from '../Atoms/Box'
+import { Box } from '@components/Atoms/Box'
+import { Tooltip } from '@components/Atoms/Tooltip'
+import { Button } from '@components/Atoms/Button'
 
 const Wrapper = styled(Box, {
   display: 'inline-flex',

@@ -1,9 +1,8 @@
 import useSWR from 'swr'
 
-import { TopTracks } from '@/src/@types/track'
-import fetcher from '@/src/lib/fetcher'
-
-import { Track } from '../Molecules/Track'
+import { Track } from '@components/Molecules/Track'
+import fetcher from '@lib/fetcher'
+import type { TopTracks } from '@types/track'
 
 export function TopTracks() {
   const { data } = useSWR<TopTracks>('/api/top-tracks', fetcher)

@@ -3,16 +3,15 @@ import { useRouter } from 'next/router'
 import { isMobile } from 'react-device-detect'
 
 import { styled } from '@theme'
-import { navigationLinks, navigationLinksSocials } from '@/data'
-import { useMobileMenuState } from '@/src/hooks/mobileMenu'
-
-import { Logo } from '../Atoms/Logo'
-import { Tooltip } from '../Atoms/Tooltip'
-import { Button } from '../Atoms/Button'
-import { Box } from '../Atoms/Box'
-import { BurgerMenuButton } from '../Molecules/BurgerMenuButton'
-import { ThemeSwitcher } from '../Molecules/ThemeSwitcher'
-import { Container } from '../Atoms/Container'
+import { Logo } from '@components/Atoms/Logo'
+import { Tooltip } from '@components/Atoms/Tooltip'
+import { Button } from '@components/Atoms/Button'
+import { Box } from '@components/Atoms/Box'
+import { BurgerMenuButton } from '@components/Molecules/BurgerMenuButton'
+import { ThemeSwitcher } from '@components/Molecules/ThemeSwitcher'
+import { Container } from '@components/Atoms/Container'
+import { useMobileMenuState } from 'src/hooks/mobileMenu'
+import { navigationLinks, navigationLinksSocials } from 'data'
 
 const Wrapper = styled('header', {
   userSelect: 'none',

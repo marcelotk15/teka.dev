@@ -1,7 +1,7 @@
 import { HTMLAttributes, ReactNode } from 'react'
 import { CSS } from '@stitches/react/types/css-util'
 
-import { styled } from '@/stitches.config'
+import { styled } from '@theme'
 
 const BoxStyled = styled('div', {
   display: 'flex',

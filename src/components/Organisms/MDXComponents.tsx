@@ -1,11 +1,10 @@
 import NextImage from 'next/future/image'
 import { AnchorSimple } from 'phosphor-react'
 
-import { styled } from '@/stitches.config'
-
-import { Link, LinkProps } from '../Atoms/Link'
-import { ConsCard } from '../Molecules/ConsCard'
-import { ProsCard } from '../Molecules/ProsCard'
+import { styled } from '@theme'
+import { Link, LinkProps } from '@components/Atoms/Link'
+import { ConsCard } from '@components/Molecules/ConsCard'
+import { ProsCard } from '@components/Molecules/ProsCard'
 
 const Image = styled(NextImage, {
   borderRadius: '$3',

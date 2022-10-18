@@ -1,4 +1,4 @@
-import { styled } from '@/stitches.config'
+import { styled } from '@theme'
 
 export const Container = styled('div', {
   width: '60rem',

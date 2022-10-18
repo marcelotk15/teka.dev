@@ -1,10 +1,9 @@
-import { useCallback, useEffect } from 'react'
+import { useEffect } from 'react'
 import useSWR from 'swr'
 
-import fetcher from '@/src/lib/fetcher'
-import { Views } from '@/src/@types/views'
-
-import { Text } from '../Atoms/Text'
+import { Text } from '@components/Atoms/Text'
+import fetcher from '@lib/fetcher'
+import { Views } from '@types/views'
 
 interface ViewCounterProps {
   slug: string

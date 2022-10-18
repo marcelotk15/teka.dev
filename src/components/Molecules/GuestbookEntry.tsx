@@ -1,7 +1,6 @@
 import { useSWRConfig } from 'swr'
 import { format } from 'date-fns'
 import { useSession } from 'next-auth/react'
-import { MouseEvent } from 'react'
 
 interface GuestbookEntryProps {
   entry: any

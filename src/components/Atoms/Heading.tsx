@@ -1,4 +1,4 @@
-import { styled } from '@/stitches.config'
+import { styled } from '@theme'
 
 export const Heading = styled('h2', {
   color: '$hiContrast',

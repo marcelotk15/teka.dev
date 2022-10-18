@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 
-import { useMobileMenuActions, useMobileMenuState } from '@/src/hooks/mobileMenu'
 import { styled } from '@theme'
+import { Box } from '@components/Atoms/Box'
 
-import { Box } from '../Atoms/Box'
+import { useMobileMenuActions, useMobileMenuState } from '@/src/hooks/mobileMenu'
 
 export const BurgerButton = styled(Box, {
   position: 'relative',

@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import { Slot } from '@radix-ui/react-slot'
 
-import { styled, theme } from '@/stitches.config'
+import { styled, theme } from '@theme'
 
 import { Box } from './Box'
 

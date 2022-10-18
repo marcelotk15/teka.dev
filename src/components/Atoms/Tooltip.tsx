@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import * as TooltipPrimitive from '@radix-ui/react-tooltip'
 
-import { keyframes, styled } from '@/stitches.config'
+import { keyframes, styled } from '@theme'
 
 import { Text } from './Text'
 

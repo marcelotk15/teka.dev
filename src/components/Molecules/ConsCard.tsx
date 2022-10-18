@@ -1,9 +1,8 @@
 import { CheckCircle } from 'phosphor-react'
 
-import { styled, theme } from '@/stitches.config'
-
-import { Box } from '../Atoms/Box'
-import { Text } from '../Atoms/Text'
+import { Box } from '@components/Atoms/Box'
+import { Text } from '@components/Atoms/Text'
+import { styled, theme } from '@theme'
 
 interface ConsCardProps {
   title: string

@@ -1,9 +1,8 @@
-import { Song } from '@/src/@types/track'
-import { styled } from '@/stitches.config'
-
-import { Box } from '../Atoms/Box'
-import { Link as LinkComponent } from '../Atoms/Link'
-import { Text } from '../Atoms/Text'
+import { Box } from '@components/Atoms/Box'
+import { Link as LinkComponent } from '@components/Atoms/Link'
+import { Text } from '@components/Atoms/Text'
+import { styled } from '@theme'
+import { Song } from '@types/track'
 
 interface TrackProps extends Song {
   ranking: number

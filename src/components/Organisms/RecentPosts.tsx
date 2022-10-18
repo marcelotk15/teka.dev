@@ -2,12 +2,11 @@ import Link from 'next/link'
 import { ArrowRight } from 'phosphor-react'
 
 import { styled } from '@theme'
-import { Post } from '@/src/@types/post'
-
-import { BlogPost } from '../Molecules/BlogPost'
-import { Section } from '../Molecules/Sections'
-import { Text } from '../Atoms/Text'
-import { Box } from '../Atoms/Box'
+import { BlogPost } from '@components/Molecules/BlogPost'
+import { Section } from '@components/Molecules/Sections'
+import { Text } from '@components/Atoms/Text'
+import { Box } from '@components/Atoms/Box'
+import type { Post } from '@types/post'
 
 const Posts = styled(Box, {
   flexDirection: 'column',
