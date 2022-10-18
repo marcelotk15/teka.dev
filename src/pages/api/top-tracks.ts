@@ -1,9 +1,5 @@
 import { getTopTracks } from '@lib/spotify'
 
-export const config = {
-  runtime: 'experimental-edge',
-}
-
 export default async function handler() {
   const response = await getTopTracks()
 
