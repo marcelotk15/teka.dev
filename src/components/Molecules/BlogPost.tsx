@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { styled } from '@theme'
 import { Heading } from '@components/Atoms/Heading'
 import { Text } from '@components/Atoms/Text'
-import { Post } from '@types/post'
+import { Post } from '@local-types/post'
 
 // import useSWR from 'swr';
 // import fetcher from 'lib/fetcher';

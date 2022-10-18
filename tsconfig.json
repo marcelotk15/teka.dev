@@ -19,7 +19,7 @@
       "@components/*": ["src/components/*"],
       "@layouts/*": ["src/layouts/*"],
       "@lib/*": ["src/lib/*"],
-      "@types/*": ["src/@types/*"],
+      "@local-types/*": ["src/@types/*"],
       "@theme": ["stitches.config.ts"],
       "@asgard-ds": ["asgard"]
     }

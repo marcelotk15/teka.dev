@@ -6,7 +6,7 @@ import { BlogPost } from '@components/Molecules/BlogPost'
 import { Section } from '@components/Molecules/Sections'
 import { Text } from '@components/Atoms/Text'
 import { Box } from '@components/Atoms/Box'
-import type { Post } from '@types/post'
+import type { Post } from '@local-types/post'
 
 const Posts = styled(Box, {
   flexDirection: 'column',

@@ -3,7 +3,7 @@ import useSWR from 'swr'
 
 import { Text } from '@components/Atoms/Text'
 import fetcher from '@lib/fetcher'
-import { Views } from '@types/views'
+import { Views } from '@local-types/views'
 
 interface ViewCounterProps {
   slug: string

@@ -2,7 +2,7 @@ import { Box } from '@components/Atoms/Box'
 import { Link as LinkComponent } from '@components/Atoms/Link'
 import { Text } from '@components/Atoms/Text'
 import { styled } from '@theme'
-import { Song } from '@types/track'
+import { Song } from '@local-types/track'
 
 interface TrackProps extends Song {
   ranking: number

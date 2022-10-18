@@ -10,7 +10,7 @@ import { MDXComponents } from '@components/Organisms/MDXComponents'
 import { getClient, sanityClient } from '@lib/sanity-server'
 import { postQuery, postSlugsQuery } from '@lib/queries'
 import { mdxToHtml } from '@lib/mdx'
-import { Post } from '@types/post'
+import { Post } from '@local-types/post'
 import { ViewCounter } from '@components/Molecules/ViewCounter'
 import { MainLayout } from '@layouts/MainLayout'
 

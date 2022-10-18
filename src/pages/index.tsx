@@ -6,7 +6,7 @@ import { RecentPosts } from '@components/Organisms/RecentPosts'
 import { MainLayout } from '@layouts/MainLayout'
 import { getClient } from '@lib/sanity-server'
 import { indexQuery } from '@lib/queries'
-import { Post } from '@types/post'
+import { Post } from '@local-types/post'
 
 export default function HomePage({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (

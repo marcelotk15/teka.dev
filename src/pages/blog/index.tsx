@@ -11,7 +11,7 @@ import { Container } from '@components/Atoms/Container'
 import { SubSection } from '@components/Molecules/SubSection'
 import { indexQuery } from '@lib/queries'
 import { getClient } from '@lib/sanity-server'
-import { Post } from '@types/post'
+import { Post } from '@local-types/post'
 import { MainLayout } from '@layouts/MainLayout'
 
 export default function Blog({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {

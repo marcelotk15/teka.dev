@@ -3,7 +3,7 @@ import { GetServerSidePropsContext } from 'next'
 
 import { sanityClient } from '@lib/sanity-server'
 import { indexQuery } from '@lib/queries'
-import { Post } from '@types/post'
+import { Post } from '@local-types/post'
 
 export async function getServerSideProps({ res }: GetServerSidePropsContext) {
   const feed = new RSS({
