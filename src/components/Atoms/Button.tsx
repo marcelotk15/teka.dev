@@ -3,7 +3,7 @@ import { styled } from '@theme'
 export const Button = styled('button', {
   display: 'flex',
   borderRadius: '$2',
-  padding: '$3',
+  padding: '$2',
   color: '$slate12',
   cursor: 'pointer',
   position: 'relative',

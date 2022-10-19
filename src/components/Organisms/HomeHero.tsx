@@ -98,7 +98,7 @@ const Heart = styled(Text, {
 
 export function HomeHero() {
   return (
-    <Wrapper block as="section">
+    <Wrapper as="section">
       <Background block>
         <TopographyLevels />
       </Background>

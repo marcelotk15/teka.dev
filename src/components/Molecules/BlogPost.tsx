@@ -18,10 +18,11 @@ const Wrapper = styled(Box, {
   borderRadius: '$2',
   padding: '$6',
   overflow: 'hidden',
-  border: '1px solid $slate5',
+  border: '1px solid $slate6',
 
   '&:hover': {
     background: '$slate4',
+    borderColor: '$slate7',
     padding: '$4 $6 $8',
   },
 })
