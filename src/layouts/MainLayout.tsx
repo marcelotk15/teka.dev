@@ -19,7 +19,7 @@ export function MainLayout({ children, ...customMeta }: LayoutProps) {
   const { asPath } = useRouter()
 
   const meta = {
-    title: 'teka | Marcelo Oliveira – Developer, writer, creator.',
+    title: 'teka • Marcelo Oliveira',
     description: `Front-end developer, JavaScript enthusiast.`,
     image: `/static/images/banner.png`,
     type: 'website',
@@ -35,6 +35,12 @@ export function MainLayout({ children, ...customMeta }: LayoutProps) {
         <meta property="og:url" content={`https://teka.dev${asPath}`} />
 
         <link rel="canonical" href={`https://teka.dev${asPath}`} />
+
+        {/* Add hreflang links */}
+        <link rel="alternate" href="http://teka.dev" hrefLang="x-default" />
+        <link rel="alternate" href="http://teka.dev" hrefLang="en" />
+        <link rel="alternate" href="http://teka.dev/en" hrefLang="en" />
+        <link rel="alternate" href="http://teka.dev/pt-BR" hrefLang="pt-BR" />
 
         <meta property="og:type" content={meta.type} />
         <meta property="og:site_name" content="teka | Marcelo Oliveira" />

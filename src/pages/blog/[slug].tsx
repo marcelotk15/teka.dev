@@ -1,6 +1,7 @@
 import { parseISO, format } from 'date-fns'
 import { MDXRemote } from 'next-mdx-remote'
 import { GetStaticPropsContext } from 'next'
+import { Suspense } from 'react'
 
 import { Box } from '@components/Atoms/Box'
 import { Container } from '@components/Atoms/Container'
@@ -20,35 +21,39 @@ interface PostProps {
 
 export default function PostPage({ post }: PostProps) {
   return (
-    <MainLayout title={`${post.title} | teka - Marcelo Oliveira`} description={post.excerpt}>
+    <MainLayout title={`${post.title} - teka • Marcelo Oliveira`} description={post.excerpt}>
       <Container>
         <Heading size={'lg'} css={{ mt: '$4' }} as="h1">
           {post.title}
         </Heading>
 
-        <Box items="center" gap={3} css={{ mt: '$4', mb: '$8' }}>
-          <Text>Marcelo Oliveira</Text>
+        <Box column gap={2} css={{ mt: '$4', mb: '$8' }}>
+          <Box gap={3}>
+            <Text>Marcelo Oliveira</Text>
 
-          <Text color="gray">•</Text>
+            <Text color="gray">•</Text>
 
-          <Text color="gray">{format(parseISO(post.date), 'MMMM dd, yyyy')}</Text>
+            <Text color="gray">{format(parseISO(post.date), 'MMMM dd, yyyy')}</Text>
+          </Box>
 
-          <Text color="gray">-</Text>
+          <Box gap={3}>
+            <Text color="gray" size="sm">
+              {post.readingTime}
+            </Text>
 
-          <Text color="gray" size="sm">
-            {post.readingTime}
-          </Text>
+            <Text color="gray" size="sm">
+              •
+            </Text>
 
-          <Text color="gray" size="sm">
-            •
-          </Text>
-
-          <ViewCounter slug={post.slug} />
+            <ViewCounter slug={post.slug} />
+          </Box>
         </Box>
 
-        <Box column>
-          <MDXRemote {...post.content} components={{ ...(MDXComponents as any) }} />
-        </Box>
+        <Suspense fallback={null}>
+          <Box column>
+            <MDXRemote {...post.content} components={{ ...(MDXComponents as any) }} />
+          </Box>
+        </Suspense>
       </Container>
     </MainLayout>
   )

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import useTranslation from 'next-translate/useTranslation'
 import { ArrowRight } from 'phosphor-react'
 
 import { styled } from '@theme'
@@ -36,10 +37,12 @@ interface RecentPostsProps {
 }
 
 export function RecentPosts({ posts }: RecentPostsProps) {
+  const { t } = useTranslation()
+
   const postsObject = posts?.length >= 3 ? posts.slice(0, 3) : posts
 
   return (
-    <Section title="Recent Post">
+    <Section title={t('common:post.recent')}>
       <Box column>
         <Posts gap={6}>
           {postsObject.map((blog) => (
@@ -49,7 +52,7 @@ export function RecentPosts({ posts }: RecentPostsProps) {
 
         <Link href="/blog" passHref>
           <ReadAll>
-            <Text color={'inherit'}>Read all posts</Text>
+            <Text color={'inherit'}>{t('common:post.readAll')}</Text>
 
             <ArrowRight size={18} weight="duotone" />
           </ReadAll>

@@ -1,3 +1,6 @@
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const nextTranslate = require('next-translate')
+
 // https://nextjs.org/docs/advanced-features/security-headers
 const ContentSecurityPolicy = `
   default-src 'self';
@@ -51,7 +54,7 @@ const securityHeaders = [
 /**
  * @type {import('next').NextConfig}
  */
-module.exports = {
+module.exports = nextTranslate({
   reactStrictMode: false,
   images: {
     domains: [
@@ -94,4 +97,4 @@ module.exports = {
       },
     ]
   },
-}
+})

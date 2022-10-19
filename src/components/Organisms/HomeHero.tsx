@@ -1,3 +1,5 @@
+import useTranslation from 'next-translate/useTranslation'
+
 import { Box } from '@components/Atoms/Box'
 import { Container } from '@components/Atoms/Container'
 import { Heading } from '@components/Atoms/Heading'
@@ -97,6 +99,8 @@ const Heart = styled(Text, {
 })
 
 export function HomeHero() {
+  const { t } = useTranslation()
+
   return (
     <Wrapper as="section">
       <Background block>
@@ -106,16 +110,16 @@ export function HomeHero() {
       <Container>
         <Box column gap={4}>
           <Heading size={'lg'} unbold>
-            <Hand>🖐</Hand> Hi I&apos;m Marcelo Oliveira aka teka a <strong>front-end</strong> and{' '}
-            <strong>back-end</strong> developer based on <strong>Brazil</strong>.
+            <Hand>🖐</Hand> <span dangerouslySetInnerHTML={{ __html: t('home:hero.lineOne') }} />
           </Heading>
 
           <Heading size={'lg'} unbold>
-            I&apos;m currenty <strong>front-end developer</strong> at{' '}
+            <span dangerouslySetInnerHTML={{ __html: t('home:hero.lineTwoFirst') }} />{' '}
             <CodebyLink href="https://codeby.global" title="Codeby" color="inherit">
               <strong>Codeby</strong>
             </CodebyLink>{' '}
-            <Heart>💙</Heart>, an amazing smart tech with focus in e-commerce.
+            <Heart>💙</Heart>,{' '}
+            <span dangerouslySetInnerHTML={{ __html: t('home:hero.lineTwoLast') }} />
           </Heading>
         </Box>
       </Container>

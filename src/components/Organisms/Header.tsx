@@ -1,6 +1,7 @@
 // import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { isMobile } from 'react-device-detect'
+import { ChangeEvent } from 'react'
 
 import { styled } from '@theme'
 import { Logo } from '@components/Atoms/Logo'
@@ -114,8 +115,15 @@ const LinkGroup = styled(Box, {
 
 export function Header() {
   const router = useRouter()
+  const { pathname, locale, locales } = router
 
   const { open: opened } = useMobileMenuState()
+
+  const handleChangeLocale = ({ currentTarget }: ChangeEvent<HTMLSelectElement>) => {
+    const locale = currentTarget.value
+
+    router.push(router.asPath, router.asPath, { locale })
+  }
 
   return (
     <Wrapper>
@@ -127,6 +135,19 @@ export function Header() {
             </Box>
           </Link>
 
+          <select
+            onChange={handleChangeLocale}
+            defaultValue={locale}
+            style={{ textAlignLast: 'center' }}
+            className="text-shadow-sm bg-transparent text-sm tracking-wide text-gray-900 dark:text-gray-100"
+          >
+            {locales?.map((e) => (
+              <option value={e} key={e}>
+                {e}
+              </option>
+            ))}
+          </select>
+
           <Links opened={opened}>
             <Tooltip.Provider>
               <LinkGroup opened={opened}>
@@ -135,7 +156,7 @@ export function Header() {
                     <Tooltip.Root content={name}>
                       <Button
                         background={'transparent'}
-                        active={router.pathname === to}
+                        active={pathname === to}
                         css={{
                           justifyContent: 'space-between',
                           width: '100%',

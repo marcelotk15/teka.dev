@@ -1,5 +1,5 @@
 import { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
-import { useState } from 'react'
+import { Suspense, useState } from 'react'
 import { MagnifyingGlass } from 'phosphor-react'
 
 import { Section } from '@components/Molecules/Sections'
@@ -22,7 +22,10 @@ export default function Blog({ posts }: InferGetStaticPropsType<typeof getStatic
   )
 
   return (
-    <MainLayout title="Blog | teka - Marcelo Oliveira">
+    <MainLayout
+      title="Blog | teka • Marcelo Oliveira"
+      description="Thoughts on the software industry, programming, tech, videography, music, and my personal life."
+    >
       <Container>
         <Section title={'Blog'}>
           <Text>
@@ -65,17 +68,19 @@ export default function Blog({ posts }: InferGetStaticPropsType<typeof getStatic
             </SubSection>
           )}
 
-          <SubSection title="All posts">
-            {!filteredBlogPosts.length ? (
-              <Box justify="center">
-                <Text size="lg" weight={'bold'} color="gray">
-                  No posts found.
-                </Text>
-              </Box>
-            ) : (
-              filteredBlogPosts.map((post) => <BlogPost key={post.title} {...post} />)
-            )}
-          </SubSection>
+          <Suspense fallback={null}>
+            <SubSection title="All posts">
+              {!filteredBlogPosts.length ? (
+                <Box justify="center">
+                  <Text size="lg" weight={'bold'} color="gray">
+                    No posts found.
+                  </Text>
+                </Box>
+              ) : (
+                filteredBlogPosts.map((post) => <BlogPost key={post.title} {...post} />)
+              )}
+            </SubSection>
+          </Suspense>
         </Section>
       </Container>
     </MainLayout>
