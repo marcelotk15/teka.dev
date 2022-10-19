@@ -39,7 +39,7 @@ export function ThemeSwitcher() {
   return (
     <Wrapper gap={1}>
       <Tooltip.Provider>
-        <Tooltip.Root content={`${isThemeLight ? 'Light' : 'Dark'} Theme`}>
+        <Tooltip.Root content={`${isThemeLight ? 'Dark' : 'Light'} Theme`}>
           <Button
             onClick={handleToogleTheme}
             background="transparent"
