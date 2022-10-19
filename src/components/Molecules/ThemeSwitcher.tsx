@@ -1,5 +1,5 @@
 import { useTheme } from 'next-themes'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { MoonStars, Sun } from 'phosphor-react'
 
 import { styled } from '@theme'
@@ -22,41 +22,32 @@ const Wrapper = styled(Box, {
 
 export function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false)
-  const { setTheme, resolvedTheme } = useTheme()
+  const { setTheme, resolvedTheme, theme } = useTheme()
 
   useEffect(() => setMounted(true), [])
 
+  const handleToogleTheme = useCallback(() => {
+    setTheme(theme === 'light' ? 'dark' : 'light')
+  }, [setTheme, theme])
+
   if (!mounted) return null
 
-  const changeTheme = (theme: 'dark' | 'light') => {
-    if (resolvedTheme === theme) return
+  const isThemeLight = theme === 'light'
 
-    setTheme(theme)
-  }
+  const Icon = isThemeLight ? MoonStars : Sun
 
   return (
     <Wrapper gap={1}>
       <Tooltip.Provider>
-        <Tooltip.Root content="Dark Theme">
+        <Tooltip.Root content={`${isThemeLight ? 'Light' : 'Dark'} Theme`}>
           <Button
-            onClick={() => changeTheme('dark')}
-            background={resolvedTheme === 'light' ? 'transparent' : undefined}
+            onClick={handleToogleTheme}
+            background="transparent"
             border="transaprent"
-            active={resolvedTheme === 'dark'}
             activeStyle={'gray'}
+            aria-label="toogle theme"
           >
-            <MoonStars size={16} weight="duotone" />
-          </Button>
-        </Tooltip.Root>
-
-        <Tooltip.Root content="Light Theme">
-          <Button
-            onClick={() => changeTheme('light')}
-            background={resolvedTheme === 'dark' ? 'transparent' : undefined}
-            activeStyle={'gray'}
-            active={resolvedTheme === 'light'}
-          >
-            <Sun size={16} weight="duotone" />
+            <Icon size={18} weight="duotone" />
           </Button>
         </Tooltip.Root>
       </Tooltip.Provider>

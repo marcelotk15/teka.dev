@@ -8,8 +8,8 @@ import { Analytics } from '@components/Organisms/Analytics'
 
 import { MobileMenuProvider } from '../hooks/mobileMenu'
 
-import '../styles/dracula-prism.css'
 import '../styles/fonts.css'
+import '../styles/dracula-prism.css'
 
 export default function App({
   Component,

@@ -1,4 +1,4 @@
-import Link from 'next/link'
+// import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { isMobile } from 'react-device-detect'
 
@@ -12,6 +12,7 @@ import { ThemeSwitcher } from '@components/Molecules/ThemeSwitcher'
 import { Container } from '@components/Atoms/Container'
 import { useMobileMenuState } from 'src/hooks/mobileMenu'
 import { navigationLinks, navigationLinksSocials } from '@data'
+import { Link } from '@components/Atoms/Link'
 
 const Wrapper = styled('header', {
   userSelect: 'none',
@@ -120,8 +121,8 @@ export function Header() {
     <Wrapper>
       <Container>
         <Navigation>
-          <Link href="/" passHref>
-            <Box as="a" css={{ height: '$10', zIndex: '$5' }}>
+          <Link href="/" title="Home" aria-label="go to home" withoutUnderline>
+            <Box css={{ height: '$10', zIndex: '$5' }}>
               <Logo />
             </Box>
           </Link>
@@ -130,44 +131,42 @@ export function Header() {
             <Tooltip.Provider>
               <LinkGroup opened={opened}>
                 {navigationLinks.map(({ name, to, Icon }) => (
-                  <Link key={name} href={to} passHref>
-                    <a>
-                      <Tooltip.Root content={name}>
-                        <Button
-                          background={'transparent'}
-                          active={router.pathname === to}
-                          css={{
-                            justifyContent: 'space-between',
-                            width: '100%',
-                            alignItems: 'center',
-                          }}
-                        >
-                          {isMobile && name}
+                  <Link key={name} href={to} withoutUnderline>
+                    <Tooltip.Root content={name}>
+                      <Button
+                        background={'transparent'}
+                        active={router.pathname === to}
+                        css={{
+                          justifyContent: 'space-between',
+                          width: '100%',
+                          alignItems: 'center',
+                        }}
+                        aria-label={`open ${name}`}
+                      >
+                        {isMobile && name}
 
-                          <Icon size={isMobile ? 24 : 16} weight="duotone" />
-                        </Button>
-                      </Tooltip.Root>
-                    </a>
+                        <Icon size={isMobile ? 24 : 18} weight="duotone" />
+                      </Button>
+                    </Tooltip.Root>
                   </Link>
                 ))}
               </LinkGroup>
 
               <LinkGroup opened={opened}>
                 {navigationLinksSocials.map(({ name, to, Icon }) => (
-                  <Tooltip.Root key={name} content={name}>
-                    <Button
-                      background={'transparent'}
-                      as="a"
-                      href={to}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      css={{ justifyContent: 'space-between', width: '100%' }}
-                    >
-                      {isMobile && name}
+                  <Link key={name} href={to} withoutUnderline>
+                    <Tooltip.Root content={name}>
+                      <Button
+                        background={'transparent'}
+                        css={{ justifyContent: 'space-between', width: '100%' }}
+                        aria-label={`open ${name}`}
+                      >
+                        {isMobile && name}
 
-                      <Icon size={isMobile ? 24 : 16} weight="duotone" />
-                    </Button>
-                  </Tooltip.Root>
+                        <Icon size={isMobile ? 24 : 18} weight="duotone" />
+                      </Button>
+                    </Tooltip.Root>
+                  </Link>
                 ))}
               </LinkGroup>
             </Tooltip.Provider>

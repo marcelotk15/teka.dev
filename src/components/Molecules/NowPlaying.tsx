@@ -91,13 +91,14 @@ const NowPlayingLink = styled(Link, {
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
+  color: '$slate11',
 
   '&::before': {
     backgroundColor: '$green9',
   },
 
   '&:hover': {
-    color: '$hiContrast',
+    color: '$slate12',
   },
 })
 

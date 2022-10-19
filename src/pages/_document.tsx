@@ -2,8 +2,6 @@ import NextDocument, { Html, Head, Main, NextScript } from 'next/document'
 
 import { getCssText } from '@theme'
 
-const { GA_TRACKING_ID } = process.env
-
 export default class Document extends NextDocument {
   render(): JSX.Element {
     return (
@@ -39,7 +37,7 @@ export default class Document extends NextDocument {
             crossOrigin=""
           />
 
-          {/* <link rel="preconnect" href="https://fonts.googleapis.com" /> */}
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
 
           <link

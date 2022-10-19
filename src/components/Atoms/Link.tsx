@@ -1,14 +1,6 @@
-import {
-  AnchorHTMLAttributes,
-  forwardRef,
-  ReactNode,
-  useCallback,
-  useEffect,
-  useState,
-} from 'react'
+import React, { AnchorHTMLAttributes, ReactNode, useCallback, useEffect, useState } from 'react'
 import NextLink from 'next/link'
 import { ArrowSquareOut } from 'phosphor-react'
-import { CSS } from '@stitches/react/types/css-util'
 
 import { styled } from '@theme'
 
@@ -67,48 +59,49 @@ export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   withoutUnderline?: boolean
 }
 
-export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
-  ({ showExternalIcon = false, withoutUnderline = false, children, href, ...linkProps }, ref) => {
-    const [loaded, setIsloaded] = useState(false)
+export function Link({
+  showExternalIcon = false,
+  withoutUnderline = false,
+  children,
+  href,
+  ...linkProps
+}: LinkProps) {
+  const [loaded, setIsloaded] = useState(false)
 
-    useEffect(() => {
-      setIsloaded(true)
-    }, [])
+  useEffect(() => {
+    setIsloaded(true)
+  }, [])
 
-    const isInternal = useCallback((href: string) => {
-      const base = new URL(`${window.location.protocol}//${window.location.host}`)
+  const isInternal = useCallback((href: string) => {
+    const base = new URL(`${window.location.protocol}//${window.location.host}`)
 
-      return new URL(href, base).hostname === base.hostname
-    }, [])
+    return new URL(href, base).hostname === base.hostname
+  }, [])
 
-    if (!loaded || !href) return null
+  if (!loaded || !href) return null
 
-    if (isInternal(href))
-      return (
-        <NextLink href={href} passHref>
-          <HyperLink {...linkProps} withoutUnderline={withoutUnderline} ref={ref}>
-            {children}
-          </HyperLink>
-        </NextLink>
-      )
-
+  if (isInternal(href))
     return (
-      <HyperLink
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        withoutUnderline={withoutUnderline}
-        {...linkProps}
-        ref={ref}
-      >
-        <Box css={{ display: 'inline-flex' }} items="center" gap={1}>
+      <NextLink href={href} passHref>
+        <HyperLink {...linkProps} withoutUnderline={withoutUnderline}>
           {children}
-
-          {showExternalIcon && <ArrowSquareOut size={12} />}
-        </Box>
-      </HyperLink>
+        </HyperLink>
+      </NextLink>
     )
-  },
-)
 
-Link.displayName = 'Link'
+  return (
+    <HyperLink
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      withoutUnderline={withoutUnderline}
+      {...linkProps}
+    >
+      <Box css={{ display: 'inline-flex' }} items="center" gap={1}>
+        {children}
+
+        {showExternalIcon && <ArrowSquareOut size={12} />}
+      </Box>
+    </HyperLink>
+  )
+}
