@@ -1,5 +1,5 @@
 import { signIn, signOut, useSession } from 'next-auth/react'
-import { useRef, useState, useCallback, FormEvent } from 'react'
+import { useState, useCallback, FormEvent } from 'react'
 import useSWR, { useSWRConfig } from 'swr'
 import { CircleNotch, PaperPlaneRight } from 'phosphor-react'
 
@@ -44,8 +44,6 @@ export function Guestbook({ fallbackData }: GuestbookProps) {
 
   const [form, setForm] = useState<FormState>({ state: Form.Initial })
 
-  const inputEl = useRef(null)
-
   const {
     data: { entries },
   } = useSWR('/api/guestbook', fetcher, {
@@ -56,45 +54,53 @@ export function Guestbook({ fallbackData }: GuestbookProps) {
     signIn('github')
   }, [])
 
-  const handleFormSubmit = useCallback(async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
+  const handleFormSubmit = useCallback(
+    async (event: FormEvent<HTMLFormElement>) => {
+      console.log('🚀 ~ file: Guestbook.tsx ~ line 59 ~ event', event)
 
-    if (!event.target) return null
+      event.preventDefault()
 
-    setForm({ state: Form.Loading })
-
-    const values = new FormData(event.currentTarget)
-
-    const res = await fetch('/api/guestbook', {
-      body: JSON.stringify({
-        body: values.get('body'),
-      }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'POST',
-    })
-
-    const { error } = await res.json()
-    if (error) {
       setForm({
-        state: Form.Error,
-        message: error,
+        state: Form.Loading,
       })
-      return
-    }
 
-    // inputEl.current.value = ''
-    mutate('/api/guestbook')
-    setForm({
-      state: Form.Success,
-      message: `Hooray! Thanks for signing my Guestbook.`,
-    })
-  }, [])
+      console.log('🚀 ~ file: Guestbook.tsx ~ line 59 ~ event', event.currentTarget)
+
+      const res = await fetch('/api/guestbook', {
+        method: 'POST',
+        body: JSON.stringify({
+          message: event.currentTarget.message.value as string,
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+
+      const { error } = await res.json()
+
+      if (error) {
+        setForm({
+          state: Form.Error,
+          message: error,
+        })
+
+        return
+      }
+
+      event.currentTarget.message.value = ''
+      mutate('/api/guestbook')
+
+      setForm({
+        state: Form.Success,
+        message: `Hooray! Thanks for signing my Guestbook.`,
+      })
+    },
+    [mutate],
+  )
 
   return (
     <>
-      {/* <FormWrapper block onSubmit={handleFormSubmit}>
+      <FormWrapper block>
         <Heading as="h5" size={'sm'} css={{ marginBottom: '$2' }}>
           Sign the Guestbook
         </Heading>
@@ -108,10 +114,11 @@ export function Guestbook({ fallbackData }: GuestbookProps) {
         )}
 
         {session?.user && (
-          <GuestbookForm>
+          <GuestbookForm onSubmit={handleFormSubmit}>
             <TextInput.Root>
               <TextInput.Input
-                name="body"
+                id="message"
+                name="message"
                 placeholder="Your message"
                 aria-label="Your message"
                 required
@@ -137,7 +144,7 @@ export function Guestbook({ fallbackData }: GuestbookProps) {
         )}
 
         <button onClick={() => signOut()}>Sign out</button>
-      </FormWrapper> */}
+      </FormWrapper>
 
       {/* <div className="border border-blue-200 rounded p-6 my-4 w-full dark:border-gray-800 bg-blue-50 dark:bg-blue-opaque">
         {form.state === Form.Error ? (

@@ -1,5 +1,5 @@
 import {
-  BookBookmark,
+  // BookBookmark,
   House,
   PencilSimple,
   IdentificationCard,
@@ -11,7 +11,7 @@ import {
 export const navigationLinks = [
   { to: '/', name: 'Home', Icon: House },
   { to: '/blog', name: 'Blog', Icon: PencilSimple },
-  { to: '/guestbook', name: 'Guestbook', Icon: BookBookmark },
+  // { to: '/guestbook', name: 'Guestbook', Icon: BookBookmark },
   { to: '/dashboard', name: 'Dashboard', Icon: IdentificationCard },
 ]
 

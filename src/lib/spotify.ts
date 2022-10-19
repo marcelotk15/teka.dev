@@ -48,7 +48,7 @@ export async function getNowPlaying() {
 export async function getTopTracks() {
   const access_token = Cookies.get('spotify-token') || (await getAccessToken())
 
-  const response = await fetch(TOP_TRACKS_ENDPOINT, {
+  const response = await fetch(`${TOP_TRACKS_ENDPOINT}?limit=10`, {
     headers: {
       Authorization: `Bearer ${access_token}`,
     },

@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     return res.json({
       entries: entries.docs.map((entry: any) => ({
         id: entry.get('id'),
-        body: entry.get('body'),
+        message: entry.get('message'),
         created_by: entry.get('created_by'),
         updated_at: entry.get('updated_at'),
       })),
@@ -33,7 +33,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       .add({
         data: {
           email,
-          body: (req.body.body || '').slice(0, 500),
+          message: (req.body.message || '').slice(0, 500),
           created_by: name,
           created_at: currentDate.toISOString(),
           updated_at: currentDate.toISOString(),
@@ -42,7 +42,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
     return res.status(200).json({
       id: newEntry.id,
-      body: (await newEntry.get()).get('body'),
+      message: (await newEntry.get()).get('message'),
       created_by: (await newEntry.get()).get('created_by'),
       updated_at: (await newEntry.get()).get('updated_at'),
     })

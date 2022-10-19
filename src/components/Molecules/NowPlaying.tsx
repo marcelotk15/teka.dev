@@ -27,11 +27,8 @@ function AnimatedBars() {
     '100%': { transform: 'scaleY(1.0)  translateY(0rem)' },
   })
 
-  const AnimatedBarsStyled = styled('div', {
-    width: 'auto',
-    display: 'flex',
-    alignItems: 'flex-end',
-    overflow: 'hidden',
+  const AnimatedBarsStyled = styled(Box, {
+    width: 'min-content',
     gap: '3px',
   })
 
@@ -44,7 +41,7 @@ function AnimatedBars() {
   })
 
   return (
-    <AnimatedBarsStyled>
+    <AnimatedBarsStyled items="flexEnd">
       <AnimatedBar
         css={{
           height: '$2',
@@ -79,15 +76,22 @@ function AnimatedBars() {
 const Wrapper = styled(Box, {
   mb: '$8',
   position: 'relative',
-
-  justifyContent: 'center',
+  border: '1px solid $slate5',
+  padding: '$4',
+  background: '$slate4',
+  borderRadius: '$3',
+  zIndex: '$5',
 
   '@lg': {
-    justifyContent: 'flex-start',
+    display: 'inline-flex',
   },
 })
 
 const NowPlayingLink = styled(Link, {
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+
   '::before': {
     backgroundColor: '$green9',
   },
@@ -100,33 +104,28 @@ const NowPlayingLink = styled(Link, {
 export function NowPlaying() {
   const { data } = useSWR<PlayingNow>('/api/now-playing', fetcher)
 
+  const musicAndArtist = data?.item?.artists?.map((artist) => artist.name).join(', ')
+
   return (
-    <Wrapper items="center" gap={5}>
+    <Wrapper items="center" gap={3}>
       <SpotifyLogo weight="fill" color={theme.colors.green10.value} size={24} />
 
-      <Box items="center" gap={3}>
-        {data ? (
-          <>
-            <AnimatedBars />
+      {data?.item ? (
+        <>
+          <AnimatedBars />
 
-            <NowPlayingLink
-              href={data.item.external_urls.spotify}
-              title={`${data.item.name} - ${data.item.artists
-                .map((_artist: any) => _artist.name)
-                .join(', ')}`}
-            >
-              <Text color={'inherit'} weight="semibold">
-                {`${data.item.name} `}
-              </Text>
-              <Text color={'inherit'}>
-                {' - '} {data.item.artists.map((_artist: any) => _artist.name).join(', ')}
-              </Text>
-            </NowPlayingLink>
-          </>
-        ) : (
-          <Text>Listening nothing</Text>
-        )}
-      </Box>
+          <NowPlayingLink href={data.item.external_urls.spotify} title={musicAndArtist}>
+            <Text color={'inherit'} weight="semibold">
+              {`${data.item.name} `}
+            </Text>
+            <Text color={'inherit'}>
+              {' - '} {musicAndArtist}
+            </Text>
+          </NowPlayingLink>
+        </>
+      ) : (
+        <Text>Listening nothing</Text>
+      )}
     </Wrapper>
   )
 }

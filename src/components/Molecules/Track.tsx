@@ -1,8 +1,11 @@
+import Image from 'next/future/image'
+
 import { Box } from '@components/Atoms/Box'
 import { Link as LinkComponent } from '@components/Atoms/Link'
 import { Text } from '@components/Atoms/Text'
 import { styled } from '@theme'
 import { Item } from '@local-types/spotify'
+import { convertMsToMinutesSeconds } from '@lib/helpes'
 
 interface TrackProps {
   track: Item
@@ -10,9 +13,8 @@ interface TrackProps {
 }
 
 const Wrapper = styled(Box, {
-  mt: '$4',
-  pb: '$3',
-  borderBottom: '1px solid $slate11',
+  pb: '$4',
+  borderBottom: '1px solid $slate7',
 })
 
 const Link = styled(LinkComponent, {
@@ -24,22 +26,36 @@ const Link = styled(LinkComponent, {
   },
 })
 
+const Cover = styled(Image, {
+  borderRadius: '$2',
+  width: '64px',
+  height: '64px',
+})
+
 export function Track({ track, ranking }: TrackProps) {
-  console.log('🚀 ~ file: Track.tsx ~ line 28 ~ Track ~ track', track)
+  const { length, [length - 1]: image } = track.album.images
+  const musicAndArtist = track.artists.map((artist) => artist.name).join(', ')
+
   return (
-    <Wrapper gap={3} items="baseline">
+    <Wrapper gap={3} items="flexStart">
       <Text color="gray" size="sm">
         {ranking}
       </Text>
 
-      <Box column gap={1}>
-        <Link href={track.external_urls.spotify} withoutUnderline>
-          {track.name}
-        </Link>
+      <Box gap={3}>
+        <Cover src={image.url} width={image.width} height={image.height} alt={musicAndArtist} />
 
-        <Text color="gray" size="sm">
-          {track.artists.map((_artist: any) => _artist.name).join(', ')}
-        </Text>
+        <Box column>
+          <Link href={track.external_urls.spotify} withoutUnderline title={musicAndArtist}>
+            {track.name}
+          </Link>
+
+          <Text color="gray">{musicAndArtist}</Text>
+
+          <Text color="gray" size="sm">
+            {convertMsToMinutesSeconds(track.duration_ms)}
+          </Text>
+        </Box>
       </Box>
     </Wrapper>
   )

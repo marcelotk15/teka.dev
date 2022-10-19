@@ -1,25 +1,24 @@
-import Link from 'next/link'
+import useSWR from 'swr'
+import { Eye } from 'phosphor-react'
 
 import { styled } from '@theme'
 import { Heading } from '@components/Atoms/Heading'
 import { Text } from '@components/Atoms/Text'
 import { Post } from '@local-types/post'
+import { Link } from '@components/Atoms/Link'
+import { Box } from '@components/Atoms/Box'
+import fetcher from '@lib/fetcher'
+import { Views } from '@local-types/views'
 
-// import useSWR from 'swr';
-// import fetcher from 'lib/fetcher';
-// import { Views } from 'lib/types';
-
-const Wrapper = styled('a', {
-  flex: '1',
+const Wrapper = styled(Box, {
   display: 'flex',
-  flexDirection: 'column',
   background: '$slate3',
-  gap: '$4',
   transition: 'all .2s ease-in-out',
   position: 'relative',
   borderRadius: '$2',
   padding: '$6',
   overflow: 'hidden',
+  border: '1px solid $slate5',
 
   '&:hover': {
     background: '$slate4',
@@ -49,17 +48,23 @@ const Content = styled(Text, {
 type BlogPostProps = Pick<Post, 'title' | 'excerpt' | 'slug'>
 
 export function BlogPost({ title, excerpt, slug }: BlogPostProps) {
-  // const { data } = useSWR<Views>(`/api/views/${slug}`, fetcher);
-  // const views = data?.total;
+  const { data } = useSWR<Views>(`/api/views/${slug}`, fetcher)
+  const views = data?.total
 
   return (
-    <Link href={`/blog/${slug}`} passHref>
-      <Wrapper title={title}>
+    <Link href={`/blog/${slug}`} title={title}>
+      <Wrapper column gap={4}>
         <Title as="h3" size={'sm'}>
           {title}
         </Title>
 
         <Content color="gray">{excerpt}</Content>
+
+        <Box gap={2}>
+          <Eye size={16} />
+
+          <Text size={'sm'}>{views}</Text>
+        </Box>
       </Wrapper>
     </Link>
   )
