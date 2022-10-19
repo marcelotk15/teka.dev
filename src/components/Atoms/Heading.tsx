@@ -4,7 +4,7 @@ export const Heading = styled('h2', {
   color: '$hiContrast',
   fontSize: '$5',
   fontFamily: '$fontHeading',
-  fontWeight: '$semibold',
+  fontWeight: '$black',
 
   variants: {
     size: {
@@ -19,7 +19,7 @@ export const Heading = styled('h2', {
 
     font: {
       sans: {
-        fontFamily: '$fontDefault',
+        fontFamily: '$sans',
       },
 
       mono: {

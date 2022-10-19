@@ -4,10 +4,12 @@ import { Session } from 'next-auth'
 import { SessionProvider } from 'next-auth/react'
 
 import { darkTheme } from '@theme'
+import { Analytics } from '@components/Organisms/Analytics'
 
 import { MobileMenuProvider } from '../hooks/mobileMenu'
 
 import '../styles/dracula-prism.css'
+import '../styles/fonts.css'
 
 export default function App({
   Component,
@@ -25,12 +27,16 @@ export default function App({
   }
 
   return (
-    <SessionProvider session={session}>
-      <ThemeProvider {...themeProviderProps}>
-        <MobileMenuProvider>
-          <Component {...pageProps} />
-        </MobileMenuProvider>
-      </ThemeProvider>
-    </SessionProvider>
+    <>
+      <Analytics />
+
+      <SessionProvider session={session}>
+        <ThemeProvider {...themeProviderProps}>
+          <MobileMenuProvider>
+            <Component {...pageProps} />
+          </MobileMenuProvider>
+        </ThemeProvider>
+      </SessionProvider>
+    </>
   )
 }

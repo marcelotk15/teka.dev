@@ -2,6 +2,7 @@ import { Box } from '@components/Atoms/Box'
 import { Container } from '@components/Atoms/Container'
 import { Heading } from '@components/Atoms/Heading'
 import { Link } from '@components/Atoms/Link'
+import { Text } from '@components/Atoms/Text'
 import { TopographyLevels } from '@components/Atoms/TopographyLevels'
 import { keyframes, styled } from '@theme'
 
@@ -65,32 +66,34 @@ const Background = styled(Box, {
 })
 
 const CodebyLink = styled(Link, {
-  '::before': {
-    backgroundColor: '$blue9',
-    padding: '$1',
+  '&::before': {
+    backgroundColor: '$blue9 !important',
+    padding: '$1 !important',
   },
 
-  ':hover': {
-    color: '$hiContrast',
+  '&:hover': {
+    color: '$hiContrast !important',
   },
 })
 
-const Hand = styled('span', {
+const Hand = styled(Text, {
   display: 'inline-block',
   animationName: wave.name,
   willChange: 'transform',
   animationTimingFunction: 'ease-in-out',
   animationIterationCount: 'infinite',
   animationDuration: '3s',
+  fontSize: 'inherit',
 })
 
-const Heart = styled('span', {
+const Heart = styled(Text, {
   display: 'inline-block',
   animationName: heartBeat.name,
   willChange: 'transform',
   animationTimingFunction: 'ease-in-out',
   animationIterationCount: 'infinite',
   animationDuration: '3s',
+  fontSize: 'inherit',
 })
 
 export function HomeHero() {
@@ -101,20 +104,20 @@ export function HomeHero() {
       </Background>
 
       <Container>
-        <Heading size={'lg'} unbold>
-          <Hand>🖐</Hand> Hi I&apos;m Marcelo Oliveira aka teka a <strong>front-end</strong> and{' '}
-          <strong>back-end</strong> developer based on <strong>Brazil</strong>.
-        </Heading>
+        <Box column gap={4}>
+          <Heading size={'lg'} unbold>
+            <Hand>🖐</Hand> Hi I&apos;m Marcelo Oliveira aka teka a <strong>front-end</strong> and{' '}
+            <strong>back-end</strong> developer based on <strong>Brazil</strong>.
+          </Heading>
 
-        <Heading size={'lg'} unbold>
-          I&apos;m currenty <strong>front-end developer</strong> at{' '}
-          <strong>
-            <CodebyLink href="https://codeby.global" color="inherit" title="Codeby">
-              Codeby
-            </CodebyLink>
-          </strong>{' '}
-          <Heart>💙</Heart>, an amazing smart tech with focus in e-commerce.
-        </Heading>
+          <Heading size={'lg'} unbold>
+            I&apos;m currenty <strong>front-end developer</strong> at{' '}
+            <CodebyLink href="https://codeby.global" title="Codeby" color="inherit">
+              <strong>Codeby</strong>
+            </CodebyLink>{' '}
+            <Heart>💙</Heart>, an amazing smart tech with focus in e-commerce.
+          </Heading>
+        </Box>
       </Container>
     </Wrapper>
   )

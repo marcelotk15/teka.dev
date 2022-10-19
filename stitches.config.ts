@@ -75,7 +75,7 @@ globalCss({
     padding: '0',
     margin: '0',
     overflowX: 'hidden',
-    fontFamily: '$fontDefault',
+    fontFamily: '$sans',
   },
 
   'h1, h2, h3, h4, h5, h6': {

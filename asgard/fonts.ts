@@ -1,6 +1,6 @@
 export const fontsTokens = {
-  fontDefault: `'Poppins', Helvetica, Arial, -apple-system, system-ui, sans-serif`,
-  fontHeading: `'Dystopian'`,
+  sans: `'Poppins', sans-serif`,
+  fontHeading: `'Dystopian', sans-serif`,
   fontMono: `'SpaceMono', monospace`,
 }
 

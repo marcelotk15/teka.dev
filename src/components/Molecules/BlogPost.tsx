@@ -45,26 +45,33 @@ const Content = styled(Text, {
   marginTop: 'auto',
 })
 
+const Views = styled(Box, {
+  color: '$slate11',
+  mt: '$1',
+})
+
 type BlogPostProps = Pick<Post, 'title' | 'excerpt' | 'slug'>
 
 export function BlogPost({ title, excerpt, slug }: BlogPostProps) {
   const { data } = useSWR<Views>(`/api/views/${slug}`, fetcher)
-  const views = data?.total
+  const views = data?.total || '-'
 
   return (
-    <Link href={`/blog/${slug}`} title={title}>
+    <Link href={`/blog/${slug}`} title={title} withoutUnderline>
       <Wrapper column gap={4}>
         <Title as="h3" size={'sm'}>
           {title}
         </Title>
 
-        <Content color="gray">{excerpt}</Content>
+        <Content>{excerpt}</Content>
 
-        <Box gap={2}>
+        <Views gap={2} title={`Total of view on article '${title}'`}>
           <Eye size={16} />
 
-          <Text size={'sm'}>{views}</Text>
-        </Box>
+          <Text size={'sm'} color="inherit">
+            {views}
+          </Text>
+        </Views>
       </Wrapper>
     </Link>
   )

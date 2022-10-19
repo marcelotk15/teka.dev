@@ -1,6 +1,14 @@
-import { AnchorHTMLAttributes, ReactNode, useCallback, useEffect, useState } from 'react'
+import {
+  AnchorHTMLAttributes,
+  forwardRef,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react'
 import NextLink from 'next/link'
 import { ArrowSquareOut } from 'phosphor-react'
+import { CSS } from '@stitches/react/types/css-util'
 
 import { styled } from '@theme'
 
@@ -11,7 +19,7 @@ export const HyperLink = styled('a', {
   position: 'relative',
   padding: '0 $1',
 
-  '::before': {
+  '&::before': {
     content: '',
     position: 'absolute',
     width: '$full',
@@ -30,7 +38,7 @@ export const HyperLink = styled('a', {
   '&:hover': {
     color: '$slate7',
 
-    '::before': {
+    '&::before': {
       height: '100%',
     },
   },
@@ -40,7 +48,7 @@ export const HyperLink = styled('a', {
       true: {
         padding: 0,
 
-        '::before': {
+        '&::before': {
           display: 'none',
         },
       },
@@ -59,48 +67,48 @@ export interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
   withoutUnderline?: boolean
 }
 
-export function Link({
-  showExternalIcon = false,
-  withoutUnderline = false,
-  children,
-  href,
-  ...linkProps
-}: LinkProps) {
-  const [loaded, setIsloaded] = useState(false)
+export const Link = forwardRef<HTMLAnchorElement, LinkProps>(
+  ({ showExternalIcon = false, withoutUnderline = false, children, href, ...linkProps }, ref) => {
+    const [loaded, setIsloaded] = useState(false)
 
-  useEffect(() => {
-    setIsloaded(true)
-  }, [])
+    useEffect(() => {
+      setIsloaded(true)
+    }, [])
 
-  const isInternal = useCallback((href: string) => {
-    const base = new URL(`${window.location.protocol}//${window.location.host}`)
+    const isInternal = useCallback((href: string) => {
+      const base = new URL(`${window.location.protocol}//${window.location.host}`)
 
-    return new URL(href, base).hostname === base.hostname
-  }, [])
+      return new URL(href, base).hostname === base.hostname
+    }, [])
 
-  if (!loaded || !href) return null
+    if (!loaded || !href) return null
 
-  if (isInternal(href))
+    if (isInternal(href))
+      return (
+        <NextLink href={href} passHref>
+          <HyperLink {...linkProps} withoutUnderline={withoutUnderline} ref={ref}>
+            {children}
+          </HyperLink>
+        </NextLink>
+      )
+
     return (
-      <NextLink href={href} passHref>
-        <HyperLink {...linkProps} withoutUnderline={withoutUnderline}>
+      <HyperLink
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        withoutUnderline={withoutUnderline}
+        {...linkProps}
+        ref={ref}
+      >
+        <Box css={{ display: 'inline-flex' }} items="center" gap={1}>
           {children}
-        </HyperLink>
-      </NextLink>
+
+          {showExternalIcon && <ArrowSquareOut size={12} />}
+        </Box>
+      </HyperLink>
     )
+  },
+)
 
-  return (
-    <HyperLink
-      href={href}
-      rel="noopener noreferrer"
-      withoutUnderline={withoutUnderline}
-      {...linkProps}
-    >
-      <Box css={{ display: 'inline-flex' }} items="center" gap={1}>
-        {children}
-
-        {showExternalIcon && <ArrowSquareOut size={12} />}
-      </Box>
-    </HyperLink>
-  )
-}
+Link.displayName = 'Link'

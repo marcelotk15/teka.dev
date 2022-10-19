@@ -92,11 +92,11 @@ const NowPlayingLink = styled(Link, {
   overflow: 'hidden',
   textOverflow: 'ellipsis',
 
-  '::before': {
+  '&::before': {
     backgroundColor: '$green9',
   },
 
-  ':hover': {
+  '&:hover': {
     color: '$hiContrast',
   },
 })
