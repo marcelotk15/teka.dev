@@ -4,6 +4,7 @@ import { GetStaticPropsContext } from 'next'
 import { Suspense } from 'react'
 import useTranslation from 'next-translate/useTranslation'
 import { useRouter } from 'next/router'
+import brazilLocale from 'date-fns/locale/pt-BR'
 
 import { Box } from '@components/Atoms/Box'
 import { Container } from '@components/Atoms/Container'
@@ -41,7 +42,7 @@ export default function PostPage({ post }: PostProps) {
 
             <Text color="gray">
               {format(parseISO(post.date), t('blog:createdDateFormat'), {
-                locale: { code: locale },
+                locale: locale === 'pt-BR' ? brazilLocale : undefined,
               })}
             </Text>
           </Box>
