@@ -1,6 +1,7 @@
 import { GetStaticPropsContext, InferGetStaticPropsType } from 'next'
 import { Suspense, useState } from 'react'
 import { MagnifyingGlass } from 'phosphor-react'
+import useTranslation from 'next-translate/useTranslation'
 
 import { Section } from '@components/Molecules/Sections'
 import { BlogPost } from '@components/Molecules/BlogPost'
@@ -15,6 +16,8 @@ import { Post } from '@local-types/post'
 import { MainLayout } from '@layouts/MainLayout'
 
 export default function Blog({ posts }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const { t } = useTranslation()
+
   const [searchValue, setSearchValue] = useState('')
 
   const filteredBlogPosts = posts.filter((post) =>
@@ -22,23 +25,16 @@ export default function Blog({ posts }: InferGetStaticPropsType<typeof getStatic
   )
 
   return (
-    <MainLayout
-      title="Blog | teka • Marcelo Oliveira"
-      description="Thoughts on the software industry, programming, tech, videography, music, and my personal life."
-    >
+    <MainLayout title="Blog | teka • Marcelo Oliveira" description={t('blog:metaDescription')}>
       <Container>
         <Section title={'Blog'}>
-          <Text>
-            {`I've been writing online since 2022, mostly about web development and tech careers.
-            In total, I've written ${posts.length} articles on my blog.
-            Use the search below to filter by title.`}
-          </Text>
+          <Text>{t('blog:description', { count: posts.length })}</Text>
 
           <TextInput.Root>
             <TextInput.Input
               type="text"
               onChange={(e) => setSearchValue(e.target.value)}
-              placeholder="Search articles"
+              placeholder={t('blog:searchPlaceholder')}
             />
 
             <TextInput.Icon>
@@ -47,7 +43,7 @@ export default function Blog({ posts }: InferGetStaticPropsType<typeof getStatic
           </TextInput.Root>
 
           {!searchValue && (
-            <SubSection title="Most Popular">
+            <SubSection title={t('blog:mostPopular')}>
               <Box column gap={4} css={{ '@lg': { flexDirection: 'row' } }}>
                 <BlogPost
                   title="Rust Is The Future of JavaScript Infrastructure"
@@ -69,7 +65,7 @@ export default function Blog({ posts }: InferGetStaticPropsType<typeof getStatic
           )}
 
           <Suspense fallback={null}>
-            <SubSection title="All posts">
+            <SubSection title={t('blog:allPosts')}>
               {!filteredBlogPosts.length ? (
                 <Box justify="center">
                   <Text size="lg" weight={'bold'} color="gray">

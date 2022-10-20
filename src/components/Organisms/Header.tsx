@@ -14,6 +14,7 @@ import { Container } from '@components/Atoms/Container'
 import { useMobileMenuState } from 'src/hooks/mobileMenu'
 import { navigationLinks, navigationLinksSocials } from '@data'
 import { Link } from '@components/Atoms/Link'
+import { LanguageSwitch } from '@components/Molecules/LanguageSwitch'
 
 const Wrapper = styled('header', {
   userSelect: 'none',
@@ -115,15 +116,9 @@ const LinkGroup = styled(Box, {
 
 export function Header() {
   const router = useRouter()
-  const { pathname, locale, locales } = router
+  const { pathname } = router
 
   const { open: opened } = useMobileMenuState()
-
-  const handleChangeLocale = ({ currentTarget }: ChangeEvent<HTMLSelectElement>) => {
-    const locale = currentTarget.value
-
-    router.push(router.asPath, router.asPath, { locale })
-  }
 
   return (
     <Wrapper>
@@ -134,19 +129,6 @@ export function Header() {
               <Logo />
             </Box>
           </Link>
-
-          <select
-            onChange={handleChangeLocale}
-            defaultValue={locale}
-            style={{ textAlignLast: 'center' }}
-            className="text-shadow-sm bg-transparent text-sm tracking-wide text-gray-900 dark:text-gray-100"
-          >
-            {locales?.map((e) => (
-              <option value={e} key={e}>
-                {e}
-              </option>
-            ))}
-          </select>
 
           <Links opened={opened}>
             <Tooltip.Provider>
@@ -191,6 +173,8 @@ export function Header() {
                 ))}
               </LinkGroup>
             </Tooltip.Provider>
+
+            <LanguageSwitch />
           </Links>
 
           <ThemeSwitcher />

@@ -22,7 +22,7 @@ const Wrapper = styled(Box, {
 
 export function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false)
-  const { setTheme, resolvedTheme, theme } = useTheme()
+  const { setTheme, theme } = useTheme()
 
   useEffect(() => setMounted(true), [])
 

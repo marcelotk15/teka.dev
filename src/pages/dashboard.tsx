@@ -1,4 +1,5 @@
 import { Suspense } from 'react'
+import useTranslation from 'next-translate/useTranslation'
 
 import { Container } from '@components/Atoms/Container'
 import { Text } from '@components/Atoms/Text'
@@ -8,19 +9,18 @@ import { TopTracks } from '@components/Organisms/TopTracks'
 import { MainLayout } from '@layouts/MainLayout'
 
 export default function DashboardPage() {
+  const { t } = useTranslation()
+
   return (
     <MainLayout
       title="Dashboard - teka • Marcelo Oliveira"
-      description="My personal dashboard, built with Next.js API routes deployed as serverless functions."
+      description={t('dashboard:metaDescription')}
     >
       <Container>
         <Section title={'Dashboard'}>
           <Suspense fallback={false}>
             <SubSection title="Top Tracks">
-              <Text>
-                Curious what I&apos;m currently jamming to? Here&apos;s my top tracks on Spotify
-                updated daily.
-              </Text>
+              <Text>{t('dashboard:topTracksDescription')}</Text>
 
               <TopTracks />
             </SubSection>

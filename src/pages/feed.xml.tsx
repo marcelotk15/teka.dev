@@ -7,7 +7,7 @@ import { Post } from '@local-types/post'
 
 export async function getServerSideProps({ res }: GetServerSidePropsContext) {
   const feed = new RSS({
-    title: 'teka | Marcelo Oliveira',
+    title: 'teka • Marcelo Oliveira',
     site_url: 'https://teka.dev',
     feed_url: 'https://teka.dev/feed.xml',
   })

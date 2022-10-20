@@ -1,5 +1,6 @@
 import useSWR from 'swr'
 import { SpotifyLogo } from 'phosphor-react'
+import useTranslation from 'next-translate/useTranslation'
 
 import { styled, keyframes, theme } from '@theme'
 import { Box } from '@components/Atoms/Box'
@@ -103,9 +104,13 @@ const NowPlayingLink = styled(Link, {
 })
 
 export function NowPlaying() {
+  const { t } = useTranslation()
+
   const { data } = useSWR<PlayingNow>('/api/now-playing', fetcher)
 
-  const musicAndArtist = data?.item?.artists?.map((artist) => artist.name).join(', ')
+  const musicAndArtist = `${data?.item?.name} - ${data?.item?.artists
+    ?.map((artist) => artist.name)
+    .join(', ')}`
 
   return (
     <Wrapper items="center" gap={3}>
@@ -125,7 +130,7 @@ export function NowPlaying() {
           </NowPlayingLink>
         </>
       ) : (
-        <Text>Listening nothing</Text>
+        <Text>{t('common:spotify.listeningNothing')}</Text>
       )}
     </Wrapper>
   )

@@ -1,0 +1,4 @@
+{
+  "metaDescription": "My personal dashboard, built with Next.js API routes deployed as serverless functions.",
+  "topTracksDescription": "Curious what I'm currently jamming to? Here's my top tracks on Spotify updated daily."
+}

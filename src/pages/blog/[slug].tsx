@@ -2,6 +2,8 @@ import { parseISO, format } from 'date-fns'
 import { MDXRemote } from 'next-mdx-remote'
 import { GetStaticPropsContext } from 'next'
 import { Suspense } from 'react'
+import useTranslation from 'next-translate/useTranslation'
+import { useRouter } from 'next/router'
 
 import { Box } from '@components/Atoms/Box'
 import { Container } from '@components/Atoms/Container'
@@ -20,6 +22,10 @@ interface PostProps {
 }
 
 export default function PostPage({ post }: PostProps) {
+  const { t } = useTranslation()
+
+  const { locale } = useRouter()
+
   return (
     <MainLayout title={`${post.title} - teka • Marcelo Oliveira`} description={post.excerpt}>
       <Container>
@@ -33,7 +39,11 @@ export default function PostPage({ post }: PostProps) {
 
             <Text color="gray">•</Text>
 
-            <Text color="gray">{format(parseISO(post.date), 'MMMM dd, yyyy')}</Text>
+            <Text color="gray">
+              {format(parseISO(post.date), t('blog:createdDateFormat'), {
+                locale: { code: locale },
+              })}
+            </Text>
           </Box>
 
           <Box gap={3}>

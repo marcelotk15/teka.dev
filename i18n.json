@@ -1,8 +1,12 @@
 {
   "locales": ["pt-BR", "en"],
   "defaultLocale": "en",
+  "localeDetection": false,
   "pages": {
     "*": ["common"],
-    "/": ["home"]
+    "/": ["home"],
+    "/blog/[slug]": ["blog"],
+    "/blog": ["blog"],
+    "/dashboard": ["dashboard"]
   }
 }

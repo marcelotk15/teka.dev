@@ -2,5 +2,16 @@
   "post": {
     "recent": "Recent Post",
     "readAll": "Read all posts"
+  },
+
+  "languages": {
+    "small": {
+      "en": "EN",
+      "pt-BR": "BR"
+    }
+  },
+
+  "spotify": {
+    "listeningNothing": "Listening nothing"
   }
 }

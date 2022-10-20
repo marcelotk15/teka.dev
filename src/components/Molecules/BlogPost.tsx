@@ -55,6 +55,7 @@ type BlogPostProps = Pick<Post, 'title' | 'excerpt' | 'slug'>
 
 export function BlogPost({ title, excerpt, slug }: BlogPostProps) {
   const { data } = useSWR<Views>(`/api/views/${slug}`, fetcher)
+
   const views = data?.total || '-'
 
   return (
@@ -66,7 +67,7 @@ export function BlogPost({ title, excerpt, slug }: BlogPostProps) {
 
         <Content>{excerpt}</Content>
 
-        <Views gap={2} title={`Total of view on article '${title}'`}>
+        <Views gap={2}>
           <Eye size={16} />
 
           <Text size={'sm'} color="inherit">

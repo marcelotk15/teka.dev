@@ -56,15 +56,11 @@ export function Guestbook({ fallbackData }: GuestbookProps) {
 
   const handleFormSubmit = useCallback(
     async (event: FormEvent<HTMLFormElement>) => {
-      console.log('🚀 ~ file: Guestbook.tsx ~ line 59 ~ event', event)
-
       event.preventDefault()
 
       setForm({
         state: Form.Loading,
       })
-
-      console.log('🚀 ~ file: Guestbook.tsx ~ line 59 ~ event', event.currentTarget)
 
       const res = await fetch('/api/guestbook', {
         method: 'POST',

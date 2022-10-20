@@ -1,0 +1,15 @@
+{
+  "metaDescription": "Pensamentos sobre a indústria de software, programação, tecnologia, música e minha vida pessoal.",
+  "description": "Eu escrevo online desde 2022, principalmente sobre desenvolvimento web.\nNo total, escrevi 1 artigos no meu blog.\nUse a pesquisa abaixo para filtrar por título.",
+  "searchPlaceholder": "Procure artigos",
+  "mostPopular": "Mais Populares",
+  "allPosts": "Todas Postagens",
+  
+  "viewsCounter": "{{count}} visualizações",
+  "createdDateFormat": "dd 'de' MMMM 'de' yyyy",
+
+  "components": {
+    "consCard": "You might use <Text weight={'semibold'}>{title}</Text> if...",
+    "prosCard": "You might not use <Text weight={'semibold'}>{title}</Text> if..."
+  }
+}

@@ -34,7 +34,7 @@ const Cover = styled(Image, {
 
 export function Track({ track, ranking }: TrackProps) {
   const { length, [length - 1]: image } = track.album.images
-  const musicAndArtist = track.artists.map((artist) => artist.name).join(', ')
+  const musicAndArtist = `${track.name} - ${track.artists.map((artist) => artist.name).join(', ')}`
 
   return (
     <Wrapper gap={3} items="flexStart">

@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import useSWR from 'swr'
+import useTranslation from 'next-translate/useTranslation'
 
 import { Text } from '@components/Atoms/Text'
 import fetcher from '@lib/fetcher'
@@ -10,6 +11,8 @@ interface ViewCounterProps {
 }
 
 export function ViewCounter({ slug }: ViewCounterProps) {
+  const { t } = useTranslation()
+
   const { data } = useSWR<Views>(`/api/views/${slug}`, fetcher)
 
   useEffect(() => {
@@ -20,7 +23,7 @@ export function ViewCounter({ slug }: ViewCounterProps) {
 
   return (
     <Text color="gray" size="sm">
-      <>{data?.total || '----'} views</>
+      {t('blog:viewsCounter', { count: data?.total || '----' })}
     </Text>
   )
 }
