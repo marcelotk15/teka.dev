@@ -69,7 +69,7 @@ export default function BurgerMenu () {
   const handleClick = () => toggleMenu?.();
 
   return (
-    <BurgerButton onClick={handleClick} close={mboileMenu}>
+    <BurgerButton onClick={handleClick} close={mboileMenu} data-testid="menu-burger">
       <div />
     </BurgerButton>
   );
