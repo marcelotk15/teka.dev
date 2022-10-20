@@ -4,6 +4,8 @@
   "searchPlaceholder": "Search articles",
   "mostPopular": "Mos Popular",
   "allPosts": "All Posts",
+  
+  "readTime": "{{time}} min read",
 
   "viewsCounter": "{{count}} views",
   "createdDateFormat": "MMMM dd, yyyy",

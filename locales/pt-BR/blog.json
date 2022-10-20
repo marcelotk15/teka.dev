@@ -4,6 +4,8 @@
   "searchPlaceholder": "Procure artigos",
   "mostPopular": "Mais Populares",
   "allPosts": "Todas Postagens",
+
+  "readTime": "{{time}} min de leitura",
   
   "viewsCounter": "{{count}} visualizações",
   "createdDateFormat": "dd 'de' MMMM 'de' yyyy",

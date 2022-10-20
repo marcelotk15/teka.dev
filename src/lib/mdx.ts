@@ -34,6 +34,6 @@ export async function mdxToHtml(source: string) {
     html: mdxSource,
     tweetIDs: tweetIDs || [],
     wordCount: source.split(/\s+/gu).length,
-    readingTime: readingTime(source).text,
+    readingTime: readingTime(source),
   }
 }

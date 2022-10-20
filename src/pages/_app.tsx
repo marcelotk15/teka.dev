@@ -2,7 +2,6 @@ import type { AppProps } from 'next/app'
 import { ThemeProvider } from 'next-themes'
 import { Session } from 'next-auth'
 import { SessionProvider } from 'next-auth/react'
-import { useRouter } from 'next/router'
 
 import { darkTheme } from '@theme'
 import { Analytics } from '@components/Organisms/Analytics'

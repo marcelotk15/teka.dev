@@ -49,7 +49,7 @@ export default function PostPage({ post }: PostProps) {
 
           <Box gap={3}>
             <Text color="gray" size="sm">
-              {post.readingTime}
+              {t('blog:readTime', { time: Math.ceil(post.readingTime.minutes) })}
             </Text>
 
             <Text color="gray" size="sm">

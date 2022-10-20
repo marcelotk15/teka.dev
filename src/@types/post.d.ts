@@ -1,4 +1,5 @@
 import { MDXRemoteSerializeResult } from 'next-mdx-remote'
+import { ReadTimeResults } from 'reading-time'
 
 export type Post = {
   _id: string
@@ -8,6 +9,6 @@ export type Post = {
   date: string
   excerpt: string
   coverImage: string
-  readingTime: string
+  readingTime: ReadTimeResults
   tweets: unknow[]
 }

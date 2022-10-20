@@ -539,7 +539,7 @@ pre[class*="language-"]
 .highlight-line
 {
   color: inherit;
-  display: inline-block;
+  /* display: inline-block; */
   text-decoration: none;
 
   border-radius: 4px;
