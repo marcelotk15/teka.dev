@@ -36,10 +36,11 @@ const Wrapper = styled('header', {
 
 const Navigation = styled('nav', {
   display: 'flex',
-  gap: '$8',
+  gap: '$4',
   alignItems: 'center',
 
   '@lg': {
+    gap: '$8',
     justifyContent: 'space-between',
   },
 })
@@ -143,6 +144,7 @@ export function Header() {
                           justifyContent: 'space-between',
                           width: '100%',
                           alignItems: 'center',
+                          padding: '$3',
                         }}
                         aria-label={`open ${name}`}
                       >
@@ -161,7 +163,7 @@ export function Header() {
                     <Tooltip.Root content={name}>
                       <Button
                         background={'transparent'}
-                        css={{ justifyContent: 'space-between', width: '100%' }}
+                        css={{ justifyContent: 'space-between', width: '100%', padding: '$3' }}
                         aria-label={`open ${name}`}
                       >
                         {isMobile && name}
@@ -173,9 +175,9 @@ export function Header() {
                 ))}
               </LinkGroup>
             </Tooltip.Provider>
-
-            <LanguageSwitch />
           </Links>
+
+          <LanguageSwitch />
 
           <ThemeSwitcher />
 

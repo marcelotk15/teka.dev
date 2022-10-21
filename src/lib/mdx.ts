@@ -8,6 +8,7 @@ import remarkGfm from 'remark-gfm'
 
 export async function mdxToHtml(source: string) {
   const mdxSource = await serialize(source, {
+    parseFrontmatter: true,
     mdxOptions: {
       remarkPlugins: [remarkGfm],
       rehypePlugins: [

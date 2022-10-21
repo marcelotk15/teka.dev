@@ -28,10 +28,13 @@ export default function PostPage({ post }: PostProps) {
   const { locale } = useRouter()
 
   return (
-    <MainLayout title={`${post.title} - teka • Marcelo Oliveira`} description={post.excerpt}>
+    <MainLayout
+      title={`${post.content.frontmatter?.title} - teka • Marcelo Oliveira`}
+      description={post.content.frontmatter?.description}
+    >
       <Container>
         <Heading size={'lg'} css={{ mt: '$4' }} as="h1">
-          {post.title}
+          {post.content.frontmatter?.title}
         </Heading>
 
         <Box column gap={2} css={{ mt: '$4', mb: '$8' }}>
@@ -79,7 +82,7 @@ export async function getStaticPaths() {
   }
 }
 
-export async function getStaticProps({ params, preview = false }: GetStaticPropsContext) {
+export async function getStaticProps({ params, locale, preview = false }: GetStaticPropsContext) {
   if (!params) {
     return { notFound: true }
   }
@@ -92,7 +95,9 @@ export async function getStaticProps({ params, preview = false }: GetStaticProps
     return { notFound: true }
   }
 
-  const { html, readingTime } = await mdxToHtml(post.content)
+  const { content, content_ptBR } = post
+
+  const { html, readingTime } = await mdxToHtml(locale === 'en' ? content : content_ptBR)
   // const tweets = await getTweets(tweetIds);
 
   return {

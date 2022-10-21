@@ -1,6 +1,8 @@
 import Link from 'next/link'
 import useTranslation from 'next-translate/useTranslation'
 import { ArrowRight } from 'phosphor-react'
+import { useRouter } from 'next/router'
+import { ReadTimeResults } from 'reading-time'
 
 import { styled } from '@theme'
 import { BlogPost } from '@components/Molecules/BlogPost'
@@ -33,7 +35,10 @@ const ReadAll = styled('a', {
 })
 
 interface RecentPostsProps {
-  posts: Pick<Post, 'title' | 'excerpt' | 'slug' | 'date'>[]
+  posts: Pick<Post, 'title' | 'slug' | 'excerpt'>[] &
+    {
+      readingTime: ReadTimeResults
+    }[]
 }
 
 export function RecentPosts({ posts }: RecentPostsProps) {

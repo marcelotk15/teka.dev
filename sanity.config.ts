@@ -37,6 +37,11 @@ export default createConfig({
             type: 'markdown',
           },
           {
+            name: 'content_ptBR',
+            title: 'Content PT-BR',
+            type: 'markdown',
+          },
+          {
             name: 'excerpt',
             title: 'Excerpt',
             type: 'string',

@@ -12,12 +12,7 @@ const Wrapper = styled(Box, {
   padding: '$2',
   borderRadius: '$2',
   backgroundColor: '$toggleBackground',
-  marginLeft: 'auto',
   position: 'relative',
-
-  '@lg': {
-    marginLeft: '$0',
-  },
 })
 
 export function ThemeSwitcher() {

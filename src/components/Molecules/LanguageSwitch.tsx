@@ -1,25 +1,30 @@
 import { useRouter } from 'next/router'
 import useTranslation from 'next-translate/useTranslation'
-import * as HoverCard from '@radix-ui/react-hover-card'
 import { useCallback } from 'react'
+import * as DropdownMenu from '@radix-ui/react-dropdown-menu'
 
 import { styled } from '@theme'
 import { Text } from '@components/Atoms/Text'
 import { Box } from '@components/Atoms/Box'
 
-const Base = styled(Box, {
+const LocaleBase = styled(Box, {
   padding: '$4',
   borderRadius: '$2',
   backgroundColor: '$toggleBackground',
 })
 
-const Locales = styled(Base, {
+const Locales = styled(LocaleBase, {
   mt: '$2',
   backgroundColor: '$slate8',
 })
 
 const LocaleOption = styled(Text, {
   cursor: 'pointer',
+})
+
+const Trigger = styled(DropdownMenu.Trigger, {
+  padding: 0,
+  background: 'transparent',
 })
 
 export function LanguageSwitch() {
@@ -37,16 +42,21 @@ export function LanguageSwitch() {
   )
 
   return (
-    <HoverCard.Root openDelay={200} closeDelay={100}>
-      <HoverCard.Trigger>
-        <Base aria-label={locale}>
-          <Text size="sm" weight="bold">
-            {t(`common:languages.small.${locale as string}`)}
+    <DropdownMenu.Root>
+      <Trigger css={{ ml: 'auto', '@lg': { ml: 0 } }}>
+        <LocaleBase
+          aria-label={locale}
+          css={{ cursor: 'pointer', height: '50px', aspectRatio: '1/1', padding: 0 }}
+          justify="center"
+          items="center"
+        >
+          <Text weight="extrabold" size="sm">
+            {t(`common:languages.small.${locale}`)}
           </Text>
-        </Base>
-      </HoverCard.Trigger>
+        </LocaleBase>
+      </Trigger>
 
-      <HoverCard.Content>
+      <DropdownMenu.Content>
         <Locales gap={4}>
           {locales?.map((locale) => (
             <LocaleOption
@@ -55,11 +65,13 @@ export function LanguageSwitch() {
               weight="bold"
               onClick={() => handleChangeLocale(locale)}
             >
-              {t(`common:languages.small.${locale}`)}
+              <Text weight="extrabold" size="sm">
+                {t(`common:languages.small.${locale}`)}
+              </Text>
             </LocaleOption>
           ))}
         </Locales>
-      </HoverCard.Content>
-    </HoverCard.Root>
+      </DropdownMenu.Content>
+    </DropdownMenu.Root>
   )
 }

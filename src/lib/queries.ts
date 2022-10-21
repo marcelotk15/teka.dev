@@ -7,15 +7,21 @@ const postFields = `
   "slug": slug.current,
 `
 
+const contentFields = `
+  content,
+  content_ptBR,
+`
+
 export const indexQuery = `
 *[_type == "post"] | order(date desc, _updatedAt desc) {
+  ${contentFields}
   ${postFields}
 }`
 
 export const postQuery = `
 {
   "post": *[_type == "post" && slug.current == $slug] | order(_updatedAt desc) [0] {
-    content,
+    ${contentFields}
     ${postFields}
   }
 }`
