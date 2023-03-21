@@ -3,6 +3,7 @@ import '@/styles/globals.css'
 import { type AppType } from 'next/app'
 import { type Session } from 'next-auth'
 import { SessionProvider } from 'next-auth/react'
+import { ThemeProvider } from 'next-themes'
 import { Inter as FontSans } from 'next/font/google'
 import localFont from 'next/font/local'
 
@@ -52,7 +53,9 @@ const MyApp: AppType<{ session: Session | null }> = ({
       `}</style>
 
       <SessionProvider session={session}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Component {...pageProps} />
+        </ThemeProvider>
       </SessionProvider>
     </>
   )

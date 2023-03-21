@@ -19,6 +19,7 @@
     "@trpc/server": "^10.9.0",
     "next": "^13.2.1",
     "next-auth": "^4.19.0",
+    "next-themes": "^0.2.1",
     "next-translate": "^2.0.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
