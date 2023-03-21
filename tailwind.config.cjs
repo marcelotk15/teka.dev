@@ -16,6 +16,7 @@ const config = {
     extend: {
       fontFamily: {
         sans: ['var(--font-sans)', ...fontFamily.sans],
+        serif: ['var(--font-dystopian)'],
       },
       keyframes: {
         'accordion-down': {
