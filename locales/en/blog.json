@@ -1,0 +1,17 @@
+{
+  "metaDescription": "Thoughts on the software industry, programming, tech, videography, and my personal life.",
+  "description": "I've been writing online since 2022, mostly about web development.\nIn total, I've written {{count}} articles on my blog.\nUse the search below to filter by title.",
+  "searchPlaceholder": "Search articles",
+  "mostPopular": "Mos Popular",
+  "allPosts": "All Posts",
+  
+  "readTime": "{{time}} min read",
+
+  "viewsCounter": "{{count}} views",
+  "createdDateFormat": "MMMM dd, yyyy",
+
+  "components": {
+    "consCard": "You might use <Text weight={'semibold'}>{title}</Text> if...",
+    "prosCard": "You might not use <Text weight={'semibold'}>{title}</Text> if..."
+  }
+}

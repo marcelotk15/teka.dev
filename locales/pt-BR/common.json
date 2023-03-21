@@ -1,0 +1,21 @@
+{
+  "post": {
+    "recent": "Postagens Recentes",
+    "readAll": "Ler todas postagens"
+  },
+
+  "locales": {
+    "en": "English",
+    "pt-BR": "Portuguese (Brazil)"
+  },
+
+  "smalLocales": {
+    "en": "EN",
+    "pt-BR": "BR"
+  },
+
+  "spotify": {
+    "listeningNothing": "Ouvindo Nada",
+    "listeningNow": "Ouvindo Agora"
+  }
+}
