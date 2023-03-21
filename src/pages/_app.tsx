@@ -8,6 +8,7 @@ import { Inter as FontSans } from 'next/font/google'
 import localFont from 'next/font/local'
 
 import { api } from '@/utils/api'
+import { Layout } from '@/components/Layout'
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -54,7 +55,9 @@ const MyApp: AppType<{ session: Session | null }> = ({
 
       <SessionProvider session={session}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <Layout>
             <Component {...pageProps} />
+          </Layout>
         </ThemeProvider>
       </SessionProvider>
     </>
