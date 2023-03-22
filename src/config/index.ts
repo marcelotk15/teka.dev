@@ -16,11 +16,11 @@ export const NavigationLinks: Link[] = [
 ]
 
 export const SocialLinks: Link[] = [
-  { name: 'Twitter', href: 'https://twitter.com/_marcelotk', Icon: Icons.twitter },
   { name: 'Github', href: 'https://github.com/marcelotk15', Icon: Icons.github },
   {
     name: 'LinkedIn',
     href: 'https://linkedin.com/in/marcelo-augusto-s-oliveira/',
     Icon: Icons.linkedin,
   },
+  { name: 'Twitter', href: 'https://twitter.com/_marcelotk', Icon: Icons.twitter },
 ]
