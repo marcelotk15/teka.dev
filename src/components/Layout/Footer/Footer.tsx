@@ -11,18 +11,14 @@ export function Footer() {
       <div className="container">
         <NowPlaying />
 
-        <div className="flex flex-col justify-between gap-8 py-20 md:flex-row">
+        <div className="flex flex-col justify-between gap-8 py-20 text-zinc-400 hover:text-zinc-300 dark:text-zinc-600 dark:hover:text-zinc-700 md:flex-row">
           <div>
-            <Link
-              title="teka"
-              href="/"
-              className="text-zinc-400 hover:text-zinc-300 dark:text-zinc-600 dark:hover:text-zinc-700"
-            >
+            <Link title="teka" href="/">
               <Logo currentColor className="h-7 md:h-8" />
             </Link>
           </div>
 
-          <div className="flex gap-10">
+          <div className="font-zinc-800 grid grid-cols-2 gap-10 font-semibold md:flex">
             <div className="flex flex-col gap-1">
               {NavigationLinks.map(({ name, href }, index) => (
                 <Link key={`${name}_${index}`} href={href} title={name}>
