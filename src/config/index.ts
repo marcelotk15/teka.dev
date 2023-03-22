@@ -1,5 +1,7 @@
 import { Icon, Icons } from '@/components/Icons'
 
+export * from './seo'
+
 export interface Link {
   name: string
   href: string
