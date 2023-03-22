@@ -1,8 +1,11 @@
 import Trans from 'next-translate/Trans'
 
+import { SocialLinks } from '@/config'
+
 import { TopographyLevels } from './TopographyLevels'
 import { Hand } from './Hand'
 import { LinkCompany } from './LinkCompany'
+import { SocialLink } from './SocialLink'
 
 export function Hero() {
   return (
@@ -22,6 +25,12 @@ export function Hero() {
               3: <br />,
             }}
           />
+        </div>
+
+        <div className="mt-8 flex gap-4">
+          {SocialLinks.map((social) => (
+            <>{social.name !== 'Twitter' && <SocialLink key={social.name} {...social} />}</>
+          ))}
         </div>
       </div>
     </section>

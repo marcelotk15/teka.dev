@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import { Logo } from '@/components/Logo'
-import { navigationLinks, navigationLinksSocials } from '@/data'
+import { NavigationLinks, SocialLinks } from '@/config'
 
 import { NowPlaying } from './NowPlaying'
 
@@ -24,18 +24,18 @@ export function Footer() {
 
           <div className="flex gap-10">
             <div className="flex flex-col gap-1">
-              {navigationLinks.map(({ to, name }, index) => (
-                <Link key={`${to}_${index}`} href={to} title={name}>
+              {NavigationLinks.map(({ name, href }, index) => (
+                <Link key={`${name}_${index}`} href={href} title={name}>
                   {name}
                 </Link>
               ))}
             </div>
 
             <div className="flex flex-col gap-1">
-              {navigationLinksSocials.map(({ to, name }, index) => (
+              {SocialLinks.map(({ href, name }, index) => (
                 <Link
-                  key={`${to}_${index}`}
-                  href={to}
+                  key={`${href}_${index}`}
+                  href={href}
                   target="_blank"
                   rel="noopener noreferrer"
                   title={`teka's ${name} page`}
