@@ -55,7 +55,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
         }
       `}</style>
 
-      {/* <DefaultSeo {...SEO} /> */}
+      <DefaultSeo {...SEO} />
 
       <SessionProvider session={session}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
