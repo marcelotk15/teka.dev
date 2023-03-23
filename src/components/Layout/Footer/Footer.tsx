@@ -2,6 +2,7 @@ import Link from 'next/link'
 
 import { Logo } from '@/components/Logo'
 import { NavigationLinks, SocialLinks } from '@/config'
+import { ExternalLink } from '@/components/ui/ExternalLink'
 
 import { NowPlaying } from './NowPlaying'
 
@@ -38,16 +39,15 @@ export function Footer() {
 
             <div className="flex flex-col gap-1">
               {SocialLinks.map(({ href, name }, index) => (
-                <Link
+                <ExternalLink
                   key={`${href}_${index}`}
                   href={href}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   title={`teka's ${name} page`}
                   className="text-zinc-400 hover:text-zinc-300 dark:text-zinc-600 dark:hover:text-zinc-700"
+                  showIcon
                 >
                   {name}
-                </Link>
+                </ExternalLink>
               ))}
             </div>
           </div>

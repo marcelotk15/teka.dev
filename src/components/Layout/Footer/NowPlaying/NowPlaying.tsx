@@ -1,10 +1,10 @@
 import useTranslation from 'next-translate/useTranslation'
-import Link from 'next/link'
 import { Fragment } from 'react'
 
 import { api } from '@/utils/api'
 import { Icons } from '@/components/Icons'
 import { NowPlayingSkeleton } from '@/components/Skeletons'
+import { ExternalLink } from '@/components/ui/ExternalLink'
 
 import { AnimatedBars } from './AnimatedBars'
 
@@ -17,7 +17,7 @@ export function NowPlaying() {
     ?.map((artist) => artist.name)
     .join(', ')}`
 
-  const SpotifyWrapper = data?.item ? Link : Fragment
+  const SpotifyWrapper = data?.item ? ExternalLink : Fragment
 
   return (
     <NowPlayingSkeleton isLoading={isLoading}>

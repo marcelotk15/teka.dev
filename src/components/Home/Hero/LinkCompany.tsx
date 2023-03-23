@@ -1,4 +1,4 @@
-import Link from 'next/link'
+import { ExternalLink } from '@/components/ui/ExternalLink'
 
 const COMPANY = {
   name: 'Codeby',
@@ -7,8 +7,13 @@ const COMPANY = {
 
 export function LinkCompany() {
   return (
-    <Link href={COMPANY.link} title={COMPANY.name} target="_blank">
+    <ExternalLink
+      href={COMPANY.link}
+      title={COMPANY.name}
+      withUnderline
+      className="after:bg-blue-500 dark:after:bg-blue-600"
+    >
       <strong className="font-black">{COMPANY.name}</strong> <span>💙</span>
-    </Link>
+    </ExternalLink>
   )
 }
