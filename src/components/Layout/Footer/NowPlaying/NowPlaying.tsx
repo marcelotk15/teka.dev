@@ -25,7 +25,7 @@ export function NowPlaying() {
         href={data?.item.external_urls.spotify || ''}
         aria-label={musicAndArtist}
         target="_blank"
-        className="block w-full md:w-auto"
+        className="inline-block w-full md:w-auto"
       >
         <div className="relative my-4 inline-flex w-full items-center gap-2 rounded-lg border border-zinc-400 bg-zinc-200 p-4 dark:border-zinc-700 dark:bg-zinc-800 md:w-auto">
           <div className="text-green-600">{Icons.spotify}</div>

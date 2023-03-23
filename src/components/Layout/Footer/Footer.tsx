@@ -11,17 +11,26 @@ export function Footer() {
       <div className="container">
         <NowPlaying />
 
-        <div className="flex flex-col justify-between gap-8 py-20 text-zinc-400 hover:text-zinc-300 dark:text-zinc-600 dark:hover:text-zinc-700 md:flex-row">
+        <div className="flex flex-col justify-between gap-8 py-20 md:flex-row">
           <div>
-            <Link title="teka" href="/">
+            <Link
+              title="teka"
+              href="/"
+              className="text-zinc-400 hover:text-zinc-300 dark:text-zinc-600 dark:hover:text-zinc-700"
+            >
               <Logo currentColor className="h-7 md:h-8" />
             </Link>
           </div>
 
-          <div className="font-zinc-800 grid grid-cols-2 gap-10 font-semibold md:flex">
+          <div className="grid grid-cols-2 gap-10 font-semibold md:flex">
             <div className="flex flex-col gap-1">
               {NavigationLinks.map(({ name, href }, index) => (
-                <Link key={`${name}_${index}`} href={href} title={name}>
+                <Link
+                  key={`${name}_${index}`}
+                  href={href}
+                  title={name}
+                  className="text-zinc-400 hover:text-zinc-300 dark:text-zinc-600 dark:hover:text-zinc-700"
+                >
                   {name}
                 </Link>
               ))}
@@ -35,6 +44,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   title={`teka's ${name} page`}
+                  className="text-zinc-400 hover:text-zinc-300 dark:text-zinc-600 dark:hover:text-zinc-700"
                 >
                   {name}
                 </Link>
