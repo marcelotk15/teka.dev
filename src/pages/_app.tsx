@@ -6,9 +6,11 @@ import { SessionProvider } from 'next-auth/react'
 import { ThemeProvider } from 'next-themes'
 import { Inter as FontSans } from 'next/font/google'
 import localFont from 'next/font/local'
+import { DefaultSeo } from 'next-seo'
 
 import { api } from '@/utils/api'
 import { Layout } from '@/components/Layout'
+import { SEO } from '@/config'
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -52,6 +54,8 @@ const MyApp: AppType<{ session: Session | null }> = ({
           --font-dystopian: ${dystopian.style.fontFamily};
         }
       `}</style>
+
+      <DefaultSeo {...SEO} />
 
       <SessionProvider session={session}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
