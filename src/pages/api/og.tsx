@@ -26,7 +26,7 @@ export default async function handler(req: NextRequest) {
           flexDirection: 'column',
           alignItems: 'flex-start',
           justifyContent: 'center',
-          backgroundImage: 'url(http://localhost:3000/og-bg.jpg)', //TODO: change to teka.dev
+          backgroundImage: 'url(https://teka.dev/og-bg.jpg)',
         }}
       >
         <div
