@@ -6,6 +6,7 @@ const i18nConfig = {
   pages: {
     '*': ['common'],
     '/': ['home'],
+    '/setup': ['setup'],
     // '/blog/[slug]': ['blog'],
     // '/blog': ['blog'],
     // '/dashboard': ['dashboard'],
