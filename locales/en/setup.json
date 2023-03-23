@@ -9,5 +9,6 @@
   "cpu": "CPU",
   "memory": "Memory",
   "keyboard": "Keyboard",
-  "mouse": "Mouse"
+  "mouse": "Mouse",
+  "headphone": "Headphone"
 }

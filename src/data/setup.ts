@@ -35,26 +35,29 @@ export const SetupData: SetupData[] = [
   //   name: '',
   //   href: '',
   // },
-  {
-    type: 'memory',
-    name: 'HyperX Fury RGB 16GB (2x8) DDR4-3000',
-    href: 'https://www.corsair.com/uk/en/Categories/Products/Memory/VENGEANCE-RGB-DDR5-—-White/p/CMH32GX5M2B6200C36W',
-  },
   // {
   //   type: 'storage',
   //   name: '',
   //   href: '',
   // },
-
+  {
+    type: 'memory',
+    name: 'HyperX Fury RGB 16GB (2x8) DDR4-3000',
+    href: 'https://www.corsair.com/uk/en/Categories/Products/Memory/VENGEANCE-RGB-DDR5-—-White/p/CMH32GX5M2B6200C36W',
+  },
   {
     type: 'keyboard',
     name: 'Keychron K4 Wireless',
     href: 'https://www.keychron.com/products/keychron-k4-wireless-mechanical-keyboard-version-2',
   },
-
   {
     type: 'mouse',
     name: 'HyperX Pulsefire Haste',
     href: 'https://row.hyperx.com/pt-br/products/hyperx-pulsefire-haste-gaming-mouse?variant=40909066731725',
+  },
+  {
+    type: 'headphone',
+    name: 'KZ ZSN Pro',
+    href: 'https://kz-audio.com/kz-zsn-pro.html',
   },
 ]
