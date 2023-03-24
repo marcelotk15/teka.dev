@@ -14,7 +14,7 @@ const headerVariants = cva(
     variants: {
       variant: {
         false: '',
-        true: 'backdrop-blur bg-zinc-900/50',
+        true: 'backdrop-blur bg-zinc-100/50 dark:bg-zinc-900/50 ',
       },
     },
     defaultVariants: {
