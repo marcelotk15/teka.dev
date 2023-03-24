@@ -1,5 +1,4 @@
 import useTranslation from 'next-translate/useTranslation'
-import { Fragment } from 'react'
 
 import { api } from '@/utils/api'
 import { Icons } from '@/components/Icons'
@@ -17,14 +16,12 @@ export function NowPlaying() {
     ?.map((artist) => artist.name)
     .join(', ')}`
 
-  const SpotifyWrapper = data?.item ? ExternalLink : Fragment
-
   return (
     <NowPlayingSkeleton isLoading={isLoading}>
-      <SpotifyWrapper
+      <ExternalLink
         href={data?.item.external_urls.spotify || ''}
         aria-label={musicAndArtist}
-        target="_blank"
+        title={musicAndArtist}
         className="inline-block w-full md:w-auto"
       >
         <div className="relative my-4 inline-flex w-full items-center gap-2 rounded-lg border border-zinc-400 bg-zinc-200 p-4 dark:border-zinc-700 dark:bg-zinc-800 md:w-auto">
@@ -53,7 +50,7 @@ export function NowPlaying() {
             <div>{t('common:spotify.listeningNothing')}</div>
           )}
         </div>
-      </SpotifyWrapper>
+      </ExternalLink>
     </NowPlayingSkeleton>
   )
 }
