@@ -10,7 +10,7 @@ const config = {
       center: true,
       padding: '2.5rem',
       screens: {
-        '2xl': '1360px',
+        '2xl': '56rem',
       },
     },
     extend: {
