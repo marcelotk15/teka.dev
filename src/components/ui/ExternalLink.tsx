@@ -5,7 +5,7 @@ import { cn } from '@/lib/utils'
 
 import { Link, LinkProps } from './Link'
 
-type ExternalLinkProps = LinkProps & {
+export type ExternalLinkProps = LinkProps & {
   showIcon?: boolean
 }
 

@@ -1,11 +1,16 @@
 import { useMDXComponent } from 'next-contentlayer/hooks'
+import NextImage from 'next/image'
+
+import { ExternalLink } from './ui/ExternalLink'
+import { Link } from './ui/Link'
+
+const Image = (props: any) => <NextImage {...props} loading="lazy" quality={100} />
 
 const components = {
-  // Image: RoundedImage,
-  // a: CustomLink,
-  // Callout,
-  // ProsCard,
-  // ConsCard,
+  a: (props: any) => <Link {...props} withUnderline />,
+  ExternalLink: (props: any) => <ExternalLink {...props} showIcon withUnderline />,
+  img: Image,
+  p: (props: any) => <p {...props} />,
 }
 
 interface MdxProps {
@@ -22,7 +27,7 @@ export function Mdx({ code }: MdxProps) {
   // }
 
   return (
-    <article className="prose max-w-none dark:prose-invert">
+    <article>
       <Component components={{ ...components }} />
     </article>
   )
