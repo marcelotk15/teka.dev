@@ -29,7 +29,7 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.mjs",
-    "contentlayer.config.js"
+    "contentlayer.config.ts"
   ],
   "exclude": ["node_modules"]
 }

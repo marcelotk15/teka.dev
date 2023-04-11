@@ -7,8 +7,8 @@ const i18nConfig = {
     '*': ['common'],
     '/': ['home'],
     '/setup': ['setup'],
-    // '/blog/[slug]': ['blog'],
-    // '/blog': ['blog'],
+    '/blog/[slug]': ['blog'],
+    '/blog': ['blog'],
     // '/dashboard': ['dashboard'],
   },
 }

@@ -6,7 +6,7 @@ import { allBlogPosts, BlogPost } from 'contentlayer/generated'
 import { Mdx } from '@/components/Mdx'
 import { PageMainSectionTitle } from '@/components/PageMainSectionTitle'
 
-export default function BlogPostPage({ title, body, summary, publishedAt, image }: BlogPost) {
+export default function BlogPostPage({ title, body, summary, image }: BlogPost) {
   return (
     <>
       <NextSeo
@@ -34,15 +34,15 @@ export default function BlogPostPage({ title, body, summary, publishedAt, image 
 
 export const getStaticPaths: GetStaticPaths = () => {
   return {
-    paths: allBlogPosts.map(({ slug }) => ({ params: { slug } })),
+    paths: allBlogPosts.map(({ slug, locale }) => ({ params: { slug }, locale })),
     fallback: false,
   }
 }
 
-export const getStaticProps: GetStaticProps<BlogPost> = (ctx) => {
-  const slug = ctx.params?.slug as string
+export const getStaticProps: GetStaticProps<BlogPost> = ({ params, locale }) => {
+  const slug = params?.slug as string
 
-  const post = allBlogPosts.find((post) => post.slug === slug)
+  const post = allBlogPosts.find((post) => post.slug === slug && post.locale === locale)
 
   if (!post)
     return {

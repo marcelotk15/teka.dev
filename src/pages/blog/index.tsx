@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import FadeIn from 'react-fade-in'
-import { GetStaticPropsResult } from 'next'
+import { GetStaticPropsContext, GetStaticPropsResult } from 'next'
 
 import { PageMainSectionTitle } from '@/components/PageMainSectionTitle'
 import { allBlogPosts, BlogPost } from 'contentlayer/generated'
@@ -63,10 +63,14 @@ export default function BlogPage({ posts }: BlogPageProps) {
   )
 }
 
-export function getStaticProps(): GetStaticPropsResult<BlogPageProps> {
+export function getStaticProps({
+  locale,
+}: GetStaticPropsContext): GetStaticPropsResult<BlogPageProps> {
   return {
     props: {
-      posts: allBlogPosts.sort((a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt)),
+      posts: allBlogPosts
+        .filter((post) => post.locale === locale)
+        .sort((a, b) => Date.parse(b.publishedAt) - Date.parse(a.publishedAt)),
     },
   }
 }

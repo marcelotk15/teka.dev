@@ -1,32 +1,39 @@
-import { defineDocumentType, makeSource } from 'contentlayer/source-files'
+import { ComputedFields, defineDocumentType, makeSource } from 'contentlayer/source-files'
 import remarkGfm from 'remark-gfm'
 import rehypePrettyCode from 'rehype-pretty-code'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
 
-/** @type {import('contentlayer/source-files').ComputedFields} */
-const computedFields = {
+function getLocale(path: string) {
+  const pathArray = path.split('.')
+
+  return pathArray.length > 2 ? pathArray.slice(-2)[0] : 'en'
+}
+
+// /** @type {import('contentlayer/source-files').ComputedFields} */
+const computedFields: ComputedFields = {
   slug: {
     type: 'string',
+    // resolve: (doc) => {
+    //   const flattenedPath = doc._raw.flattenedPath
+
+    //   const flattenedPathSliced = flattenedPath.split('/')
+
+    //   return flattenedPathSliced[1] || flattenedPathSliced[0] || flattenedPath
+    // },
+
+    resolve: (doc) => doc._raw.sourceFileName.replace(/(\.pt-BR)?\.mdx$/, ''),
+  },
+
+  locale: {
+    type: 'string',
     resolve: (doc) => {
-      const flattenedPath = doc._raw.flattenedPath
-
-      const flattenedPathSliced = flattenedPath.split('/')
-
-      return flattenedPathSliced[1] || flattenedPathSliced[0] || flattenedPath
+      return getLocale(doc._raw.sourceFilePath)
     },
   },
 
-  // tweetIds: {
-  //   type: 'array',
-  //   resolve: (doc) => {
-  //     const tweetMatches = doc.body.raw.match(/<StaticTweet\sid="[0-9]+"\s\/>/g)
-  //     return tweetMatches?.map((tweet) => tweet.match(/[0-9]+/g)[0]) || []
-  //   },
-  // },
-
   structuredData: {
-    type: 'object',
+    type: 'list',
     resolve: (doc) => ({
       '@context': 'https://schema.org',
       '@type': 'BlogPosting',
@@ -44,6 +51,14 @@ const computedFields = {
       },
     }),
   },
+
+  // tweetIds: {
+  //   type: 'array',
+  //   resolve: (doc) => {
+  //     const tweetMatches = doc.body.raw.match(/<StaticTweet\sid="[0-9]+"\s\/>/g)
+  //     return tweetMatches?.map((tweet) => tweet.match(/[0-9]+/g)[0]) || []
+  //   },
+  // },
 }
 
 export const Blog = defineDocumentType(() => ({
@@ -70,7 +85,7 @@ export const Blog = defineDocumentType(() => ({
   computedFields,
 }))
 
-export default makeSource({
+const contentLayerConfig = makeSource({
   contentDirPath: 'content',
   documentTypes: [Blog],
   mdx: {
@@ -81,17 +96,17 @@ export default makeSource({
         rehypePrettyCode,
         {
           theme: 'one-dark-pro',
-          onVisitLine(node) {
+          onVisitLine(node: any) {
             // Prevent lines from collapsing in `display: grid` mode, and allow empty
             // lines to be copy/pasted
             if (node.children.length === 0) {
               node.children = [{ type: 'text', value: ' ' }]
             }
           },
-          onVisitHighlightedLine(node) {
+          onVisitHighlightedLine(node: any) {
             node.properties.className.push('line--highlighted')
           },
-          onVisitHighlightedWord(node) {
+          onVisitHighlightedWord(node: any) {
             node.properties.className = ['word--highlighted']
           },
         },
@@ -107,3 +122,5 @@ export default makeSource({
     ],
   },
 })
+
+export default contentLayerConfig
