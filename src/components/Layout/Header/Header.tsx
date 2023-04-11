@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import { Logo } from '../../Logo'
 import { ThemeSelector } from './ThemeSelector'
 import { LangSelector } from './LangSelector'
+import { MainNav } from './MainNav'
 
 const headerVariants = cva(
   'sticky inset-x-0 top-0 z-40 flex w-full flex-wrap text-sm sm:flex-nowrap sm:justify-start sm:py-0 transition-all',
@@ -55,6 +56,8 @@ export function Header() {
               <Logo className="h-7 md:h-10" />
             </Link>
           </div>
+
+          <MainNav />
 
           <div className="ml-auto flex gap-3">
             <LangSelector />
