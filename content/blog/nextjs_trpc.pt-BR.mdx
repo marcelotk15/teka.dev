@@ -2,14 +2,15 @@
 title: A simplicidade do tRPC com a robustez do Next.js
 summary: Uma combinação para construir APIs `end-to-end type-safe`
 # banner: ./trpc+nextjs.jpeg
-# tags:
-# - ReactJs
-# - JavaScript
-# - TypeScript
-# - NextJs
-# - tRPC
+tags:
+- ReactJs
+- JavaScript
+- TypeScript
+- NextJs
+- tRPC
 type: 'BlogPost'
 publishedAt: 2023-01-02
+updatedAt: 2023-01-02
 ---
 
 Neste artigo, apresento como utilizar o tRPC (transport RPC) e o Next.js em conjunto para construir APIs end-to-end type-safe.
@@ -22,19 +23,19 @@ Segundo a documentação, tRPC permite a construção de APIs totalmente type-sa
 
 ## Instalando
 Para começar, inicie o seu projeto Next.js com TypeScript executando o seguinte comando:
-```bash
+```bash:terminal
 npx create-next-app@latest --typescript
 ```
 Marque "Não" para o ESLint, Tailwindcss e o diretório da aplicação, já que o tRPC ainda não oferece suporte para este último. Marque "Sim" para a pasta src.
 
 Em seguida, instale o tRPC e seus pacotes associados com o seguinte comando:
-```bash
+```bash:terminal
 npm install @trpc/server @trpc/client @trpc/react-query @trpc/next @tanstack/react-query zod
 ```
 O tRPC é construído em cima do `react-query`, um pacote que permite realizar chamadas, cache e controle de dados sem precisar mexer em nenhum estado global. Também iremos utilizar o `zod` para nos ajudar com nossos esquemas e validadores de entrada.
 
 Certifique-se de habilitar o modo `strict` do Node em seu `tsconfig.json` para que o zod funcione corretamente:
-```json
+```json:tsconfig.json
 {
 	// …
 	“compilerOptions”: {
@@ -45,19 +46,19 @@ Certifique-se de habilitar o modo `strict` do Node em seu `tsconfig.json` para q
 ```
 
 ## Criando nosso servidor
-```
+```bash
 nextjs-trpc/
-	└── src/
-		└── server/
-			├── api/
-			│	├── routers/
-			│ 	│	└── example.ts
-			│	├── schemas/
-			│	│	└── example.ts
-			│	├── root.ts
-			│	└── trpc.ts
-			└── utils/
-				└── api.ts
+└── src/
+	└── server/
+		├── api/
+		│	├── routers/
+		│ 	│	└── example.ts
+		│	├── schemas/
+		│	│	└── example.ts
+		│	├── root.ts
+		│	└── trpc.ts
+		└── utils/
+			└── api.ts
 ```
 A estrutura de arquivos para nosso servidor irá ficar dentro da pasta server, que conterá nosso contexto do tRPC, rotas e nossas rotas API. Essa estrutura é bem similar à utilizada pelo <ExternalLink href="https://create.t3.gg/">T3App</ExternalLink>.
 
@@ -66,8 +67,8 @@ A estrutura de arquivos para nosso servidor irá ficar dentro da pasta server, q
 Para mais informações sobre as rotas API do Next.js, consulte a <ExternalLink href="https://nextjs.org/docs/api-routes/introduction">documentação</ExternalLink>.
 
 ## Iniciando o tRPC
-Para iniciar, precisamos definir a base do nosso servidor em tRPC, editando o arquivo `nextjs-trpc\src\server\api\trpc.ts` da seguinte maneira:
-```ts
+Para iniciar, precisamos definir a base do nosso servidor em tRPC, da seguinte maneira:
+```ts:nextjs-trpc\src\server\api\trpc.ts
 import { initTRPC } from '@trpc/server'
 
 const t = initTRPC.context().create()
@@ -78,8 +79,8 @@ export const procedure = t.procedure
 Aqui, createTRPCRouter será responsável pelo controle das rotas, enquanto procedure irá definir a própria rota. É importante destacar que é nesse momento que podemos controlar nossas sessões e criar rotas protegidas por login, mas isso fica para outro momento.
 
 ## Roteamento
-No passo anterior, iniciamos o tRPC. Agora, podemos começar a lidar com nosso roteamento, editando o arquivo `nextjs-trpc\src\server\api\root.ts`:
-```ts
+No passo anterior, iniciamos o tRPC. Agora, podemos começar a lidar com nosso roteamento:
+```ts:nextjs-trpc\src\server\api\root.ts
 import { createTRPCRouter } from '@/server/api/trpc'
 
 export const appRouter = createTRPCRouter({})  
@@ -88,8 +89,8 @@ export type AppRouter = typeof appRouter
 Toda a magia aqui fica por conta do `appRouter`, que é a função que criamos anteriormente e que irá receber um objeto de rotas nomeadas.
 
 ## Rotas
-Vamos criar nossa primeira rota? Para isso, abra o arquivo `nextjs-trpc\src\server\api\routers\example.ts` e adicione o seguinte código:
-```ts
+Vamos criar nossa primeira rota? Para isso adicione o seguinte código:
+```ts:nextjs-trpc\src\server\api\routers\example.ts
 import { createTRPCRouter, procedure } from '@/server/api/trpc'
 
 export const exampleRouter = createTRPCRouter({
@@ -98,8 +99,8 @@ export const exampleRouter = createTRPCRouter({
 	}))
 })
 ```
-O código acima cria uma rota chamada hello, que responde com um objeto `{ greeting: 'Hello, how are you doing?' }`. Mas ainda não adicionamos essa rota ao nosso servidor. Para fazer isso, precisamos definir a rota no arquivo `nextjs-trpc/src/server/api/root.ts`. Adicione o seguinte código:
-```ts
+O código acima cria uma rota chamada hello, que responde com um objeto `{ greeting: 'Hello, how are you doing?' }`. Mas ainda não adicionamos essa rota ao nosso servidor. Para fazer isso adicione o seguinte código:
+```ts:nextjs-trpc/src/server/api/root.ts
 ...
 import { exampleRouter } from '@/server/api/routers/example'
 
@@ -110,7 +111,7 @@ export const appRouter = createTRPCRouter({
 Com isso, o que seria a nossa rota `/example/hello` está pronta para ser usada.
 
 ## Next.js API
-Após criar tudo o que precisamos no servidor, precisamos implementar tudo isso no Next.js. Primeiro, crie o arquivo pages/api/trpc/[trpc].ts:
+Após criar tudo o que precisamos no servidor, precisamos implementar tudo isso no Next.js. Primeiro, crie o arquivo `pages/api/trpc/[trpc].ts`:
 ```ts
 import { createNextApiHandler } from '@trpc/server/adapters/next'
 
@@ -126,8 +127,8 @@ Aqui, utilizamos o adaptador do tRPC, que converte nossas rotas para a API de ro
 ## Contexto do Next.js
 Agora precisamos envolver nossa aplicação com o tRPC. Embora possamos acessar a nossa API por meio do endpoint `/api/trpc/...` sem fazer isso, vamos fazer isso para ter acesso a todas as funcionalidades do `react-query` além de fazer sentido em usar o tRPC. Para isso, crie um arquivo chamado `nextjs-trpc/src/utils/api.ts` e adicione o seguinte código:
 
-Primeiro, crie o o que seria nosso "provider" do tRPC em `nextjs-trpc\src\utils\api.ts`:
-```ts
+Primeiro, crie o o que seria nosso "provider" do tRPC:
+```ts:nextjs-trpc\src\utils\api.ts
 import { createTRPCNext } from '@trpc/next'
 import { httpBatchLink } from '@trpc/client'
 
@@ -177,7 +178,7 @@ Provavelmente você imagina que a gente iria fazer algo como:
 ```ts
 const handleFetchData = async () => await fetch('/api/trpc/example/hello')
 ```
-Mas não! Usaremos uma maneira mais elegante, ainda utilizando todo o poder do react-query:
+Mas não! Usaremos uma maneira mais elegante, ainda utilizando todo o poder do `react-query`:
 ```ts
 import { api } from "@/utils/api"
 
@@ -201,8 +202,8 @@ export const HelloInputSchema = z.object({
 	name: z.string()
 })
 ```
-Aqui, acabamos de definir um esquema de entrada que é um objeto que recebe um parâmetro `name` do tipo string. Agora, vamos utilizá-lo na nossa rota `hello` no arquivo `nextjs-trpc\src\server\api\routers\example.ts`:
-```ts
+Aqui, acabamos de definir um esquema de entrada que é um objeto que recebe um parâmetro `name` do tipo string. Agora, vamos utilizá-lo na nossa rota `hello`:
+```ts:nextjs-trpc\src\server\api\routers\example.ts
 ...
 import { HelloInputSchema } from '@/server/api/schemas/example'
 
