@@ -1,8 +1,14 @@
 import { ComputedFields, defineDocumentType, makeSource } from 'contentlayer/source-files'
 import remarkGfm from 'remark-gfm'
-import rehypePrettyCode from 'rehype-pretty-code'
+import remarkSectionize from 'remark-sectionize'
 import rehypeSlug from 'rehype-slug'
 import rehypeAutolinkHeadings from 'rehype-autolink-headings'
+import rehypeCodeTitles from 'rehype-code-titles'
+import readingTime from 'reading-time'
+import rehypePrism from 'rehype-prism-plus'
+import rehypePresetMinify from 'rehype-preset-minify'
+
+import { extractTocHeadings } from './src/lib/mdx'
 
 function getLocale(path: string) {
   const pathArray = path.split('.')
@@ -10,18 +16,16 @@ function getLocale(path: string) {
   return pathArray.length > 2 ? pathArray.slice(-2)[0] : 'en'
 }
 
-// /** @type {import('contentlayer/source-files').ComputedFields} */
 const computedFields: ComputedFields = {
+  readingTime: {
+    type: 'json',
+    resolve: (doc) => readingTime(doc.body.raw),
+  },
+
+  wordCount: { type: 'number', resolve: (doc) => doc.body.raw.split(/\s+/gu).length },
+
   slug: {
     type: 'string',
-    // resolve: (doc) => {
-    //   const flattenedPath = doc._raw.flattenedPath
-
-    //   const flattenedPathSliced = flattenedPath.split('/')
-
-    //   return flattenedPathSliced[1] || flattenedPathSliced[0] || flattenedPath
-    // },
-
     resolve: (doc) => doc._raw.sourceFileName.replace(/(\.pt-BR)?\.mdx$/, ''),
   },
 
@@ -33,7 +37,7 @@ const computedFields: ComputedFields = {
   },
 
   structuredData: {
-    type: 'list',
+    type: 'json',
     resolve: (doc) => ({
       '@context': 'https://schema.org',
       '@type': 'BlogPosting',
@@ -52,13 +56,7 @@ const computedFields: ComputedFields = {
     }),
   },
 
-  // tweetIds: {
-  //   type: 'array',
-  //   resolve: (doc) => {
-  //     const tweetMatches = doc.body.raw.match(/<StaticTweet\sid="[0-9]+"\s\/>/g)
-  //     return tweetMatches?.map((tweet) => tweet.match(/[0-9]+/g)[0]) || []
-  //   },
-  // },
+  toc: { type: 'json', resolve: (doc) => extractTocHeadings(doc.body.raw) },
 }
 
 export const Blog = defineDocumentType(() => ({
@@ -70,17 +68,22 @@ export const Blog = defineDocumentType(() => ({
       type: 'string',
       required: true,
     },
+    summary: {
+      type: 'string',
+      required: true,
+    },
     publishedAt: {
       type: 'string',
       required: true,
     },
-    summary: {
+    updatedAt: {
       type: 'string',
       required: true,
     },
     image: {
       type: 'string',
     },
+    tags: { type: 'json', required: false },
   },
   computedFields,
 }))
@@ -89,36 +92,13 @@ const contentLayerConfig = makeSource({
   contentDirPath: 'content',
   documentTypes: [Blog],
   mdx: {
-    remarkPlugins: [remarkGfm],
+    remarkPlugins: [remarkGfm, remarkSectionize],
     rehypePlugins: [
       rehypeSlug,
-      [
-        rehypePrettyCode,
-        {
-          theme: 'one-dark-pro',
-          onVisitLine(node: any) {
-            // Prevent lines from collapsing in `display: grid` mode, and allow empty
-            // lines to be copy/pasted
-            if (node.children.length === 0) {
-              node.children = [{ type: 'text', value: ' ' }]
-            }
-          },
-          onVisitHighlightedLine(node: any) {
-            node.properties.className.push('line--highlighted')
-          },
-          onVisitHighlightedWord(node: any) {
-            node.properties.className = ['word--highlighted']
-          },
-        },
-      ],
-      [
-        rehypeAutolinkHeadings,
-        {
-          properties: {
-            className: ['anchor'],
-          },
-        },
-      ],
+      rehypeCodeTitles,
+      rehypePrism,
+      rehypePresetMinify,
+      [rehypeAutolinkHeadings, { properties: { className: ['anchor'] } }],
     ],
   },
 })
