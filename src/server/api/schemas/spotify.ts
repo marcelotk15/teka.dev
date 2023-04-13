@@ -63,7 +63,12 @@ export const NowPlayingResponseSchema = z.object({
   }),
   currently_playing_type: z.string(),
   actions: z.object({
-    disallows: z.object({ resuming: z.boolean(), skipping_prev: z.boolean() }),
+    disallows: z
+      .object({
+        resuming: z.boolean().optional(),
+        skipping_prev: z.boolean().optional(),
+      })
+      .optional(),
   }),
   is_playing: z.boolean(),
 })
