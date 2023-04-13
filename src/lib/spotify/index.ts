@@ -1,8 +1,12 @@
 import Cookies from 'js-cookie'
 
-const { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REFRESH_TOKEN } = process.env
+import { env } from '@/env.mjs'
+
+const { SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REFRESH_TOKEN } = env
+
 const BASIC = Buffer.from(`${SPOTIFY_CLIENT_ID}:${SPOTIFY_CLIENT_SECRET}`).toString('base64')
 const BASE_URL = 'https://api.spotify.com'
+console.log('🚀 ~ file: index.ts:9 ~ BASIC:', BASIC)
 const NOW_PLAYING_ENDPOINT = `${BASE_URL}/v1/me/player/currently-playing`
 const TOP_TRACKS_ENDPOINT = `${BASE_URL}/v1/me/top/tracks`
 const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`
@@ -16,7 +20,7 @@ const getAccessToken = async () => {
     },
     body: new URLSearchParams({
       grant_type: 'refresh_token',
-      refresh_token: SPOTIFY_REFRESH_TOKEN || '',
+      refresh_token: SPOTIFY_REFRESH_TOKEN as string,
     }),
   })
 
