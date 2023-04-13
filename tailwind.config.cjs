@@ -8,9 +8,9 @@ const config = {
   theme: {
     container: {
       center: true,
-      padding: '2.5rem',
+      padding: '2rem',
       screens: {
-        '2xl': '56rem',
+        '2xl': '72rem',
       },
     },
     extend: {
