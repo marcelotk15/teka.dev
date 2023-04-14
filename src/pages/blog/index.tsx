@@ -2,15 +2,19 @@ import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import FadeIn from 'react-fade-in'
 import { GetStaticPropsContext, GetStaticPropsResult } from 'next'
+import useTranslation from 'next-translate/useTranslation'
 
 import { PageMainSectionTitle } from '@/components/PageMainSectionTitle'
 import { allBlogPosts, BlogPost } from 'contentlayer/generated'
+import { formatDate } from '@/lib/utils'
 
 type BlogPageProps = {
   posts: BlogPost[]
 }
 
 function PostCard({ title, slug, publishedAt, summary }: BlogPost) {
+  const { lang } = useTranslation()
+
   return (
     <article>
       <Link
@@ -25,7 +29,7 @@ function PostCard({ title, slug, publishedAt, summary }: BlogPost) {
             <h2 className="font-serif text-xl font-bold">{title}</h2>
 
             <div className="flex gap-2">
-              <span>{publishedAt}</span>
+              <span>{formatDate(publishedAt, lang)}</span>
 
               <span>•</span>
 
