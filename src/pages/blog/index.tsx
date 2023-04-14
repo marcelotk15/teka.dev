@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import FadeIn from 'react-fade-in'
 import { GetStaticPropsContext, GetStaticPropsResult } from 'next'
+import { readingTime, type SupportedLanguages } from 'reading-time-estimator'
 import useTranslation from 'next-translate/useTranslation'
 
 import { PageMainSectionTitle } from '@/components/PageMainSectionTitle'
@@ -12,8 +13,8 @@ type BlogPageProps = {
   posts: BlogPost[]
 }
 
-function PostCard({ title, slug, publishedAt, summary }: BlogPost) {
-  const { lang } = useTranslation()
+function PostCard({ title, slug, publishedAt, summary, locale, readingTime }: BlogPost) {
+  const { t } = useTranslation()
 
   return (
     <article>
@@ -29,11 +30,11 @@ function PostCard({ title, slug, publishedAt, summary }: BlogPost) {
             <h2 className="font-serif text-xl font-bold">{title}</h2>
 
             <div className="flex gap-2">
-              <span>{formatDate(publishedAt, lang)}</span>
+              <span>{formatDate(publishedAt, locale)}</span>
 
               <span>•</span>
 
-              <span>readingtime</span>
+              <span>{t('blog:readingTime', { time: Math.ceil(readingTime.minutes) })}</span>
             </div>
 
             <div>{summary}</div>

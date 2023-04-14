@@ -10,7 +10,7 @@ import { formatDate } from '@/lib/utils'
 import { Toc } from '@/components/Toc'
 
 export default function BlogPostPage(post: BlogPost) {
-  const { lang } = useTranslation()
+  const { t } = useTranslation()
 
   return (
     <>
@@ -41,7 +41,8 @@ export default function BlogPostPage(post: BlogPost) {
                 >
                   <span className="h-4 w-0.5 rounded-full bg-zinc-200 dark:bg-zinc-500" />
                   <span className="ml-3">
-                    {formatDate(post.publishedAt, lang)} • {post.readingTime.time}
+                    {formatDate(post.publishedAt, post.locale)} •{' '}
+                    {t('blog:readingTime', { time: Math.ceil(post.readingTime.minutes) })}
                   </span>
                 </time>
               </div>
