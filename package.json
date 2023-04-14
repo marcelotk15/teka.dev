@@ -2,6 +2,7 @@
   "private": true,
   "scripts": {
     "build": "next build",
+    "postbuild": "next-sitemap",
     "dev": "next dev",
     "postinstall": "prisma generate",
     "lint": "next lint",
@@ -29,6 +30,7 @@
     "next": "^13.2.1",
     "next-auth": "^4.19.0",
     "next-seo": "^5.15.0",
+    "next-sitemap": "^4.0.7",
     "next-themes": "^0.2.1",
     "next-translate": "^2.0.2",
     "react": "18.2.0",
