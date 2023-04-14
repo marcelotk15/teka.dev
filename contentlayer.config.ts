@@ -76,13 +76,8 @@ export const Blog = defineDocumentType(() => ({
       type: 'string',
       required: true,
     },
-    updatedAt: {
-      type: 'string',
-      required: true,
-    },
-    image: {
-      type: 'string',
-    },
+    updatedAt: { type: 'string' },
+    image: { type: 'string' },
     tags: { type: 'json', required: false },
   },
   computedFields,
