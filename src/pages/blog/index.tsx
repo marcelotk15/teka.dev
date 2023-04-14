@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { NextSeo } from 'next-seo'
 import FadeIn from 'react-fade-in'
 import { GetStaticPropsContext, GetStaticPropsResult } from 'next'
-import { readingTime, type SupportedLanguages } from 'reading-time-estimator'
 import useTranslation from 'next-translate/useTranslation'
 
 import { PageMainSectionTitle } from '@/components/PageMainSectionTitle'
