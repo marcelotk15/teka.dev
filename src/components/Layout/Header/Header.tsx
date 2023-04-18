@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
 import { Logo } from '../../Logo'
 import { ThemeSelector } from './ThemeSelector'
 import { LangSelector } from './LangSelector'
-import { MainNav } from './MainNav'
+import { CommandMenu } from './CommandMenu'
 
 const headerVariants = cva(
   'sticky inset-x-0 top-0 z-40 flex w-full flex-wrap text-sm sm:flex-nowrap sm:justify-start sm:py-0 transition-all',
@@ -15,7 +15,7 @@ const headerVariants = cva(
     variants: {
       variant: {
         false: '',
-        true: 'backdrop-blur bg-zinc-100/50 dark:bg-zinc-900/50 ',
+        true: 'backdrop-blur-md bg-background/50 border-b border-border/70',
       },
     },
     defaultVariants: {
@@ -23,18 +23,6 @@ const headerVariants = cva(
     },
   },
 )
-
-const wrapperVariations = cva('container flex transition-[padding]', {
-  variants: {
-    variant: {
-      false: 'py-6',
-      true: 'py-4',
-    },
-  },
-  defaultVariants: {
-    variant: false,
-  },
-})
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -49,7 +37,7 @@ export function Header() {
 
   return (
     <header className={cn(headerVariants({ variant: isScrolled }))}>
-      <div className={cn(wrapperVariations({ variant: isScrolled }))}>
+      <div className="container flex py-6">
         <nav className="flex w-full items-center">
           <div>
             <Link aria-label="teka" href="/">
@@ -57,11 +45,10 @@ export function Header() {
             </Link>
           </div>
 
-          <MainNav />
+          <div className="ml-auto flex items-center justify-center gap-8">
+            <CommandMenu />
 
-          <div className="ml-auto flex gap-3">
             <LangSelector />
-            <ThemeSelector />
           </div>
         </nav>
       </div>

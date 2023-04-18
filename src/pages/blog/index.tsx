@@ -24,7 +24,7 @@ function PostCard({ title, slug, publishedAt, summary, locale, readingTime }: Bl
         }}
         title={title}
       >
-        <div className="w-full items-stretch rounded-md p-4 transition-all duration-200 ease-in-out hover:scale-105 hover:bg-zinc-300 dark:hover:bg-zinc-700">
+        <div className="w-full items-stretch rounded-md p-4 transition-all duration-200 ease-in-out hover:scale-105 hover:bg-accent">
           <div className="flex flex-col items-start">
             <h2 className="font-serif text-xl font-bold">{title}</h2>
 
