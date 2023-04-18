@@ -1,0 +1,7 @@
+.rehype-code-title {
+  @apply bg-zinc-700/80 p-1 pl-4 pb-4 -mb-5 rounded italic text-zinc-50
+}
+
+:not(pre) > code[class*="language-"], pre[class*="language-"] {
+  @apply bg-accent;
+}
