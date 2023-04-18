@@ -5,7 +5,6 @@ import { cva } from 'class-variance-authority'
 import { cn } from '@/lib/utils'
 
 import { Logo } from '../../Logo'
-import { ThemeSelector } from './ThemeSelector'
 import { LangSelector } from './LangSelector'
 import { CommandMenu } from './CommandMenu'
 

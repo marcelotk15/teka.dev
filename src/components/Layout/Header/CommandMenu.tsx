@@ -6,7 +6,6 @@ import useTranslation from 'next-translate/useTranslation'
 
 import { Command } from '@/components/ui/Command'
 import { Button } from '@/components/ui/Button'
-import { cn } from '@/lib/utils'
 import { Icons } from '@/components/Icons'
 import { Themes } from '@/config'
 import { Kbd } from '@/components/ui/kbd'
