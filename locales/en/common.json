@@ -17,5 +17,19 @@
   "spotify": {
     "listeningNothing": "Listening Nothing",
     "listeningNow": "Listening Now"
+  },
+
+  "commandMenu": {
+    "menu": "Menu",
+    "noResults": "No results found.",
+    "navigation": "Navigation",
+    "theme": "Theme",
+    "placeholder": "Type a command or search..."
+  },
+
+  "theme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
   }
 }

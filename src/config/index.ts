@@ -24,3 +24,9 @@ export const SocialLinks: Link[] = [
   },
   { name: 'Twitter', href: 'https://twitter.com/_marcelotk', Icon: Icons.twitter },
 ]
+
+export const Themes = [
+  { name: 'light', Icon: Icons.sun },
+  { name: 'dark', Icon: Icons.moon },
+  { name: 'system', Icon: Icons.laptop },
+]
