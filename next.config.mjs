@@ -1,4 +1,5 @@
 import nextTranslate from 'next-translate-plugin'
+import { withContentlayer } from 'next-contentlayer'
 
 /**
  * Run `build` or `dev` with `SKIP_ENV_VALIDATION` to skip env validation.
@@ -11,4 +12,4 @@ const config = {
   reactStrictMode: true,
 }
 
-export default nextTranslate(config)
+export default withContentlayer(nextTranslate(config))

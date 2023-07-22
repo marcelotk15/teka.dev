@@ -9,8 +9,8 @@ import { SocialLink } from './SocialLink'
 
 export function Hero() {
   return (
-    <section className="relative -mt-32 overflow-hidden pb-16 pt-[calc(7rem+2.5rem)] after:absolute after:inset-x-0 after:bottom-0 after:h-24 after:bg-gradient-to-b after:from-transparent after:to-zinc-100 dark:after:to-zinc-900 md:pb-32 md:pt-[calc(7rem+3rem)] md:after:h-32">
-      <div className="absolute inset-0 -z-10 block text-zinc-300 dark:text-zinc-800">
+    <section className="relative -mt-32 overflow-hidden pb-16 pt-[calc(7rem+2.5rem)] after:absolute after:inset-x-0 after:bottom-0 after:h-24 after:bg-gradient-to-b after:from-transparent after:to-background md:pb-32 md:pt-[calc(7rem+3rem)] md:after:h-32">
+      <div className="absolute inset-0 -z-10 block text-input">
         <TopographyLevels className="h-full md:h-auto md:w-full" />
       </div>
 

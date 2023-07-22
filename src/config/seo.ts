@@ -1,15 +1,15 @@
 import type { DefaultSeoProps } from 'next-seo'
 
 export const SEO: DefaultSeoProps = {
-  titleTemplate: '%s | Marcelo "teka" Oliveira',
-  defaultTitle: 'Marcelo "teka" Oliveira',
+  titleTemplate: '%s | teka - Marcelo Oliveira',
+  defaultTitle: 'teka - Marcelo Oliveira',
   description: 'Developer',
   canonical: 'https://teka.dev',
   openGraph: {
-    title: 'Marcelo "teka" Oliveira',
+    title: 'teka - Marcelo Oliveira',
     description: 'Developer',
     url: 'https://teka.dev',
-    siteName: 'Marcelo "teka" Oliveira',
+    siteName: 'teka - Marcelo Oliveira',
     images: [
       {
         url: 'https://teka.dev/og.jpg',

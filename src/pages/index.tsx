@@ -1,18 +1,14 @@
-import { type NextPage } from 'next'
-import Head from 'next/head'
-import Link from 'next/link'
-import { signIn, signOut, useSession } from 'next-auth/react'
+import FadeIn from 'react-fade-in'
 
-import { api } from '@/utils/api'
 import { Hero } from '@/components/Home/Hero'
 
 export default function HomePage() {
   return (
-    <>
-      <main>
+    <main>
+      <FadeIn>
         <Hero />
-      </main>
-    </>
+      </FadeIn>
+    </main>
   )
 }
 

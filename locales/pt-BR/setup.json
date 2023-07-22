@@ -1,0 +1,14 @@
+{
+  "title": "Meu Setup",
+  "description": "Esta é a minha lista de hardware.",
+
+  "case": "Gabinete",
+  "motherboard": "Placa Mãe",
+  "psu": "Fonte",
+  "gpu": "GPU",
+  "cpu": "CPU",
+  "memory": " Memória",
+  "keyboard": "Teclado",
+  "mouse": "Mouse",
+  "headphone": "Fone"
+}

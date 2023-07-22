@@ -17,5 +17,18 @@
   "spotify": {
     "listeningNothing": "Ouvindo Nada",
     "listeningNow": "Ouvindo Agora"
+  },
+
+  "commandMenu": {
+    "menu": "Menu",
+    "noResults": "Sem resultado.",
+    "navigation": "Navegação",
+    "theme": "Tema"
+  },
+
+  "theme": {
+    "light": "Claro",
+    "dark": "Escuro",
+    "system": "Sistema"
   }
 }

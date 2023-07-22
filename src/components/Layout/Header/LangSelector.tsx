@@ -21,8 +21,8 @@ export function LangSelector() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="subtle" size="sm">
-          <Icons.languages className="hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100" />
+        <Button variant="outline">
+          <Icons.languages />
           <span className="sr-only">select language</span>
         </Button>
       </DropdownMenuTrigger>

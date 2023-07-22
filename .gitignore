@@ -40,3 +40,10 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# contentlayer
+.contentlayer
+
+# sitemao
+public/sitemap*.xml
+robots.txt

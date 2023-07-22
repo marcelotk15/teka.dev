@@ -1,3 +1,88 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 240 100% 99%;
+    --foreground: 60 17% 8%;
+
+    --muted: 240 100% 98%;
+    --muted-foreground: 240 3% 45%;
+
+    --popover: 240 100% 99%;
+    --popover-foreground: 60 17% 8%;
+
+    --border: 240 23% 91%;
+    --input: 240 23% 91%;
+
+    --card: 240 100% 99%;
+    --card-foreground: 60 17% 8%;
+
+    --primary: 60 17% 8%;
+    --primary-foreground: 240 100% 99%;
+
+    --secondary: 240 100% 98%;
+    --secondary-foreground: 60 17% 8%;
+
+    --accent: 240 100% 98%;
+    --accent-foreground: 60 17% 8%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 240 100% 99%;
+
+    --ring: 240 5% 65%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 60 100% 2%;
+    --foreground: 240 23% 91%;
+
+    --muted: 60 17% 8%;
+    --muted-foreground: 240 5% 65%;
+
+    --accent: 60 7% 14%;
+    --accent-foreground: 240 100% 99%;
+
+    --popover: 60 100% 2%;
+    --popover-foreground: 240 5% 65%;
+
+    --border: 60 7% 14%;
+    --input: 60 7% 14%;
+
+    --card: 60 100% 2%;
+    --card-foreground: 240 23% 91%;
+
+    --primary: 240 100% 99%;
+    --primary-foreground: 222.2 47.4% 1.2%;
+
+    --secondary: 60 17% 8%;
+    --secondary-foreground: 240 100% 99%;
+
+    --destructive: 4 83% 40%;
+    --destructive-foreground: 240 100% 99%;
+
+    --ring: 60 7% 14%;
+
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/** Prevent scrolling on body when modal is open */
+body[style*="pointer-events: none"] .overflow-auto,
+body[style*="pointer-events: none"] .overflow-y-auto,
+body[style*="pointer-events: none"] .overflow-x-auto {
+  overflow: hidden !important;
+}

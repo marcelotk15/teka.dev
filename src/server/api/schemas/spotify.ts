@@ -28,7 +28,6 @@ export const NowPlayingResponseSchema = z.object({
       href: z.string(),
       id: z.string(),
       images: z.array(z.object({ height: z.number(), url: z.string(), width: z.number() })),
-      is_playable: z.boolean(),
       name: z.string(),
       release_date: z.string(),
       release_date_precision: z.string(),
@@ -63,6 +62,13 @@ export const NowPlayingResponseSchema = z.object({
     uri: z.string(),
   }),
   currently_playing_type: z.string(),
-  actions: z.object({ disallows: z.object({ resuming: z.boolean() }) }),
+  actions: z.object({
+    disallows: z
+      .object({
+        resuming: z.boolean().optional(),
+        skipping_prev: z.boolean().optional(),
+      })
+      .optional(),
+  }),
   is_playing: z.boolean(),
 })

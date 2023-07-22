@@ -1,6 +1,6 @@
 import {
-  Sun,
   type LucideIcon,
+  Sun,
   Moon,
   Laptop,
   SunMoon,
@@ -11,33 +11,24 @@ import {
   Linkedin,
   Languages,
   Check,
+  UserCog,
 } from 'lucide-react'
 
 export type Icon = LucideIcon
 
 export const Icons = {
   sun: Sun,
-
   moon: Moon,
-
   laptop: Laptop,
-
   sunMoon: SunMoon,
-
   home: Home,
-
   pencil: Pencil,
-
   twitter: Twitter,
-
   github: Github,
-
   linkedin: Linkedin,
-
   languages: Languages,
-
   check: Check,
-
+  userCog: UserCog,
   spotify: (
     <svg
       width="24"

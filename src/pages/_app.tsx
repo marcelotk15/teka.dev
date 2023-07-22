@@ -1,4 +1,5 @@
 import '@/styles/globals.css'
+import '@/styles/mdx.css'
 
 import { type AppType } from 'next/app'
 import { type Session } from 'next-auth'
@@ -11,6 +12,7 @@ import { DefaultSeo } from 'next-seo'
 import { api } from '@/utils/api'
 import { Layout } from '@/components/Layout'
 import { SEO } from '@/config'
+import Analytics from '@/components/Analytics'
 
 const fontSans = FontSans({
   subsets: ['latin'],
@@ -61,6 +63,8 @@ const MyApp: AppType<{ session: Session | null }> = ({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Layout>
             <Component {...pageProps} />
+
+            <Analytics />
           </Layout>
         </ThemeProvider>
       </SessionProvider>

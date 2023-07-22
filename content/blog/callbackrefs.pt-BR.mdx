@@ -1,0 +1,174 @@
+---
+title: Evitando useEffect com callback refs
+summary: Interação com um elemento DOM não precisa necessariamente do useEffect
+# banner: ./callback.jpeg
+tags:
+  - ReactJs
+  - JavaScript
+  - TypeScript
+type: 'BlogPost'
+publishedAt: 2023-01-02
+updatedAt: 2023-01-02
+---
+
+> Este artigo é uma tradução de [Avoiding useEffect with callback refs](https://tkdodo.eu/blog/avoiding-use-effect-with-callback-refs)
+>
+> Originalmente escrito em inglês por [@TkDodo](https://github.com/TkDodo)
+
+---
+
+**Obs: Este artigo assume que você tenha um entendimento básico do que são _refs_ no React.**
+
+Apesar de os refs serem mutáveis aonde teoricamente podemos salvar valores arbitrários, eles são frequentemente mais usados para ter acesso a um nó do DOM:
+
+```jsx
+const ref = React.useRef(null)
+
+return <input ref={ref} defaultValue="Hello world" />
+```
+
+`ref` é uma propriedade reservada embutida nos primitivos aonde o React irá salvar o nó do DOM depois de renderizado. Ele será definido de volta para _null_ quando o componente for desmontado.
+
+## Interagindo com refs
+
+Para a maioria das interações, você não precisa acessar o elemento subjacente, porque o React lidará com as atualizações para nós automaticamente. Um bom exemplo é aonde você pode precisar de um ref é gerenciar o foco.
+
+Há um [bom RFC](https://github.com/devongovett/rfcs-1/blob/patch-1/text/2019-focus-management.md) do [Devon Govett](https://twitter.com/devongovett) que propõe adicionar um Gerenciador de Foco ao rect-dom, mas agora não há nada no React que nós ajude com isso.
+
+### Foco com um effect
+
+Então, agora, como você, focaria um elemento de input depois de renderizado? (Eu sei [autofocus](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autofocus) existe, isto é um exemplo. Se isso lhe incomoda imagino que você gistaria de animar o nó.)
+
+Bom, a maioria dos códigos que eu vi tenta fazer isso:
+
+```jsx
+const ref = React.useRef(null)
+
+React.useEffect(() => {
+  ref.current?.focus()
+}, [])
+
+return <input ref={ref} defaultValue="Hello world" />
+```
+
+Isso é a principio bom e não viola nenhuma regra. O array de dependências vazios é ok porque a única coisa usada dentro é o ref que é estável. O linter não irá reclamar de adicionar ao array de dependencia, e o ref também não será lido durante a redenrização (o que pode ser problemático com recursos simultaneos do React)
+
+O effect será executado uma vez "na montagem" ([duas vezes em strict mode](https://pt-br.reactjs.org/docs/strict-mode.html#ensuring-reusable-state)). A essa altura React já preencheu o ref com o nó do DOM então podemos dar foco nele.
+
+Sim está _não_ é o melhor maneira de se fazer isso e tem algumas ressalvas em algumas situações mais avançadas.
+
+Especificamente ele assume que o ref será "preenchido" quando o effect for executado. Se não estiver disponível, por ex. quando você passa o ref para um componente customizado que irá adiar a renderização ou somente mostrar o input depois de alguma outra interação do usuário, o conteúdo do ref continuará _null_ e quando o effect ser executado nada será focado:
+
+```jsx
+function App() {
+  const ref = React.useRef(null)
+
+  React.useEffect(() => {
+    // 🚨 ref.current será sempre será null quando executado
+    ref.current?.focus()
+  }, [])
+
+  return <Form ref={ref} />
+}
+
+const Form = React.forwardRef((props, ref) => {
+  const [show, setShow] = React.useState(false)
+
+  return (
+    <form>
+      <button type="button" onClick={() => setShow(true)}>
+        show
+      </button>
+      // 🧐 ref esta anexado ao input, mas é renderizado condicionalmente
+      // então isso não será preenchido quando o effect acima for executar
+      {show && <input ref={ref} />}
+    </form>
+  )
+})
+```
+Aqui está o que acontece:
+
+- Formulário renderiza.
+- _input_ não é renderizado, _ref_ continua _null_
+- effect executa, nada acontece
+- input é mostrado, _ref_ será preenchido mas não será focado porque o effect não será executado novamente.
+
+O problema é que o effect é "vinculado" a função renderização do Formulário, enquanto na verdade queremos que: "Foca o input quando ele for renderizado", não "quando o formulário é montado".
+
+## Callback refs
+É aqui que os callbacks refs entram in jogo. Se você já olhou para [declarações de tipo para refs](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/fc9b16957473f81a1d708e6948b8d61e292aeb58/types/react/v17/index.d.ts#L85), podemos ver que podemos não só passar um objeto ref para ele, mas também uma função:
+
+```ts
+type Ref<T> = RefCallback<T> | RefObject<T> | null
+```
+Conceitualmente eu gosto de pensar em refs em elementos do React como funções que são chamadas depois que o componente é renderizado. Está função obtem o elemento DOM renderizado passado como argumento. Se o elemento React for desmonta ele será chamado mais uma vez com _null_.
+Passando um ref  _useRef_ (um RefObject) para um elemento React é  _Syntactic Sugar_ (mamão com açucar):
+
+```jsx
+<input
+  ref={(node) => {
+    ref.current = node;
+  }}
+  defaultValue="Hello world"
+/>
+```
+Deixe-me enfatizar isso mais uma vez:
+**Todas propriedades ref são apenas funções!**
+
+E essas funções executam depois da renderização, aonde não há problema executar efeitos colaterais. Talvez fosse melhor se o _ref_ fosse somente chamado _depoisDaRenderizacao_ ou algo assim.
+
+Com esse conhecimento, o que nós impede de de forcar o input dentro do callback ref, aonde temos acesso direto ao nó?
+
+```jsx
+<input
+  ref={(node) => {
+    node?.focus()
+  }}
+  defaultValue="Hello world"
+/>
+```
+Bom, um pequeno detalhe: React irá executar essa função após _toda_ renderização. Então, ao menos que estejamos bem em focar nosso input com tanta frequência (o que, provavelmente, não estamos), temos que dizer para o React somente executar isso somente quando quisermos. 
+
+### useCallback para o resgate
+
+Felizmente, o React usa estabilidade referencial para verificar se o callback ref deve ser executado ou não. Isso significa que se passarmos o mesmo ref para ele, a execução será ignorada.
+
+E é que entra o _useCallback_, porque é assim que garantimos que a função não seja criada desnecessariamente. Talvez por isso que eles são chamados de callback-refs - porque você tem que envolvelos em _useCallback_ o tempo todo.  😂
+
+Aqui está a solução final:
+
+```jsx
+const ref = React.useCallback((node) => {
+  node?.focus()
+}, [])
+
+return <input ref={ref} defaultValue="Hello world" />
+```
+
+Comparando com a versão inicial, é menos código e usa apenas um hook no lugar de dois, Além disso, funcionará em todas situações, poque o callback ref está vinculado ao ciclo de vida do nó DOM, não do componente que o monta. Além disso ele não será executado duas vezes no _strict mode_ (quando executado no ambiente de desenvolvimento) o que parece ser importante para muitos.
+
+E como mostrado nessa [joia escondida na (antiga) documentação do React](https://pt-br.reactjs.org/docs/hooks-faq.html#how-can-i-measure-a-dom-node), você pode usar isso para executar qualquer tipo de efeito colateral, ex. chamar _setState_ nele. Eu vou deixar um exemplo aqui poque na verdade é muito bom:
+
+```jsx
+function MeasureExample() {
+  const [height, setHeight] = React.useState(0)
+
+  const measuredRef = React.useCallback(node => {
+    if (node !== null) {
+      setHeight(node.getBoundingClientRect().height)
+    }
+  }, [])
+
+  return (
+    <>
+      <h1 ref={measuredRef}>Hello, world</h1>
+      <h2>The above header is {Math.round(height)}px tall</h2>
+    </>
+  )
+}
+```
+
+Então por favor, se você precisa interagir com elementos DOM diretamente depois da renderização, tente não pular direto no _useRef_ + _useEffect_, mas considere usar _callback refs_ em vez disso.
+
+
+> Original article in English can be read at [Avoiding useEffect with callback refs](https://tkdodo.eu/blog/avoiding-use-effect-with-callback-refs)

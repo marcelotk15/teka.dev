@@ -1,0 +1,14 @@
+{
+  "title": "My Setup",
+  "description": "This is my hardware list.",
+
+  "case": "Case",
+  "motherboard": "Motherboard",
+  "psu": "PSU",
+  "gpu": "GPU",
+  "cpu": "CPU",
+  "memory": "Memory",
+  "keyboard": "Keyboard",
+  "mouse": "Mouse",
+  "headphone": "Headphone"
+}
